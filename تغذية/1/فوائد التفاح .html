@@ -174,86 +174,41 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* تحسين العرض على الشاشات الصغيرة (أقل من 600px) */
-@media (max-width: 400px) {
-    /* تحسين عرض الحاوية */
+/* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
+@media (max-width: 740px) {
+    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
     .container {
         padding: 10px;
         width: 100%;
         flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch; /* تمديد الأزرار لملء العرض */
-        text-align: center; /* ضبط النص ليكون في المنتصف */
-        margin: 5px 0; /* إضافة مسافة بين الأزرار */
+        align-items: stretch;
+        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
     }
 
     /* تحسين عرض البطاقات على الشاشات الصغيرة */
     .card {
-        flex-basis: 100%;  /* عرض البطاقة بالكامل */
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch; /* تمديد الأزرار لملء العرض */
-        text-align: center; /* ضبط النص ليكون في المنتصف */
-        margin: 5px 0; /* إضافة مسافة بين الأزرار */
+        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
+        margin-bottom: 20px;
     }
 
-    /* تحسين تنسيق شريط البحث */
+    /* تحسين عرض شريط البحث */
     .search-bar {
         width: 100%;
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch; /* تمديد الأزرار لملء العرض */
-        text-align: center; /* ضبط النص ليكون في المنتصف */
-        margin: 5px 0; /* إضافة مسافة بين الأزرار */
     }
 
     .search-bar input[type="text"] {
         width: 80%;
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch; /* تمديد الأزرار لملء العرض */
-        text-align: center; /* ضبط النص ليكون في المنتصف */
-        margin: 5px 0; /* إضافة مسافة بين الأزرار */
     }
 
     .search-bar button {
         width: 18%;
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch; /* تمديد الأزرار لملء العرض */
-        text-align: center; /* ضبط النص ليكون في المنتصف */
-        margin: 5px 0; /* إضافة مسافة بين الأزرار */
     }
 }
 
-/* تحسين تذييل الصفحة */
-footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+/* إخفاء شريط التمرير الأفقي */
+body {
+    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
 }
-
-footer a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-footer .sections {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-footer .sections a {
-    margin: 5px 15px;
-}
-
 
     </style>
 </head>
