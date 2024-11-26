@@ -17,12 +17,18 @@
         }
         .container {
             width: 90%;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 20px auto;
             background: #fff;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .content {
+            flex: 1;
+            margin-right: 20px;
         }
         h1 {
             text-align: center;
@@ -47,6 +53,31 @@
         .btn-back:hover, .btn-home:hover {
             background-color: #b9334a;
         }
+
+        /* Cards Section */
+        .random-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-basis: 280px;
+            margin-top: 20px;
+        }
+
+        .random-cards .card {
+            width: 100%;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .random-cards img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
         footer {
             background-color: #333;
             color: white;
@@ -67,44 +98,56 @@
         footer .sections a {
             margin: 5px 15px;
         }
-        footer .random-cards {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        footer .random-cards .card {
-            width: 180px;
-            margin: 10px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        footer .random-cards img {
-            width: 100%;
-            border-radius: 8px;
-        }
+        /* تأثير عند التمرير */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>فوائد الفراولة</h1>
-        
-        <h2>1. تعزيز صحة القلب</h2>
-        <p>تحتوي الفراولة على مركبات نباتية مثل الأنثوسيانين، التي تساعد في تقليل خطر الإصابة بأمراض القلب. تناولها بانتظام يمكن أن يحسن مستويات الكوليسترول ويعزز مرونة الأوعية الدموية، مما يحمي القلب من الإجهاد.</p>
+        <!-- Content Section -->
+        <div class="content">
+            <h1>فوائد الفراولة</h1>
+            
+            <h2>1. تعزيز صحة القلب</h2>
+            <p>تحتوي الفراولة على مركبات نباتية مثل الأنثوسيانين، التي تساعد في تقليل خطر الإصابة بأمراض القلب. تناولها بانتظام يمكن أن يحسن مستويات الكوليسترول ويعزز مرونة الأوعية الدموية، مما يحمي القلب من الإجهاد.</p>
 
-        <h2>2. دعم صحة الجهاز المناعي</h2>
-        <p>الفراولة غنية بفيتامين C الذي يعمل كمضاد قوي للأكسدة. يساعد فيتامين C على تعزيز مناعة الجسم من خلال تقوية الدفاعات الطبيعية ضد الأمراض، مما يجعل الجسم أكثر قدرة على مواجهة العدوى.</p>
+            <h2>2. دعم صحة الجهاز المناعي</h2>
+            <p>الفراولة غنية بفيتامين C الذي يعمل كمضاد قوي للأكسدة. يساعد فيتامين C على تعزيز مناعة الجسم من خلال تقوية الدفاعات الطبيعية ضد الأمراض، مما يجعل الجسم أكثر قدرة على مواجهة العدوى.</p>
 
-        <h2>3. تعزيز صحة الجلد والبشرة</h2>
-        <p>تمتاز الفراولة بمحتواها العالي من مضادات الأكسدة والأحماض الطبيعية مثل حمض الساليسيليك، التي تعمل على تحسين صحة الجلد. استخدامها كجزء من نظام غذائي صحي يساهم في تقليل علامات الشيخوخة وتوحيد لون البشرة.</p>
+            <h2>3. تعزيز صحة الجلد والبشرة</h2>
+            <p>تمتاز الفراولة بمحتواها العالي من مضادات الأكسدة والأحماض الطبيعية مثل حمض الساليسيليك، التي تعمل على تحسين صحة الجلد. استخدامها كجزء من نظام غذائي صحي يساهم في تقليل علامات الشيخوخة وتوحيد لون البشرة.</p>
 
-        <h2>4. تحسين صحة الجهاز الهضمي</h2>
-        <p>بفضل احتوائها على الألياف الغذائية، تساعد الفراولة على تحسين عملية الهضم وتنظيم حركة الأمعاء. تناول الفراولة يمكن أن يخفف من مشاكل الإمساك ويعزز صحة الأمعاء.</p>
+            <h2>4. تحسين صحة الجهاز الهضمي</h2>
+            <p>بفضل احتوائها على الألياف الغذائية، تساعد الفراولة على تحسين عملية الهضم وتنظيم حركة الأمعاء. تناول الفراولة يمكن أن يخفف من مشاكل الإمساك ويعزز صحة الأمعاء.</p>
 
-        <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
-        <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
+            <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
+            <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
+        </div>
+
+        <!-- Random Cards Section -->
+        <div class="random-cards">
+            <div class="card">
+                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image 1">
+                <p>بطاقة عشوائية 1</p>
+            </div>
+            <div class="card">
+                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image 2">
+                <p>بطاقة عشوائية 2</p>
+            </div>
+            <div class="card">
+                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image 3">
+                <p>بطاقة عشوائية 3</p>
+            </div>
+        </div>
     </div>
 
     <!-- Footer Section -->
@@ -124,22 +167,30 @@
             <a href="https://likebook.online/takh/كتب">كتب</a>
             <a href="https://likebook.online/takh/طبخات%20سورية">طبخات سورية</a>
         </div>
-
-        <!-- Random Cards Section -->
-        <div class="random-cards">
-            <div class="card">
-                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image">
-                <p>بطاقة عشوائية 1</p>
-            </div>
-            <div class="card">
-                <img src="https://likebook.online/تغذية/2/fawakehjson.json" alt="Card Image">
-                <p>بطاقة عشوائية 2</p>
-            </div>
-            <div class="card">
-                <img src="https://likebook.online/تغذية/3/fawakehjson.json" alt="Card Image">
-                <p>بطاقة عشوائية 3</p>
-            </div>
-        </div>
     </footer>
+    <script>
+        // جلب بيانات JSON
+        fetch('https://likebook.online/تغذية/1/fawakehjson.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('cards-container');
+                data.forEach(item => {
+                    // إنشاء كرت لكل عنصر
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <img src="${item.card_image_url}" alt="${item.name}">
+                        <p>${item.name}</p>
+                    `;
+                    // إضافة الرابط عند النقر
+                    card.addEventListener('click', () => {
+                        window.location.href = item.link;
+                    });
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+    
 </body>
 </html>
