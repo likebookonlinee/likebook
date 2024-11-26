@@ -47,6 +47,44 @@
         .btn-back:hover, .btn-home:hover {
             background-color: #b9334a;
         }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer .sections {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        footer .sections a {
+            margin: 5px 15px;
+        }
+        footer .random-cards {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        footer .random-cards .card {
+            width: 180px;
+            margin: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        footer .random-cards img {
+            width: 100%;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -68,5 +106,40 @@
         <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
         <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
     </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div>
+            <a href="https://likebook.online/contact-us">اتصل بنا</a>
+            <a href="https://likebook.online/about-us">من نحن</a>
+            <a href="https://likebook.online/privacy-policy">سياسة الخصوصية</a>
+        </div>
+        
+        <!-- Sections Links -->
+        <div class="sections">
+            <a href="https://likebook.online/takh/تغذية">تغذية</a>
+            <a href="https://likebook.online/takh/فوائد%20الفواكه">فوائد الفواكه</a>
+            <a href="https://likebook.online/takh/طبخ">طبخ</a>
+            <a href="https://likebook.online/takh/معجنات">معجنات</a>
+            <a href="https://likebook.online/takh/كتب">كتب</a>
+            <a href="https://likebook.online/takh/طبخات%20سورية">طبخات سورية</a>
+        </div>
+
+        <!-- Random Cards Section -->
+        <div class="random-cards">
+            <div class="card">
+                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image">
+                <p>بطاقة عشوائية 1</p>
+            </div>
+            <div class="card">
+                <img src="https://likebook.online/تغذية/2/fawakehjson.json" alt="Card Image">
+                <p>بطاقة عشوائية 2</p>
+            </div>
+            <div class="card">
+                <img src="https://likebook.online/تغذية/3/fawakehjson.json" alt="Card Image">
+                <p>بطاقة عشوائية 3</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
