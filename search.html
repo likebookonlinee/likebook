@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نتائج البحث</title>
+</head>
+<body>
+  <h1>نتائج البحث</h1>
+  
+  <!-- نموذج البحث -->
+  <form action="/search" method="get">
+    <input type="text" name="q" placeholder="ابحث هنا..." required>
+    <button type="submit">بحث</button>
+  </form>
+
+  <!-- عرض النتائج -->
+  <div id="search-results">
+    <!-- سيتم عرض النتائج هنا باستخدام JavaScript -->
+  </div>
+
+  <script>
+    // استخراج الاستعلام من الرابط
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q');  // استرجاع قيمة 'q' من الرابط
+
+    // تحميل البيانات من ملف searchData.json
+    fetch('searchData.json')
+      .then(response => response.json())
+      .then(data => {
+        const resultsDiv = document.getElementById('search-results');
+        
+        // تصفية البيانات بناءً على الاستعلام
+        const filteredResults = data.filter(item => 
+          item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
+        );
+
+        // عرض النتائج
+        if (filteredResults.length > 0) {
+          resultsDiv.innerHTML = '<h3>نتائج البحث:</h3><ul>';
+          filteredResults.forEach(result => {
+            resultsDiv.innerHTML += `<li><a href="${result.url}" target="_blank"><strong>${result.title}</strong>: ${result.description}</a></li>`;
+          });
+          resultsDiv.innerHTML += '</ul>';
+        } else {
+          resultsDiv.innerHTML = '<p>لم يتم العثور على نتائج.</p>';
+        }
+      })
+      .catch(error => {
+        console.error('Error loading search data:', error);
+        document.getElementById('search-results').innerHTML = '<p>حدث خطأ في تحميل البيانات.</p>';
+      });
+  </script>
+</body>
+</html>
