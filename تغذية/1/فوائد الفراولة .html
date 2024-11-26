@@ -178,6 +178,9 @@
         background-color: #e67e22;
     }
 </style>
+<!-- شريط المسار التلقائي -->
+<div class="breadcrumb" id="breadcrumb"></div>
+
 
     <div class="container">
         <!-- Content Section -->
@@ -226,6 +229,32 @@
     </footer>
 
     <script>
+          // دالة لتحديد المسار التلقائي بناءً على URL الحالي
+    function updateBreadcrumb() {
+        const pathname = window.location.pathname; // استخراج المسار الحالي
+        const pathSegments = pathname.split('/');  // تقسيم المسار بناءً على '/'
+        const breadcrumbContainer = document.getElementById('breadcrumb');
+        
+        // تصفية المسارات، وإزالة المجلدات (يمكنك إضافة المزيد من التصفية هنا حسب الحاجة)
+        const segments = pathSegments.filter(segment => segment && segment !== 'takh'); // استبعاد المجلدات مثل 'takh'
+
+        // بناء شريط المسار (breadcrumb)
+        let breadcrumbHtml = '<a href="index.html">الصفحة الرئيسية</a>';
+
+        segments.forEach((segment, index) => {
+            if (index === segments.length - 1) {
+                breadcrumbHtml += ' / <span>' + decodeURIComponent(segment.replace('.html', '')) + '</span>';
+            } else {
+                breadcrumbHtml += ' / <a href="' + segments.slice(0, index + 1).join('/') + '.html">' + decodeURIComponent(segment.replace('.html', '')) + '</a>';
+            }
+        });
+
+        breadcrumbContainer.innerHTML = breadcrumbHtml; // عرض شريط المسار
+    }
+
+    // تنفيذ الدالة لتحديث شريط المسار
+    updateBreadcrumb();
+    
         // جلب بيانات JSON
         fetch('https://likebook.online/تغذية/1/fawakehjson.json')
             .then(response => response.json())
