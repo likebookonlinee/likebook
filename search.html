@@ -92,6 +92,13 @@
       color: #4CAF50;
     }
 
+    li img {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+
     /* رسالة إذا لم يتم العثور على نتائج */
     #no-results {
       text-align: center;
@@ -134,7 +141,7 @@
         if (filteredResults.length > 0) {
           resultsDiv.innerHTML = '<h3>نتائج البحث:</h3><ul>';
           filteredResults.forEach(result => {
-            resultsDiv.innerHTML += `<li><a href="${result.url}" target="_blank"><strong>${result.title}</strong>: ${result.description}</a></li>`;
+            resultsDiv.innerHTML += `<li><a href="${result.url}" target="_blank"><strong>${result.title}</strong>: ${result.description}</a><img src="${result.image}" alt="${result.title}"></li>`;
           });
           resultsDiv.innerHTML += '</ul>';
         } else {
