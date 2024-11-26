@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="تعرف على الفوائد الصحية والغذائية للبرتقال وكيفية تحسين صحتك باستخدامه.">
+    <meta name="author" content="Likebook">
+    <meta name="keywords" content="البرتقال, فوائد البرتقال, الصحة, التغذية, فيتامين C">
     <link rel="icon" href="/icon.jpg" type="image/jpg">
-
     <title>فوائد البرتقال</title>
     
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VV13SCSQRD');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VV13SCSQRD');
+    </script>
 
     <style>
+        /* تنسيق عام */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.8;
@@ -26,7 +27,19 @@
             color: #333;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* إخفاء شريط التمرير الأفقي */
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         .container {
             width: 90%;
             max-width: 1000px;
@@ -38,21 +51,26 @@
             display: flex;
             flex-wrap: wrap;
         }
+
         .content {
             flex: 1;
             margin-right: 20px;
         }
+
         h1 {
             text-align: center;
             color: #d23f57;
         }
+
         h2 {
             color: #d23f57;
             margin-top: 20px;
         }
+
         p {
             margin-bottom: 15px;
         }
+
         .btn-back, .btn-home {
             display: inline-block;
             margin-top: 20px;
@@ -62,6 +80,7 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
         .btn-back:hover, .btn-home:hover {
             background-color: #b9334a;
         }
@@ -73,6 +92,7 @@
             gap: 20px;
             flex-basis: 280px;
             margin-top: 20px;
+            order: 2; /* تجعلها تظهر أسفل المحتوى */
         }
 
         .card {
@@ -115,81 +135,88 @@
             padding: 20px 0;
             text-align: center;
         }
+
         footer a {
             color: white;
             text-decoration: none;
             margin: 0 10px;
         }
+
         footer .sections {
             margin-top: 20px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         footer .sections a {
             margin: 5px 15px;
         }
+
+        /* شريط العنوان العلوي */
+        .top-bar {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .site-name {
+            font-size: 1.5em;
+        }
+
+        /* شريط البحث داخل الجزء العلوي */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 60%; /* تعديل العرض ليتمدد */
+        }
+
+        .search-bar input[type="text"] {
+            width: 100%; /* توسيع حقل البحث ليشمل المساحة المتاحة */
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            background-color: #f39c12;
+            border: 1px solid #f39c12;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #e67e22;
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .content {
+                margin-right: 0;
+            }
+
+            .random-cards {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 0;
+                order: 1; /* جعل البطاقات تظهر في الأعلى في الشاشات الصغيرة */
+            }
+        }
     </style>
-</head>
-<body>
-    <!-- شريط العنوان العلوي -->
-<div class="top-bar">
-    <div class="site-name">
-        <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
-    </div>
-
-    <!-- شريط البحث داخل الجزء العلوي -->
-    <div class="search-bar">
-        <input type="text" id="search-box" placeholder="ابحث في الموقع...">
-        <button onclick="searchSite()">بحث</button>
-    </div>
-</div>
-
-<style>
-    /* شريط العنوان العلوي */
-    .top-bar {
-        background-color: #333;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-    }
-
-    .site-name {
-        font-size: 1.5em;
-    }
-
-    /* شريط البحث داخل الجزء العلوي */
-    .search-bar {
-        display: flex;
-        align-items: center;
-        width: 60%; /* تعديل العرض ليتمدد */
-    }
-
-    .search-bar input[type="text"] {
-        width: 100%; /* توسيع حقل البحث ليشمل المساحة المتاحة */
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-    .search-bar button {
-        padding: 10px;
-        background-color: #f39c12;
-        border: 1px solid #f39c12;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .search-bar button:hover {
-        background-color: #e67e22;
-    }
-</style>
 
     <div class="container">
         <div class="content">
