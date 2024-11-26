@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="تعرف على الفوائد الصحية والغذائية للتوت وكيفية تحسين صحتك باستخدامه.">
+    <meta name="author" content="Likebook">
+    <meta name="keywords" content="التوت, فوائد التوت, الصحة, التغذية">
     <link rel="icon" href="/icon.jpg" type="image/jpg">
 
     <title>فوائد التوت</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VV13SCSQRD');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VV13SCSQRD');
+    </script>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -127,46 +129,177 @@
         footer .sections a {
             margin: 5px 15px;
         }
+
         /* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
-@media (max-width: 740px) {
-    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
-    .container {
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch;
-        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
-    }
+        @media (max-width: 740px) {
+            /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
+            .container {
+                padding: 10px;
+                width: 100%;
+                flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+                align-items: stretch;
+                box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
+            }
 
-    /* تحسين عرض البطاقات على الشاشات الصغيرة */
-    .card {
-        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
-        margin-bottom: 20px;
-    }
+            /* تحسين عرض البطاقات على الشاشات الصغيرة */
+            .card {
+                flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
+                margin-bottom: 20px;
+            }
 
-    /* تحسين عرض شريط البحث */
-    .search-bar {
-        width: 100%;
-    }
+            /* تحسين عرض شريط البحث */
+            .search-bar {
+                width: 100%;
+            }
 
-    .search-bar input[type="text"] {
-        width: 80%;
-    }
+            .search-bar input[type="text"] {
+                width: 80%;
+            }
 
-    .search-bar button {
-        width: 18%;
-    }
-}
+            .search-bar button {
+                width: 18%;
+            }
+        }
 
-/* إخفاء شريط التمرير الأفقي */
-body {
-    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
-}
+        /* إخفاء شريط التمرير الأفقي */
+        body {
+            overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
+        }
+
+        /* تنسيق شريط البحث */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 60%;
+            margin: 10px auto;
+        }
+
+        .search-bar input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            background-color: #f39c12;
+            border: 1px solid #f39c12;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #e67e22;
+        }
+
+        /* شريط العنوان العلوي */
+        .top-bar {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .site-name {
+            font-size: 1.5em;
+        }
+
+        /* شريط البحث داخل الجزء العلوي */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 60%; /* تعديل العرض ليتمدد */
+        }
+
+        .search-bar input[type="text"] {
+            width: 100%; /* توسيع حقل البحث ليشمل المساحة المتاحة */
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            background-color: #f39c12;
+            border: 1px solid #f39c12;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #e67e22;
+        }
 
     </style>
 </head>
 <body>
+<!-- شريط العنوان العلوي -->
+<div class="top-bar">
+    <div class="site-name">
+        <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+    </div>
 
+    <!-- شريط البحث داخل الجزء العلوي -->
+    <div class="search-bar">
+        <input type="text" id="search-box" placeholder="ابحث في الموقع...">
+        <button onclick="searchSite()">بحث</button>
+    </div>
+</div>
+
+<style>
+    /* شريط العنوان العلوي */
+    .top-bar {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .site-name {
+        font-size: 1.5em;
+    }
+
+    /* شريط البحث داخل الجزء العلوي */
+    .search-bar {
+        display: flex;
+        align-items: center;
+        width: 60%; /* تعديل العرض ليتمدد */
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%; /* توسيع حقل البحث ليشمل المساحة المتاحة */
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .search-bar button {
+        padding: 10px;
+        background-color: #f39c12;
+        border: 1px solid #f39c12;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .search-bar button:hover {
+        background-color: #e67e22;
+    }
+</style>
 
 
     <div class="container">
