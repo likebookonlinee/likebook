@@ -141,7 +141,12 @@
         if (filteredResults.length > 0) {
           resultsDiv.innerHTML = '<h3>نتائج البحث:</h3><ul>';
           filteredResults.forEach(result => {
-            resultsDiv.innerHTML += `<li><a href="${result.url}" target="_blank"><strong>${result.title}</strong>: ${result.description}</a><img src="${result.image}" alt="${result.title}"></li>`;
+            resultsDiv.innerHTML += `<li>
+              <a href="${result.url}" target="_self">
+                <strong>${result.title}</strong>: ${result.description}
+              </a>
+              <img src="${result.image}" alt="${result.title}">
+            </li>`;
           });
           resultsDiv.innerHTML += '</ul>';
         } else {
@@ -152,6 +157,7 @@
         console.error('Error loading search data:', error);
         document.getElementById('search-results').innerHTML = '<p id="no-results">حدث خطأ في تحميل البيانات.</p>';
       });
-  </script>
+</script>
+
 </body>
 </html>
