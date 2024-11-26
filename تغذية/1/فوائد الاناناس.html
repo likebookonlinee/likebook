@@ -208,7 +208,31 @@
     .search-bar button:hover {
         background-color: #e67e22;
     }
-    
+    /* تنسيق خاص للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .top-bar {
+        flex-direction: column; /* جعل العناصر عمودية */
+        padding: 10px;
+    }
+
+    .site-name {
+        margin-bottom: 10px; /* إضافة مسافة بين اسم الموقع وشريط البحث */
+    }
+
+    .search-bar {
+        width: 100%; /* جعل شريط البحث يأخذ العرض الكامل */
+        justify-content: center;
+    }
+
+    .search-bar input[type="text"] {
+        font-size: 14px; /* تصغير الخط */
+    }
+
+    .search-bar button {
+        font-size: 14px; /* تصغير الزر */
+        padding: 8px; /* تقليل حجم الزر */
+    }
+}
 </style>
 
     <div class="container">
