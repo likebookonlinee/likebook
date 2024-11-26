@@ -238,7 +238,20 @@
 @media (max-width: 768px) {
     body {
         overflow-x: hidden; /* إخفاء شريط التمرير الأفقي */
-    } 
+    }
+
+    .content {
+        padding: 10px; /* إضافة مساحة داخلية مناسبة */
+    }
+
+    .container {
+        padding: 0; /* إزالة أي حواف غير ضرورية */
+    }
+
+    h1, h2, p {
+        word-wrap: break-word; /* تقسيم الكلمات الطويلة لتناسب العرض */
+        text-align: justify; /* محاذاة النص لتجنب التمدد */
+    }
 }
 </style>
 
