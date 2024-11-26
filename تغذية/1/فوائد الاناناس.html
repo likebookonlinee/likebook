@@ -21,123 +21,42 @@
         </script>
     
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.8;
-            background-color: #f8f2f2;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
-            
-            
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .content {
-            flex: 1;
-            margin-right: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #f39c12;
-        }
-        h2 {
-            color: #f39c12;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        .btn-back, .btn-home {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #f39c12;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .btn-back:hover, .btn-home:hover {
-            background-color: #e67e22;
-        }
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    background-color: #f8f2f2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
-        /* Cards Section */
-        .random-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex-basis: 280px;
-            margin-top: 20px;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px 8px 0 0;
-        }
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-        .card h3 {
-            margin: 10px 0;
-            color: #333;
-        }
-
-        .card p {
-            color: #666;
-            font-size: 0.9em;
-            margin: 10px;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        footer .sections {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        footer .sections a {
-            margin: 5px 15px;
-        }
-        @media (max-width: 600px) {
+@media (max-width: 600px) {
     .container {
         flex-direction: column;
+        padding: 10px; /* تقليل الحشو */
     }
     .content {
         margin-right: 0;
@@ -146,6 +65,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap: 10px;
+        margin: 0; /* إزالة الهوامش الزائدة */
     }
 }
 
