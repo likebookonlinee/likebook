@@ -16,144 +16,211 @@
         gtag('config', 'G-VV13SCSQRD');
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.8;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .content {
-            flex: 1;
-            margin-right: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #4caf50;
-        }
-        h2 {
-            color: #4caf50;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        .btn-back, .btn-home {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #4caf50;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .btn-back:hover, .btn-home:hover {
-            background-color: #388e3c;
-        }
-        .top-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-        .site-name {
-            font-size: 1.5em;
-        }
-        .search-bar {
-            display: flex;
-            align-items: center;
-            width: 60%;
-        }
-        .search-bar input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .search-bar button {
-            padding: 10px;
-            background-color: #f39c12;
-            border: 1px solid #f39c12;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .search-bar button:hover {
-            background-color: #e67e22;
-        }
-        .random-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex-basis: 280px;
-            margin-top: 20px;
-        }
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px 8px 0 0;
-        }
-        .card h3 {
-            margin: 10px 0;
-            color: #333;
-        }
-        .card p {
-            color: #666;
-            font-size: 0.9em;
-            margin: 10px;
-        }
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        footer .sections {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        footer .sections a {
-            margin: 5px 15px;
-        }
+        /* تنسيق الصفحة بشكل عام */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* حاوية الصفحة */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+/* المحتوى داخل الحاوية */
+.content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* عنوان الصفحة */
+h1 {
+    text-align: center;
+    color: #4caf50;
+}
+
+/* عنوان القسم */
+h2 {
+    color: #4caf50;
+    margin-top: 20px;
+}
+
+/* الفقرات */
+p {
+    margin-bottom: 15px;
+}
+
+/* الأزرار */
+.btn-back, .btn-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-back:hover, .btn-home:hover {
+    background-color: #388e3c;
+}
+
+/* شريط العنوان العلوي */
+.top-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* اسم الموقع */
+.site-name {
+    font-size: 1.5em;
+}
+
+/* شريط البحث */
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    padding: 10px;
+    background-color: #f39c12;
+    border: 1px solid #f39c12;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #e67e22;
+}
+
+/* تنسيق البطاقات العشوائية */
+.random-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 20px;
+    flex-basis: calc(33.33% - 20px);  /* عرض البطاقة 33.33% مع مسافة بين البطاقات */
+    box-sizing: border-box;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.card h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.9em;
+    margin: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين العرض على الشاشات الصغيرة (أقل من 600px) */
+@media (max-width: 600px) {
+    /* تحسين عرض الحاوية */
+    .container {
+        padding: 10px;
+        width: 100%;
+    }
+
+    /* تحسين عرض البطاقات على الشاشات الصغيرة */
+    .card {
+        flex-basis: calc(100% - 20px);  /* عرض البطاقة بالكامل */
+    }
+
+    /* تحسين تنسيق شريط البحث */
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-bar input[type="text"] {
+        width: 80%;
+    }
+
+    .search-bar button {
+        width: 18%;
+    }
+}
+
+/* تحسين تذييل الصفحة */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer .sections {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer .sections a {
+    margin: 5px 15px;
+}
+
     </style>
 </head>
 <body>
