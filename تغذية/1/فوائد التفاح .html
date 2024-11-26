@@ -16,7 +16,7 @@
         gtag('config', 'G-VV13SCSQRD');
     </script>
     <style>
-        /* تنسيق الصفحة بشكل عام */
+/* تنسيق الصفحة بشكل عام */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.8;
@@ -24,11 +24,13 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* لضمان احتساب الـ padding والحواف ضمن الحجم الكلي */
+    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
 }
 
 /* حاوية الصفحة */
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
     margin: 20px auto;
     background: #fff;
@@ -88,6 +90,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 /* اسم الموقع */
@@ -99,11 +102,11 @@ p {
 .search-bar {
     display: flex;
     align-items: center;
-    width: 60%;
+    width: 100%;
 }
 
 .search-bar input[type="text"] {
-    width: 100%;
+    width: 80%; /* استخدام 80% للـ input */
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
@@ -111,6 +114,7 @@ p {
 }
 
 .search-bar button {
+    width: 18%; /* زر البحث سيأخذ 18% من العرض */
     padding: 10px;
     background-color: #f39c12;
     border: 1px solid #f39c12;
@@ -132,6 +136,7 @@ p {
     margin-top: 20px;
     width: 100%;
     justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .card {
@@ -179,7 +184,7 @@ p {
 
     /* تحسين عرض البطاقات على الشاشات الصغيرة */
     .card {
-        flex-basis: calc(100% - 20px);  /* عرض البطاقة بالكامل */
+        flex-basis: 100%;  /* عرض البطاقة بالكامل */
     }
 
     /* تحسين تنسيق شريط البحث */
@@ -220,6 +225,7 @@ footer .sections {
 footer .sections a {
     margin: 5px 15px;
 }
+
 
     </style>
 </head>
