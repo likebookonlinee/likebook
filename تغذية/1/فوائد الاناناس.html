@@ -129,42 +129,52 @@
         footer .sections a {
             margin: 5px 15px;
         }
-        /* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
-@media (max-width: 740px) {
-    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
-    .container {
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch;
-        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
-    }
+          /* الاستجابة للشاشات الصغيرة */
+          @media screen and (max-width: 740px) {
+            body {
+                overflow-x: hidden; /* إلغاء التمرير الأفقي */
+            }
 
-    /* تحسين عرض البطاقات على الشاشات الصغيرة */
-    .card {
-        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
-        margin-bottom: 20px;
-    }
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
 
-    /* تحسين عرض شريط البحث */
-    .search-bar {
-        width: 100%;
-    }
+            .content {
+                width: 100%;
+                margin-right: 0;
+            }
 
-    .search-bar input[type="text"] {
-        width: 80%;
-    }
+            .random-cards {
+                width: 100%;
+                flex-direction: column;
+                gap: 10px;
+            }
 
-    .search-bar button {
-        width: 18%;
-    }
-}
+            .card {
+                flex: 1 1 100%;
+            }
 
-/* إخفاء شريط التمرير الأفقي */
-body {
-    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
-}
+            .top-bar {
+                flex-direction: column;
+                align-items: center;
+            }
 
+            .search-bar {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .search-bar input[type="text"] {
+                width: 80%;
+            }
+
+            .search-bar button {
+                width: 18%;
+                margin-left: 10px;
+            }
+        }
+        
     </style>
 </head>
 <body>
