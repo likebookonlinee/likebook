@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تعرف على الفوائد الصحية والغذائية لليمون وكيفية تحسين صحتك باستخدامه.">
+    <title>فوائد الليمون</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .content {
+            flex: 1;
+            margin-right: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #f1c40f;
+        }
+        h2 {
+            color: #f1c40f;
+            margin-top: 20px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .btn-back, .btn-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #f1c40f;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn-back:hover, .btn-home:hover {
+            background-color: #d4a30e;
+        }
+
+        /* Cards Section */
+        .random-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-basis: 280px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.9em;
+            margin: 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer .sections {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        footer .sections a {
+            margin: 5px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Content Section -->
+        <div class="content">
+            <h1>فوائد الليمون</h1>
+            
+            <h2>1. تعزيز صحة الجهاز الهضمي</h2>
+            <p>يساعد عصير الليمون في تحسين عملية الهضم من خلال تحفيز إنتاج العصارة الهضمية. تناول كوب من ماء الليمون الدافئ صباحًا يمكن أن يخفف من عسر الهضم والانتفاخ.</p>
+
+            <h2>2. تقوية الجهاز المناعي</h2>
+            <p>بفضل احتوائه على نسبة عالية من فيتامين C، يُعزز الليمون مناعة الجسم ويعمل كمضاد للأكسدة، مما يساعد في مقاومة الأمراض.</p>
+
+            <h2>3. تحسين صحة البشرة</h2>
+            <p>الليمون مصدر رائع لمضادات الأكسدة التي تحمي البشرة من التلف الناتج عن الأشعة فوق البنفسجية. كما يمكن لفيتامين C أن يحفز إنتاج الكولاجين ويحسن مظهر البشرة.</p>
+
+            <h2>4. دعم صحة الكلى</h2>
+            <p>يساعد الليمون في تقليل خطر تكوين حصوات الكلى بفضل حمض الستريك الذي يمنع تراكم الكالسيوم في الكلى.</p>
+
+            <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
+            <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
+        </div>
+
+        <!-- Random Cards Section -->
+        <div class="random-cards" id="cards-container">
+            <!-- سيتم تحميل البطاقات ديناميكيًا هنا -->
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div>
+            <a href="https://likebook.online/contact-us">اتصل بنا</a>
+            <a href="https://likebook.online/about-us">من نحن</a>
+            <a href="https://likebook.online/privacy-policy">سياسة الخصوصية</a>
+        </div>
+        
+        <!-- Sections Links -->
+        <div class="sections">
+            <a href="https://likebook.online/takh/تغذية">تغذية</a>
+            <a href="https://likebook.online/takh/فوائد%20الفواكه">فوائد الفواكه</a>
+            <a href="https://likebook.online/takh/طبخ">طبخ</a>
+            <a href="https://likebook.online/takh/معجنات">معجنات</a>
+            <a href="https://likebook.online/takh/كتب">كتب</a>
+            <a href="https://likebook.online/takh/طبخات%20سورية">طبخات سورية</a>
+        </div>
+    </footer>
+
+    <script>
+        // جلب بيانات JSON
+        fetch('https://likebook.online/تغذية/1/fawakehjson.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('cards-container');
+
+                // اختيار بعض البطاقات عشوائيًا
+                const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+                randomCards.forEach(item => {
+                    // إنشاء كرت لكل عنصر
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <img src="${item.card_image_url}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>${item.description.substring(0, 80)}...</p>
+                    `;
+
+                    // إضافة الرابط عند النقر على الكرت
+                    card.addEventListener('click', () => {
+                        window.location.href = item.link;
+                    });
+
+                    // إدراج الكرت في الحاوية
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+</body>
+</html>
