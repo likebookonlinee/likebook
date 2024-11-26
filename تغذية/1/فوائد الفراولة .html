@@ -63,19 +63,38 @@
             margin-top: 20px;
         }
 
-        .random-cards .card {
-            width: 100%;
+        .card {
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
             overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            padding: 10px;
+            margin-bottom: 20px;
         }
 
-        .random-cards img {
+        .card img {
             width: 100%;
             height: auto;
             border-radius: 8px 8px 0 0;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.9em;
+            margin: 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         footer {
@@ -98,17 +117,6 @@
         footer .sections a {
             margin: 5px 15px;
         }
-        /* تأثير عند التمرير */
-.card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-.card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
     </style>
 </head>
 <body>
@@ -134,19 +142,8 @@
         </div>
 
         <!-- Random Cards Section -->
-        <div class="random-cards">
-            <div class="card">
-                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image 1">
-                <p>بطاقة عشوائية 1</p>
-            </div>
-            <div class="card">
-                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image 2">
-                <p>بطاقة عشوائية 2</p>
-            </div>
-            <div class="card">
-                <img src="https://likebook.online/تغذية/1/fawakehjson.json" alt="Card Image 3">
-                <p>بطاقة عشوائية 3</p>
-            </div>
+        <div class="random-cards" id="cards-container">
+            <!-- سيتم تحميل البطاقات ديناميكيًا هنا -->
         </div>
     </div>
 
@@ -168,29 +165,37 @@
             <a href="https://likebook.online/takh/طبخات%20سورية">طبخات سورية</a>
         </div>
     </footer>
+
     <script>
         // جلب بيانات JSON
         fetch('https://likebook.online/تغذية/1/fawakehjson.json')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('cards-container');
-                data.forEach(item => {
+
+                // اختيار بعض البطاقات عشوائيًا
+                const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+                randomCards.forEach(item => {
                     // إنشاء كرت لكل عنصر
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
                         <img src="${item.card_image_url}" alt="${item.name}">
-                        <p>${item.name}</p>
+                        <h3>${item.name}</h3>
+                        <p>${item.description.substring(0, 80)}...</p>
                     `;
-                    // إضافة الرابط عند النقر
+
+                    // إضافة الرابط عند النقر على الكرت
                     card.addEventListener('click', () => {
                         window.location.href = item.link;
                     });
+
+                    // إدراج الكرت في الحاوية
                     container.appendChild(card);
                 });
             })
             .catch(error => console.error('Error fetching JSON:', error));
     </script>
-    
 </body>
 </html>
