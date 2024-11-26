@@ -40,5 +40,29 @@
         "description": "التفاح هو مصدر غني بالعناصر الغذائية المفيدة.",
         "url": "https://likebook.online/%D9%81%D9%88%D8%A7%D9%83%D9%87/%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%AD",
         "image": "https://likebook.online/images/apple.jpg"
+    },
+    {
+        "title": "فوائد المانجو",
+        "description": "المانجو يحتوي على العديد من الفوائد الصحية.",
+        "url": "https://likebook.online/%D9%81%D9%88%D8%A7%D9%83%D9%87/%D8%A7%D9%84%D9%85%D8%A7%D9%86%D8%AC%D9%88",
+        "image": "https://likebook.online/images/mango.jpg"
+    },
+    {
+        "title": "فوائد الفراولة",
+        "description": "اكتشف فوائد الفراولة لصحة القلب والبشرة.",
+        "url": "https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D8%A9/1/%D9%81%D9%88%D8%A7%D8%A6%D8%AF%20%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D9%88%D9%84%D8%A9%20.html",
+        "image": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/a66ef2e7-288f-4f44-b347-dd9848593aab/Leonardo_Phoenix_A_highly_detailed_realistic_and_glossy_threed_2.jpg"
+    },
+    {
+        "title": "فوائد البرتقال",
+        "description": "البرتقال مفيد لتحسين المناعة وزيادة الطاقة.",
+        "url": "https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D8%A9/1/%D9%81%D9%88%D8%A7%D8%A6%D8%AF%20%D8%A7%D9%84%D8%A8%D8%B1%D8%AA%D9%82%D8%A7%D9%84.html",
+        "image": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/688c0381-1e10-4732-86b1-8b4ab292df53/Leonardo_Phoenix_A_highly_detailed_realistic_and_vibrant_orang_0.jpg"
+    },
+    {
+        "title": "فوائد الليمون",
+        "description": "الليمون يساعد في تحسين الهضم ويدعم جهاز المناعة.",
+        "url": "https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D8%A9/1/%D9%81%D9%88%D8%A7%D8%A6%D8%AF%20%D8%A7%D9%84%D9%84%D9%8A%D9%85%D9%88%D9%86.html",
+        "image": "https://cdn.leonardo.ai/users/898f702d-c55f-4d2d-a2c2-caa5ada0180d/generations/12345678-lemon.jpg"
     }
 ]
