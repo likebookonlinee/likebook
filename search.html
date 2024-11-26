@@ -3,18 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <title>نتائج البحث</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-VV13SCSQRD');
-    </script>
-  
   <style>
     /* تصميم الصفحة */
     body {
@@ -28,7 +17,7 @@
 
     h1 {
       text-align: center;
-      color: #f75904;
+      color: #4CAF50;
       margin-top: 20px;
     }
 
@@ -119,7 +108,6 @@
   </style>
 </head>
 <body>
-    
   <h1>نتائج البحث</h1>
   
   <!-- نموذج البحث -->
@@ -132,8 +120,6 @@
   <div id="search-results">
     <!-- سيتم عرض النتائج هنا باستخدام JavaScript -->
   </div>
-
-
 
   <script>
     // استخراج الاستعلام من الرابط
@@ -155,7 +141,7 @@
         if (filteredResults.length > 0) {
           resultsDiv.innerHTML = '<h3>نتائج البحث:</h3><ul>';
           filteredResults.forEach(result => {
-            resultsDiv.innerHTML += `<li><a href="${result.url}"><strong>${result.title}</strong>: ${result.description}</a><img src="${result.image}" alt="${result.title}"></li>`;
+            resultsDiv.innerHTML += `<li><a href="${result.url}" target="_blank"><strong>${result.title}</strong>: ${result.description}</a><img src="${result.image}" alt="${result.title}"></li>`;
           });
           resultsDiv.innerHTML += '</ul>';
         } else {
@@ -167,7 +153,5 @@
         document.getElementById('search-results').innerHTML = '<p id="no-results">حدث خطأ في تحميل البيانات.</p>';
       });
   </script>
-
-  
 </body>
 </html>
