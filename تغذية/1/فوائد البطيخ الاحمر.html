@@ -198,6 +198,42 @@
     .search-bar button:hover {
         background-color: #e67e22;
     }
+    /* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
+@media (max-width: 740px) {
+    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
+    .container {
+        padding: 10px;
+        width: 100%;
+        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+        align-items: stretch;
+        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
+    }
+
+    /* تحسين عرض البطاقات على الشاشات الصغيرة */
+    .card {
+        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
+        margin-bottom: 20px;
+    }
+
+    /* تحسين عرض شريط البحث */
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-bar input[type="text"] {
+        width: 80%;
+    }
+
+    .search-bar button {
+        width: 18%;
+    }
+}
+
+/* إخفاء شريط التمرير الأفقي */
+body {
+    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
+}
+
 </style>
 
 
