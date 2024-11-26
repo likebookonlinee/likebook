@@ -6,7 +6,7 @@
     <title>فوائد الفواكه</title>
     <style>
         body {
-            background-color: #000000;
+            background-color: #f8f2f2;
             font-family: Arial, sans-serif;
             direction: rtl;
             text-align: center;
@@ -109,6 +109,65 @@
     </style>
 </head>
 <body>
+    <!-- شريط العنوان العلوي -->
+<div class="top-bar">
+    <div class="site-name">
+        <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+    </div>
+
+    <!-- شريط البحث داخل الجزء العلوي -->
+    <div class="search-bar">
+        <input type="text" id="search-box" placeholder="ابحث في الموقع...">
+        <button onclick="searchSite()">بحث</button>
+    </div>
+</div>
+
+<style>
+    /* شريط العنوان العلوي */
+    .top-bar {
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .site-name {
+        font-size: 1.5em;
+    }
+
+    /* شريط البحث داخل الجزء العلوي */
+    .search-bar {
+        display: flex;
+        align-items: center;
+        width: 60%; /* تعديل العرض ليتمدد */
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%; /* توسيع حقل البحث ليشمل المساحة المتاحة */
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .search-bar button {
+        padding: 10px;
+        background-color: #f39c12;
+        border: 1px solid #f39c12;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .search-bar button:hover {
+        background-color: #e67e22;
+    }
+</style>
+
 
     <h1 class="main-title">فوائد الفواكه</h1>
     <div class="fruit-grid" id="fruit-grid"></div>
