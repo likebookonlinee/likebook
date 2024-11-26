@@ -129,146 +129,42 @@
         footer .sections a {
             margin: 5px 15px;
         }
-          /* الشاشات الصغيرة (أقل من 600px) */
-    @media screen and (max-width: 600px) {
-        body {
-            overflow-x: hidden; /* إلغاء التمرير الأفقي */
-        }
-
-        .top-bar {
-            flex-direction: column; /* ترتيب العناصر عموديًا */
-            padding: 15px 10px; /* زيادة الحشو لجعلها أكثر ملاءمة */
-        }
-
-        .search-bar {
-            width: 100%; /* جعل شريط البحث يشغل عرض كامل الشاشة */
-            margin-top: 10px; /* مسافة بين شريط البحث وأسم الموقع */
-        }
-
-        .search-bar input[type="text"] {
-            width: 80%; /* جعل حقل البحث أصغر */
-            margin-right: 5px;
-        }
-
-        .search-bar button {
-            width: 20%; /* تقليص عرض الزر ليكون مناسبًا */
-        }
-
-        .container {
-            width: 100%; /* جعل الحاوية تأخذ عرض كامل الشاشة */
-            margin: 10px 0;
-            padding: 15px;
-        }
-
-        .content {
-            margin-right: 0;
-        }
-
-        .btn-home, .btn-back {
-            display: block;
-            width: 100%; /* جعل الأزرار تأخذ عرض كامل الشاشة */
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .random-cards {
-            flex-direction: column; /* ترتيب البطاقات عموديًا */
-            gap: 15px;
-        }
-
-        .card {
-            flex-basis: 100%; /* جعل البطاقة تشغل عرض كامل الحاوية */
-        }
-
-        footer {
-            padding: 20px 10px; /* تعديل الحشو ليتناسب مع الشاشات الصغيرة */
-        }
-
-        footer .sections {
-            flex-direction: column; /* ترتيب الروابط عموديًا */
-            gap: 10px;
-        }
-
-        footer .sections a {
-            margin: 5px 0; /* مسافة بين الروابط */
-        }
-
-        /* تحجيم الأيقونات في الفوتر */
-        footer .sections img {
-            width: 30px;
-            height: 30px;
-        }
+        /* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
+@media (max-width: 740px) {
+    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
+    .container {
+        padding: 10px;
+        width: 100%;
+        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+        align-items: stretch;
+        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
     }
 
-    /* الشاشات المتوسطة (من 600px إلى 740px) */
-    @media screen and (max-width: 740px) and (min-width: 601px) {
-        body {
-            overflow-x: hidden; /* إلغاء التمرير الأفقي */
-        }
-
-        .top-bar {
-            flex-direction: column; /* ترتيب العناصر عموديًا */
-            padding: 15px 10px; /* زيادة الحشو لجعلها أكثر ملاءمة */
-        }
-
-        .search-bar {
-            width: 100%; /* جعل شريط البحث يشغل عرض كامل الشاشة */
-            margin-top: 10px;
-        }
-
-        .search-bar input[type="text"] {
-            width: 80%;
-            margin-right: 5px;
-        }
-
-        .search-bar button {
-            width: 20%;
-        }
-
-        .container {
-            width: 100%;
-            margin: 10px 0;
-            padding: 15px;
-        }
-
-        .content {
-            margin-right: 0;
-        }
-
-        .btn-home, .btn-back {
-            display: block;
-            width: 100%;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .random-cards {
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .card {
-            flex-basis: 100%;
-        }
-
-        footer {
-            padding: 20px 10px;
-        }
-
-        footer .sections {
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        footer .sections a {
-            margin: 5px 0;
-        }
-
-        footer .sections img {
-            width: 30px;
-            height: 30px;
-        }
+    /* تحسين عرض البطاقات على الشاشات الصغيرة */
+    .card {
+        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
+        margin-bottom: 20px;
     }
+
+    /* تحسين عرض شريط البحث */
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-bar input[type="text"] {
+        width: 80%;
+    }
+
+    .search-bar button {
+        width: 18%;
+    }
+}
+
+/* إخفاء شريط التمرير الأفقي */
+body {
+    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
+}
+
     </style>
 </head>
 <body>
