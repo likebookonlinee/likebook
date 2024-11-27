@@ -299,47 +299,35 @@ body {
     </div>
   </footer>
     <script>
-  // جلب بيانات JSON
+      // جلب بيانات JSON
 fetch('https://likebook.online/searchData.json')
     .then(response => response.json())
     .then(data => {
-        // استخراج اسم الصفحة (مثلاً: "زيت الزيتون")
-        const pageTitle = document.title.trim(); // يفترض أن عنوان الصفحة هو "زيت الزيتون" أو مطابق للبيانات
-
-        // البحث عن البيانات المتعلقة بهذه الصفحة فقط
-        const currentPageData = data.find(item => item.title === pageTitle);
-
-        // عرض صورة تحت الجزء العلوي إذا كانت البيانات موجودة
-        const headerImageContainer = document.getElementById('header-image');
-        if (currentPageData) {
-            const headerImage = document.createElement('img');
-            headerImage.src = currentPageData.image;
-            headerImage.alt = currentPageData.title || 'صورة';
-            headerImage.style.width = '100%'; // ملء العرض
-            headerImage.style.borderRadius = '8px'; // تحسين شكل الصورة
-            headerImageContainer.appendChild(headerImage);
-        } else {
-            console.warn(`No data found for page: ${pageTitle}`);
-        }
-
-        // عرض البطاقات في الحاوية الرئيسية (اختياري - إذا كنت تحتاج لبطاقات إضافية)
         const container = document.getElementById('cards-container');
-        if (currentPageData) {
+
+        // اختيار بعض البطاقات عشوائيًا
+        const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+        randomCards.forEach(item => {
+            // إنشاء كرت لكل عنصر
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${currentPageData.image}" alt="${currentPageData.title}">
-                <h3>${currentPageData.title}</h3>
-                <p>${currentPageData.description.substring(0, 80)}...</p>
+                <img src="${item.image}" alt="${item.title}">
+                <h3>${item.title}</h3>
+                <p>${item.description.substring(0, 80)}...</p>
             `;
+
+            // إضافة الرابط عند النقر على الكرت
             card.addEventListener('click', () => {
-                window.location.href = currentPageData.url;
+                window.location.href = item.url;
             });
+
+            // إدراج الكرت في الحاوية
             container.appendChild(card);
-        }
+        });
     })
     .catch(error => console.error('Error fetching JSON:', error));
-
 
     
             
