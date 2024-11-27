@@ -19,182 +19,217 @@
   gtag('config', 'G-VV13SCSQRD');
 </script>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.8;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .content {
-            flex: 1;
-            margin-right: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #e67e22;
-        }
-        h2 {
-            color: #e67e22;
-            margin-top: 20px;
-        }
-        p {
-            margin-bottom: 15px;
-        }
-        .btn-back, .btn-home {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #e67e22;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .btn-back:hover, .btn-home:hover {
-            background-color: #d35400;
-        }
+        <style>
+/* تنسيق الصفحة بشكل عام */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.8;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* لضمان احتساب الـ padding والحواف ضمن الحجم الكلي */
+    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
+}
 
-        /* Cards Section */
-        .random-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex-basis: 280px;
-            margin-top: 20px;
-        }
+/* حاوية الصفحة */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
 
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+/* المحتوى داخل الحاوية */
+.content {
+    flex: 1;
+    margin-right: 20px;
+}
 
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px 8px 0 0;
-        }
+/* عنوان الصفحة */
+h1 {
+    text-align: center;
+    color: #e6480f;
+}
 
-        .card h3 {
-            margin: 10px 0;
-            color: #333;
-        }
+/* عنوان القسم */
+h2 {
+    color: #4caf50;
+    margin-top: 20px;
+}
 
-        .card p {
-            color: #666;
-            font-size: 0.9em;
-            margin: 10px;
-        }
+/* الفقرات */
+p {
+    margin-bottom: 15px;
+}
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+/* الأزرار */
+.btn-back, .btn-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
 
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        footer .sections {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        footer .sections a {
-            margin: 5px 15px;
-        }
-    </style>
-</head>
-<body>
-    <!-- شريط العنوان العلوي -->
-<div class="top-bar">
-    <div class="site-name">
-        <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
-    </div>
+.btn-back:hover, .btn-home:hover {
+    background-color: #388e3c;
+}
 
-    <!-- شريط البحث داخل الجزء العلوي -->
-    <div class="search-bar">
-        <input type="text" id="search-box" placeholder="ابحث في الموقع...">
-        <button onclick="searchSite()">بحث</button>
-    </div>
-</div>
+/* شريط العنوان العلوي */
+.top-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
 
-<style>
-    /* شريط العنوان العلوي */
-    .top-bar {
-        background-color: #333;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
+/* اسم الموقع */
+.site-name {
+    font-size: 1.5em;
+}
+
+/* شريط البحث */
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 65%;
+}
+
+.search-bar input[type="text"] {
+    width: 80%; /* استخدام 80% للـ input */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-bar button {
+    width: 18%; /* زر البحث سيأخذ 18% من العرض */
+    padding: 10px;
+    background-color: #f39c12;
+    border: 1px solid #f39c12;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #e67e22;
+}
+
+/* تنسيق البطاقات العشوائية */
+.random-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 20px;
+    flex-basis: calc(33.33% - 20px);  /* عرض البطاقة 33.33% مع مسافة بين البطاقات */
+    box-sizing: border-box;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.card h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.card p {
+    color: #666;
+    font-size: 0.9em;
+    margin: 10px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
+@media (max-width: 740px) {
+    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
+    .container {
+        padding: 10px;
+        width: 100%;
+        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+        align-items: stretch;
+        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
     }
 
-    .site-name {
-        font-size: 1.5em;
+    /* تحسين عرض البطاقات على الشاشات الصغيرة */
+    .card {
+        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
+        margin-bottom: 20px;
     }
 
-    /* شريط البحث داخل الجزء العلوي */
+    /* تحسين عرض شريط البحث */
     .search-bar {
-        display: flex;
-        align-items: center;
-        width: 60%; /* تعديل العرض ليتمدد */
+        width: 100%;
     }
 
     .search-bar input[type="text"] {
-        width: 100%; /* توسيع حقل البحث ليشمل المساحة المتاحة */
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+        width: 80%;
     }
 
     .search-bar button {
-        padding: 10px;
-        background-color: #f39c12;
-        border: 1px solid #f39c12;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
+        width: 18%;
     }
+}
 
-    .search-bar button:hover {
-        background-color: #e67e22;
-    }
-</style>
+/* إخفاء شريط التمرير الأفقي */
+body {
+    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
+}
+
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="site-name">
+            <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-box" placeholder="ابحث في الموقع...">
+            <button onclick="searchSite()">بحث</button>
+        </div>
+    </div>
 
     <div class="container">
-        <!-- Content Section -->
         <div class="content">
+
             <h1>فوائد الدراق</h1>
             
             <h2>1. تعزيز صحة القلب</h2>
@@ -212,17 +247,15 @@
             <h2>5. دعم صحة العين</h2>
             <p>الدراق يحتوي على فيتامين A وبعض المركبات النباتية التي تساعد في حماية العين من الأمراض مثل العشى الليلي والضمور البقعي. كما أنه يساعد في تحسين الرؤية بشكل عام.</p>
 
-            <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
-            <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
-        </div>
 
-        <!-- Random Cards Section -->
-        <div class="random-cards" id="cards-container">
-            <!-- سيتم تحميل البطاقات ديناميكيًا هنا -->
-        </div>
-    </div>
+<a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
+<a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
+</div>
+<div class="random-cards" id="cards-container"></div>
+</div>
 
-<!-- Footer Section -->
+
+    <!-- Footer Section -->
 <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
     <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
         <!-- روابط الصفحات في القسم الأيسر -->
@@ -234,7 +267,7 @@
   
         <!-- حقوق الطبع والنشر في المركز -->
         <div style="font-size: 14px; font-weight: bold;">
-            © 2024 Cryptolike.Store
+            © 2024 likebook.online
         </div>
   
         <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
@@ -254,122 +287,122 @@
         </div>
     </div>
   </footer>
+    <script>
+      // جلب بيانات JSON
+fetch('https://likebook.online/searchData.json')
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('cards-container');
 
-  <script>
-    // جلب بيانات JSON
-    fetch('https://likebook.online/تغذية/1/fawakehjson.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('cards-container');
+        // اختيار بعض البطاقات عشوائيًا
+        const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
 
-            // اختيار بعض البطاقات عشوائيًا
-            const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+        randomCards.forEach(item => {
+            // إنشاء كرت لكل عنصر
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                <h3>${item.title}</h3>
+                <p>${item.description.substring(0, 80)}...</p>
+            `;
 
-            randomCards.forEach(item => {
-                // إنشاء كرت لكل عنصر
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <img src="${item.card_image_url}" alt="${item.name}">
-                    <h3>${item.name}</h3>
-                    <p>${item.description.substring(0, 80)}...</p>
-                `;
-
-                // إضافة الرابط عند النقر على الكرت
-                card.addEventListener('click', () => {
-                    window.location.href = item.link;
-                });
-
-                // إدراج الكرت في الحاوية
-                container.appendChild(card);
+            // إضافة الرابط عند النقر على الكرت
+            card.addEventListener('click', () => {
+                window.location.href = item.url;
             });
-        })
-        .catch(error => console.error('Error fetching JSON:', error));
 
-        
-        // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
-function levenshtein(a, b) {
-const tmp = [];
-let i, j, alen = a.length, blen = b.length, cost;
-if (alen === 0) return blen;
-if (blen === 0) return alen;
-for (i = 0; i <= alen; i++) tmp[i] = [i];
-for (j = 0; j <= blen; j++) tmp[0][j] = j;
-for (i = 1; i <= alen; i++) {
-    for (j = 1; j <= blen; j++) {
-        cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
-        tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
+            // إدراج الكرت في الحاوية
+            container.appendChild(card);
+        });
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+
+    
+            
+            // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
+    function levenshtein(a, b) {
+    const tmp = [];
+    let i, j, alen = a.length, blen = b.length, cost;
+    if (alen === 0) return blen;
+    if (blen === 0) return alen;
+    for (i = 0; i <= alen; i++) tmp[i] = [i];
+    for (j = 0; j <= blen; j++) tmp[0][j] = j;
+    for (i = 1; i <= alen; i++) {
+        for (j = 1; j <= blen; j++) {
+            cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
+            tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
+        }
     }
-}
-return tmp[alen][blen];
-}
-
-// دالة البحث مع اقتراحات مشابهة
-function searchSite() {
-const query = document.getElementById('search-box').value.toLowerCase();
-
-if (query) {
-    fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
-        .then(response => response.json())
-        .then(data => {
-            const results = data.filter(item => item.name.toLowerCase().includes(query));
-            const suggestions = [];
-
-            // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
-            data.forEach(item => {
-                const distance = levenshtein(query, item.name.toLowerCase());
-                if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
-                    suggestions.push(item);
-                }
-            });
-
-            if (results.length > 0) {
-                displayResults(results);
-            } else if (suggestions.length > 0) {
-                displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
-            } else {
-                alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
-            }
-        })
-        .catch(error => console.error('Error fetching search data:', error));
-} else {
-    alert("يرجى إدخال كلمة البحث.");
-}
-}
-
-// دالة لعرض النتائج
-function displayResults(items, message = "نتائج البحث") {
-const container = document.getElementById('results-container');
-container.innerHTML = `<h3>${message}</h3>`;
-items.forEach(item => {
-    const resultItem = document.createElement('div');
-    resultItem.className = 'result-item';
-    resultItem.innerHTML = `
-        <h4>${item.name}</h4>
-        <p>${item.description.substring(0, 80)}...</p>
-        <a href="${item.link}">اقرأ المزيد</a>
-    `;
-    container.appendChild(resultItem);
-});
-}
-// دالة البحث
-function searchSite() {
-    const query = document.getElementById('search-box').value.trim();
+    return tmp[alen][blen];
+    }
+    
+    // دالة البحث مع اقتراحات مشابهة
+    function searchSite() {
+    const query = document.getElementById('search-box').value.toLowerCase();
+    
     if (query) {
-        // إعادة التوجيه إلى رابط البحث مع الاستعلام
-        window.location.href = `https://likebook.online/search?q=${query}`;
+        fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
+            .then(response => response.json())
+            .then(data => {
+                const results = data.filter(item => item.name.toLowerCase().includes(query));
+                const suggestions = [];
+    
+                // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
+                data.forEach(item => {
+                    const distance = levenshtein(query, item.name.toLowerCase());
+                    if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
+                        suggestions.push(item);
+                    }
+                });
+    
+                if (results.length > 0) {
+                    displayResults(results);
+                } else if (suggestions.length > 0) {
+                    displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
+                } else {
+                    alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
+                }
+            })
+            .catch(error => console.error('Error fetching search data:', error));
     } else {
         alert("يرجى إدخال كلمة البحث.");
     }
-}
-
-// إضافة حدث للبحث عند الضغط على زر Enter
-document.getElementById('search-box').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        searchSite();
     }
-});
-
-</script>
-</body>
-</html>
+    
+    // دالة لعرض النتائج
+    function displayResults(items, message = "نتائج البحث") {
+    const container = document.getElementById('results-container');
+    container.innerHTML = `<h3>${message}</h3>`;
+    items.forEach(item => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result-item';
+        resultItem.innerHTML = `
+            <h4>${item.name}</h4>
+            <p>${item.description.substring(0, 80)}...</p>
+            <a href="${item.link}">اقرأ المزيد</a>
+        `;
+        container.appendChild(resultItem);
+    });
+    }
+    // دالة البحث
+    function searchSite() {
+        const query = document.getElementById('search-box').value.trim();
+        if (query) {
+            // إعادة التوجيه إلى رابط البحث مع الاستعلام
+            window.location.href = `https://likebook.online/search?q=${query}`;
+        } else {
+            alert("يرجى إدخال كلمة البحث.");
+        }
+    }
+    
+    // إضافة حدث للبحث عند الضغط على زر Enter
+    document.getElementById('search-box').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            searchSite();
+        }
+    });
+    
+    </script>
+    </body>
+    </html>
