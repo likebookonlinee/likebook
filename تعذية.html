@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="اكتشف كل ما تحتاجه لتحسين صحتك ونمط حياتك من خلال معلومات مفصلة ومحدثة عن التغذية السليمة. نقدم لك نصائح غذائية، خطط للرجيم، وأطعمة تعزز من طاقتك وتحافظ على وزنك المثالي. سواء كنت تسعى لفقدان الوزن أو تحسين أدائك البدني، ستجد هنا كل ما تحتاجه لتحقيق أهدافك الصحية.">
+    <meta name="keywords" content="التغذية الصحية, نظام غذائي, رجيم, فقدان الوزن, أطعمة صحية, نصائح غذائية, حمية غذائية, تحسين الصحة, الحمية المتوازنة, أطعمة لإنقاص الوزن, غذاء متوازن, وجبات صحية">
+    <link rel="icon" href="/apple-icon.jpg" type="image/jpg">
+    <title>التغذية الصحية: نصائح، أنظمة غذائية، وحلول لفقدان الوزن</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-VV13SCSQRD');
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-bar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar .site-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .top-bar .search-bar input {
+            padding: 5px;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .top-bar .search-bar button {
+            padding: 6px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* التوافق مع الأجهزة الصغيرة */
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="site-name">
+        <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="search-box" placeholder="ابحث في الموقع...">
+        <button onclick="searchSite()">بحث</button>
+    </div>
+</div>
+
+<h1 style="text-align:center; margin-top: 20px;">اكتشف المزيد عن التغذية الصحية</h1>
+
+<div class="cards-container" id="cards-container">
+    <!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
+</div>
+
+<script>
+    // تحميل البيانات من ملف JSON
+    fetch('https://likebook.online/json/takh.json')
+        .then(response => response.json())
+        .then(data => {
+            const cardsContainer = document.getElementById('cards-container');
+            data.forEach(item => {
+                if (item.title && item.description && item.url && item.image) {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.onclick = () => window.location.href = item.url;
+                    card.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="card-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    cardsContainer.appendChild(card);
+                }
+            });
+        })
+        .catch(error => console.error('Error loading data:', error));
+
+    // دالة البحث
+    function searchSite() {
+        const query = document.getElementById('search-box').value.trim();
+        if (query) {
+            // إعادة التوجيه إلى رابط البحث مع الاستعلام
+            window.location.href = `https://likebook.online/search?q=${query}`;
+        } else {
+            alert("يرجى إدخال كلمة البحث.");
+        }
+    }
+
+    // إضافة حدث للبحث عند الضغط على زر Enter
+    document.getElementById('search-box').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            searchSite();
+        }
+    });
+</script>
+
+</body>
+</html>
