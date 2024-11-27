@@ -130,7 +130,6 @@
     <a href="https://likebook.online" class="btn-home">  الصفحة الرئيسية</a>
 </div>
 
-<h1 style="text-align:center; margin-top: 20px;">اكتشف المزيد عن التغذية الصحية</h1>
 
 <div class="cards-container" id="cards-container">
     <!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
@@ -197,7 +196,7 @@
 
 <script>
     // تحميل البيانات من ملف JSON
-    fetch('https://likebook.online/json/takh.json')
+    fetch('https://likebook.online/searchData.json')
         .then(response => response.json())
         .then(data => {
             const cardsContainer = document.getElementById('cards-container');
