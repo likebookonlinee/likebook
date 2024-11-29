@@ -222,25 +222,15 @@
     }
 }
 /* الحاوية الرئيسية */
-/* الحاوية الرئيسية */
+/* الحاوية الرئيسية للبطاقات */
 #popular-container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
     padding: 20px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: auto; /* للحفاظ على تناسق الارتفاع */
-}
-
-/* شريط التمرير */
-.scroll-container {
-    display: flex; /* عرض البطاقات أفقيًا */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* دعم الشبكة المتجاوبة */
     gap: 20px; /* مسافة بين البطاقات */
-    overflow-x: auto; /* السماح بالتمرير الأفقي */
-    scroll-behavior: smooth; /* تمرير سلس */
-    align-items: flex-start; /* محاذاة البطاقات من الأعلى */
-    height: 100%; /* تأمين تناسق مع باقي الحاويات */
+    align-items: stretch; /* تمديد البطاقات لتكون بنفس الارتفاع */
 }
 
 /* إعداد البطاقات */
@@ -248,8 +238,6 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px; /* عرض ثابت للبطاقات */
-    flex-shrink: 0; /* منع تغيير حجم البطاقة */
     overflow: hidden;
     text-align: center;
     cursor: pointer;
@@ -262,39 +250,23 @@
 
 .card img {
     width: 100%;
-    height: 180px; /* ارتفاع الصورة داخل البطاقة */
+    height: 180px;
     object-fit: cover; /* ضبط الصورة لتناسب الحجم */
 }
-
-.card-content {
-    padding: 10px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+@media (max-width: 768px) {
+    #popular-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
 
-.card h3 {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-    white-space: nowrap; /* منع التفاف النص */
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+@media (max-width: 480px) {
+    #popular-container {
+        grid-template-columns: 1fr;
+    }
 
-.card p {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 10px;
-    overflow: hidden;
-    white-space: nowrap; /* منع التفاف النص */
-    text-overflow: ellipsis;
-}
-
-/* تأثير عند تمرير الفأرة */
-.card:hover {
-    transform: scale(1.05);
+    .card {
+        height: auto; /* السماح للبطاقات بأن تكون مرنة */
+    }
 }
 
 
@@ -421,8 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             if (!data || !Array.isArray(data)) return;
 
-            // إنشاء البطاقات من البيانات
-            data.forEach(item => {
+            // عرض ثلاث بطاقات فقط
+            data.slice(0, 3).forEach(item => {
                 const card = document.createElement("div");
                 card.classList.add("card");
 
@@ -433,6 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     };
                 }
 
+                // إضافة الصورة إذا توفرت
                 if (item.image) {
                     const img = document.createElement("img");
                     img.src = item.image;
@@ -443,14 +416,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const content = document.createElement("div");
                 content.classList.add("card-content");
 
+                // إضافة العنوان
                 const title = document.createElement("h3");
                 title.textContent = item.title || "بدون عنوان";
                 content.appendChild(title);
 
+                // إضافة الوصف
                 const description = document.createElement("p");
                 description.textContent = item.description || "بدون وصف";
                 content.appendChild(description);
 
+                // تجميع المحتوى داخل البطاقة
                 card.appendChild(content);
                 popularCards.appendChild(card);
             });
@@ -459,6 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("خطأ:", error);
         });
 });
+
 
 
 
