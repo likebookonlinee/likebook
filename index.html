@@ -338,74 +338,90 @@
 
 
 <script>
-   document.addEventListener("DOMContentLoaded", () => {
+         document.addEventListener("DOMContentLoaded", () => {
             const cardSlider = document.getElementById("card-slider");
             const prevBtn = document.getElementById("prev-btn");
             const nextBtn = document.getElementById("next-btn");
 
             let currentIndex = 0;
+            let data = [];
+            let dataIndex = 0;
 
-            // جلب البيانات
-            fetch("https://likebook.online/json/ra.json")
-                .then(response => {
-                    if (!response.ok) throw new Error("خطأ في تحميل البيانات");
-                    return response.json();
-                })
-                .then(data => {
-                    if (!data || !Array.isArray(data)) return;
-
-                    // إنشاء البطاقات
-                    data.forEach(item => {
-                        const card = document.createElement("div");
-                        card.classList.add("card");
-
-                        if (item.image) {
-                            const img = document.createElement("img");
-                            img.src = item.image;
-                            img.alt = item.title || "صورة";
-                            card.appendChild(img);
-                        }
-
-                        const content = document.createElement("div");
-                        content.classList.add("card-content");
-
-                        const title = document.createElement("h3");
-                        title.textContent = item.title || "بدون عنوان";
-                        content.appendChild(title);
-
-                        const description = document.createElement("p");
-                        description.textContent = item.description || "بدون وصف";
-                        content.appendChild(description);
-
-                        card.appendChild(content);
-                        cardSlider.appendChild(card);
+            // دالة لتحميل البيانات
+            function loadData() {
+                fetch("https://likebook.online/json/ra.json")
+                    .then(response => {
+                        if (!response.ok) throw new Error("خطأ في تحميل البيانات");
+                        return response.json();
+                    })
+                    .then(fetchedData => {
+                        data = data.concat(fetchedData); // إضافة البيانات الجديدة إلى المصفوفة القديمة
+                        renderCards();
+                    })
+                    .catch(error => {
+                        console.error("خطأ:", error);
                     });
-                })
-                .catch(error => {
-                    console.error("خطأ:", error);
+            }
+
+            // دالة لعرض البطاقات
+            function renderCards() {
+                const cardsToRender = data.slice(dataIndex, dataIndex + 3); // عرض 3 بطاقات فقط في كل مرة
+                cardsToRender.forEach(item => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+
+                    if (item.image) {
+                        const img = document.createElement("img");
+                        img.src = item.image;
+                        img.alt = item.title || "صورة";
+                        card.appendChild(img);
+                    }
+
+                    const content = document.createElement("div");
+                    content.classList.add("card-content");
+
+                    const title = document.createElement("h3");
+                    title.textContent = item.title || "بدون عنوان";
+                    content.appendChild(title);
+
+                    const description = document.createElement("p");
+                    description.textContent = item.description || "بدون وصف";
+                    content.appendChild(description);
+
+                    card.appendChild(content);
+                    cardSlider.appendChild(card);
                 });
+            }
+
+            // تحميل البيانات عند بداية تحميل الصفحة
+            loadData();
 
             // وظائف السهام
             prevBtn.addEventListener("click", () => {
                 if (currentIndex > 0) {
                     currentIndex--;
+                    dataIndex -= 3; // تقليل عدد العناصر الظاهرة
                     updateSlider();
                 }
             });
 
             nextBtn.addEventListener("click", () => {
-                if (currentIndex < cardSlider.children.length - 3) {
+                if (dataIndex + 3 < data.length) {
                     currentIndex++;
+                    dataIndex += 3; // زيادة عدد العناصر الظاهرة
                     updateSlider();
+                } else {
+                    // إذا كانت البيانات في الصفحة الحالية قد انتهت، نقوم بتحميل المزيد
+                    loadData();
                 }
             });
 
+            // تحديث حركة التمرير
             function updateSlider() {
                 const slideWidth = cardSlider.children[0].offsetWidth;
                 cardSlider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             }
         });
-
 
 
 
