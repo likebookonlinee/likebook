@@ -222,20 +222,25 @@
     }
 }
 /* الحاوية الرئيسية */
+/* الحاوية الرئيسية */
 #popular-container {
     overflow: hidden;
     position: relative;
     width: 100%;
     padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: auto; /* للحفاظ على تناسق الارتفاع */
 }
 
 /* شريط التمرير */
 .scroll-container {
-    display: flex; /* يجعل البطاقات تظهر بشكل أفقي */
-    gap: 20px; /* إضافة مسافة بين البطاقات */
+    display: flex; /* عرض البطاقات أفقيًا */
+    gap: 20px; /* مسافة بين البطاقات */
     overflow-x: auto; /* السماح بالتمرير الأفقي */
     scroll-behavior: smooth; /* تمرير سلس */
-    white-space: nowrap; /* منع التفاف النصوص أو البطاقات */
+    align-items: flex-start; /* محاذاة البطاقات من الأعلى */
+    height: 100%; /* تأمين تناسق مع باقي الحاويات */
 }
 
 /* إعداد البطاقات */
@@ -243,40 +248,55 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    flex-shrink: 0; /* منع تقليص حجم البطاقة */
+    width: 250px; /* عرض ثابت للبطاقات */
+    flex-shrink: 0; /* منع تغيير حجم البطاقة */
     overflow: hidden;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* توزيع المحتوى داخل البطاقة */
+    height: 300px; /* لضمان تناسق البطاقات */
 }
 
 .card img {
     width: 100%;
-    height: 150px;
-    object-fit: cover;
+    height: 180px; /* ارتفاع الصورة داخل البطاقة */
+    object-fit: cover; /* ضبط الصورة لتناسب الحجم */
 }
 
 .card-content {
     padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card h3 {
     font-size: 16px;
     color: #333;
     margin-bottom: 5px;
+    white-space: nowrap; /* منع التفاف النص */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card p {
     font-size: 14px;
     color: #777;
     margin-bottom: 10px;
+    overflow: hidden;
+    white-space: nowrap; /* منع التفاف النص */
+    text-overflow: ellipsis;
 }
 
 /* تأثير عند تمرير الفأرة */
 .card:hover {
     transform: scale(1.05);
 }
+
 
     </style>
 </head>
@@ -313,13 +333,11 @@
             </div>
         </div>
 
-        <!-- الحاوية الثالثة (تم توسيعها) -->
-        <div class="box" style="flex: 3; width: 100%;">
+        <div class="box" id="popular-container">
             <h2>الأكثر رواجًا</h2>
-            <div id="popular-cards"></div>
+            <div class="scroll-container" id="popular-cards"></div>
         </div>
-    </div>
-</div>
+        
 
 
                 
@@ -436,15 +454,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.appendChild(content);
                 popularCards.appendChild(card);
             });
-
-            // تكرار البطاقات لملء الشاشة بالكامل
-            const clone = popularCards.cloneNode(true);
-            popularCards.parentElement.appendChild(clone);
         })
         .catch(error => {
             console.error("خطأ:", error);
         });
 });
+
+
+
 
 
     // دالة البحث
