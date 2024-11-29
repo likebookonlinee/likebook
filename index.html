@@ -223,9 +223,10 @@
 }
 /* الحاوية الرئيسية */
 #popular-container {
-    overflow: hidden; /* إخفاء أي محتوى يخرج عن الحدود */
+    overflow: hidden;
     position: relative;
     width: 100%;
+    padding: 20px;
 }
 
 /* شريط التمرير */
@@ -245,6 +246,7 @@
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .card img {
@@ -267,12 +269,6 @@
     font-size: 14px;
     color: #777;
     margin-bottom: 10px;
-}
-
-.card a {
-    text-decoration: none;
-    color: #f39c12;
-    font-size: 14px;
 }
 
 /* تأثير عند تمرير الفأرة */
@@ -335,7 +331,7 @@
 </div>
 
         <script>
-           document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
     const popularCards = document.getElementById("popular-cards");
 
     fetch("https://likebook.online/json/ra.json")
@@ -350,6 +346,13 @@
             data.forEach(item => {
                 const card = document.createElement("div");
                 card.classList.add("card");
+
+                // توجيه عند النقر على البطاقة
+                if (item.url) {
+                    card.onclick = () => {
+                        window.open(item.url, "_blank");
+                    };
+                }
 
                 if (item.image) {
                     const img = document.createElement("img");
@@ -368,14 +371,6 @@
                 const description = document.createElement("p");
                 description.textContent = item.description || "بدون وصف";
                 content.appendChild(description);
-
-                if (item.url) {
-                    const link = document.createElement("a");
-                    link.href = item.url;
-                    link.target = "_blank";
-                    link.textContent = "قراءة المزيد";
-                    content.appendChild(link);
-                }
 
                 card.appendChild(content);
                 popularCards.appendChild(card);
