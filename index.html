@@ -335,117 +335,53 @@
 
 
 <script>
-   document.addEventListener("DOMContentLoaded", () => {
-            const cardSlider = document.getElementById("card-slider");
-            const prevBtn = document.getElementById("prev-btn");
-            const nextBtn = document.getElementById("next-btn");
+   // دالة لعرض البطاقات
+function renderCards() {
+    const cardsToRender = data.slice(dataIndex, dataIndex + 6); // عرض 6 بطاقات بدلاً من 3 في كل مرة
+    cardsToRender.forEach(item => {
+        const card = document.createElement("div");
+        card.classList.add("card");
 
-            let currentIndex = 0;
-            let data = [];
-            let dataIndex = 0;
-            let isLoading = false; // للتحقق من تحميل البيانات
-
-            // دالة لتحميل البيانات
-            function loadData() {
-                if (isLoading) return; // إذا كان هناك تحميل جارٍ، لا نكرر الطلب
-                isLoading = true; // قيد التحميل
-
-                fetch("https://likebook.online/json/ra.json")
-                    .then(response => {
-                        if (!response.ok) throw new Error("خطأ في تحميل البيانات");
-                        return response.json();
-                    })
-                    .then(fetchedData => {
-                        console.log('تم تحميل بيانات جديدة:', fetchedData);
-                        data = data.concat(fetchedData); // إضافة البيانات الجديدة إلى المصفوفة القديمة
-                        renderCards(); // تحديث الواجهة
-                        isLoading = false; // إلغاء التحميل
-                    })
-                    .catch(error => {
-                        console.error("خطأ:", error);
-                        isLoading = false; // إلغاء التحميل حتى في حالة الخطأ
-                    });
-            }
-
-            // دالة لعرض البطاقات
-            function renderCards() {
-                const cardsToRender = data.slice(dataIndex, dataIndex + 3); // عرض 3 بطاقات فقط في كل مرة
-                cardsToRender.forEach(item => {
-                    const card = document.createElement("div");
-                    card.classList.add("card");
-
-                    if (item.image) {
-                        const img = document.createElement("img");
-                        img.src = item.image;
-                        img.alt = item.title || "صورة";
-                        card.appendChild(img);
-                    }
-
-                    const content = document.createElement("div");
-                    content.classList.add("card-content");
-
-                    const title = document.createElement("h3");
-                    title.textContent = item.title || "بدون عنوان";
-                    content.appendChild(title);
-
-                    const description = document.createElement("p");
-                    description.textContent = item.description || "بدون وصف";
-                    content.appendChild(description);
-
-                    card.appendChild(content);
-                    cardSlider.appendChild(card);
-                });
-            }
-
-            // تحميل البيانات عند بداية تحميل الصفحة
-            loadData();
-
-            // وظائف السهام
-            prevBtn.addEventListener("click", () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    dataIndex -= 3; // تقليل عدد العناصر الظاهرة
-                    updateSlider();
-                }
-            });
-
-            nextBtn.addEventListener("click", () => {
-                if (dataIndex + 3 < data.length) {
-                    currentIndex++;
-                    dataIndex += 3; // زيادة عدد العناصر الظاهرة
-                    updateSlider();
-                } else {
-                    // إذا كانت البيانات في الصفحة الحالية قد انتهت، نقوم بتحميل المزيد
-                    loadData();
-                }
-            });
-
-            // تحديث حركة التمرير
-            function updateSlider() {
-                const slideWidth = cardSlider.children[0].offsetWidth;
-                cardSlider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-            }
-        });
-
-
-
-    // دالة البحث
-    function searchSite() {
-        const query = document.getElementById('search-box').value.trim();
-        if (query) {
-            // إعادة التوجيه إلى رابط البحث مع الاستعلام
-            window.location.href = `https://likebook.online/search?q=${query}`;
-        } else {
-            alert("يرجى إدخال كلمة البحث.");
+        if (item.image) {
+            const img = document.createElement("img");
+            img.src = item.image;
+            img.alt = item.title || "صورة";
+            card.appendChild(img);
         }
-    }
 
-    // إضافة حدث للبحث عند الضغط على زر Enter
-    document.getElementById('search-box').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            searchSite();
-        }
+        const content = document.createElement("div");
+        content.classList.add("card-content");
+
+        const title = document.createElement("h3");
+        title.textContent = item.title || "بدون عنوان";
+        content.appendChild(title);
+
+        const description = document.createElement("p");
+        description.textContent = item.description || "بدون وصف";
+        content.appendChild(description);
+
+        card.appendChild(content);
+        cardSlider.appendChild(card);
     });
+}
+
+// وظائف السهام
+prevBtn.addEventListener("click", () => {
+    if (dataIndex > 0) {
+        dataIndex -= 6; // تقليل عدد العناصر المعروضة
+        updateSlider();
+    }
+});
+
+nextBtn.addEventListener("click", () => {
+    if (dataIndex + 6 < data.length) {
+        dataIndex += 6; // زيادة عدد العناصر المعروضة
+        updateSlider();
+    } else {
+        loadData(); // تحميل بيانات جديدة إذا تم الوصول إلى آخر مجموعة
+    }
+});
+
 </script>
 
 </body>
