@@ -168,18 +168,27 @@
 }
 
 /* تنسيق النصوص الأفقية */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* عرض النصوص في صفين */
+    gap: 10px; /* مسافة بين العناصر */
+}
+
 .horizontal-link {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    margin-bottom: 10px;
-    display: block; /* كل نص يظهر على سطر منفصل */
+    text-align: right; /* محاذاة النص إلى اليمين */
+    font-size: 16px; /* حجم النص */
+    color: #333; /* لون النص */
+    text-decoration: none; /* إزالة الخط السفلي */
     transition: color 0.3s ease;
 }
 
 .horizontal-link:hover {
-    color: #f39c12;
+    color: #f39c12; /* تغيير اللون عند التمرير */
 }
+
+
+
 
 /* وسائل الاستجابة */
 @media (max-width: 1024px) {
@@ -230,33 +239,94 @@
 </div>
 <div class="content-section">
     <div class="container">
-        <!-- الحاوية الأولى -->
+        <!-- الحاوية الأولى (تم دمج النصوص من الحاوية الثانية) -->
         <div class="column">
             <div class="box">
-                <a href="#" class="horizontal-link">تحميل كتب</a>
-                <a href="#" class="horizontal-link">التغذية</a>
-                <a href="#" class="horizontal-link">العناية بالأطفال</a>
-                <a href="#" class="horizontal-link">صحة وطب</a>
-                <a href="#" class="horizontal-link">الحياة والمجتمع</a>
-                <a href="#" class="horizontal-link">أقوال وأمثال</a>
-                <a href="#" class="horizontal-link">كلمات وجمل معبرة</a>
-            </div>
-        </div>
-        
-        <!-- الحاوية الثانية -->
-        <div class="column">
-            <div class="box">
-                <a href="#" class="horizontal-link">أخبار</a>
-                <a href="#" class="horizontal-link">تكنولوجيا وعلوم</a>
-                <a href="#" class="horizontal-link">فنون</a>
-                <a href="#" class="horizontal-link">قصص وحكايات</a>
+                <div class="grid-container">
+                    <a href="#" class="horizontal-link">تحميل كتب</a>
+                    <a href="#" class="horizontal-link">التغذية</a>
+                    <a href="#" class="horizontal-link">العناية بالأطفال</a>
+                    <a href="#" class="horizontal-link">صحة وطب</a>
+                    <a href="#" class="horizontal-link">الحياة والمجتمع</a>
+                    <a href="#" class="horizontal-link">أقوال وأمثال</a>
+                    <a href="#" class="horizontal-link">كلمات وجمل معبرة</a>
+                    <a href="#" class="horizontal-link">أخبار</a>
+                    <a href="#" class="horizontal-link">تكنولوجيا وعلوم</a>
+                    <a href="#" class="horizontal-link">فنون</a>
+                    <a href="#" class="horizontal-link">قصص وحكايات</a>
+                </div>
             </div>
         </div>
 
-        <!-- الحاوية الثالثة -->
-        <div class="box">الحاوية الثالثة</div>
+        <!-- الحاوية الثالثة (تم توسيعها) -->
+        <div class="box" style="flex: 3; width: 100%;">
+            <h2>الأكثر رواجًا</h2>
+            <div id="popular-cards"></div>
+        </div>
     </div>
 </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const popularContainer = document.getElementById("popular-cards");
+        
+                fetch("https://likebook.online/json/ra.json")
+                    .then(response => {
+                        if (!response.ok) throw new Error("خطأ في تحميل البيانات");
+                        return response.json();
+                    })
+                    .then(data => {
+                        // التحقق من وجود البيانات
+                        if (!data || !Array.isArray(data)) return;
+        
+                        data.forEach(item => {
+                            // إنشاء بطاقة لكل عنصر
+                            const card = document.createElement("div");
+                            card.classList.add("card");
+        
+                            // إضافة الصورة إذا توفرت
+                            if (item.image) {
+                                const img = document.createElement("img");
+                                img.src = item.image;
+                                img.alt = item.title || "صورة";
+                                card.appendChild(img);
+                            }
+        
+                            // إضافة المحتوى النصي
+                            const content = document.createElement("div");
+                            content.classList.add("card-content");
+        
+                            const title = document.createElement("h3");
+                            title.textContent = item.title || "بدون عنوان";
+                            content.appendChild(title);
+        
+                            const description = document.createElement("p");
+                            description.textContent = item.description || "بدون وصف";
+                            content.appendChild(description);
+        
+                            // إضافة رابط
+                            if (item.url) {
+                                const link = document.createElement("a");
+                                link.href = item.url;
+                                link.textContent = "قراءة المزيد";
+                                link.style.color = "#f39c12";
+                                link.style.textDecoration = "none";
+                                link.style.display = "block";
+                                link.style.marginTop = "10px";
+                                content.appendChild(link);
+                            }
+        
+                            card.appendChild(content);
+                            popularContainer.appendChild(card);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("خطأ:", error);
+                        popularContainer.textContent = "تعذر تحميل البيانات.";
+                    });
+            });
+        </script>
+                
 
 
 
