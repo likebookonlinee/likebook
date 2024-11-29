@@ -189,7 +189,7 @@
      /* الحاوية الرئيسية */
      #card-container {
             position: relative;
-            width: 80%; /* عرض الحاوية */
+            width: 100%;
             height: 400px; /* ارتفاع الحاوية */
             margin: 0 auto;
             overflow: hidden;
@@ -202,12 +202,12 @@
         #card-slider {
             display: flex;
             transition: transform 0.3s ease-in-out;
-            height: 100%; /* ارتفاع البطاقات بالكامل */
+            height: 100%;
         }
 
         /* البطاقات */
         .card {
-            flex: 0 0 33.333%; /* عرض كل بطاقة ثلث الحاوية */
+            flex: 0 0 33.333%; /* عرض كل بطاقة ثلث الحاوية في الشاشات العادية */
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -272,10 +272,8 @@
             background: rgba(0, 0, 0, 0.7);
         }
 
-
-
-  /* استعلامات الوسائط للتكيف مع مختلف الشاشات */
-  @media (max-width: 1200px) {
+        /* استعلامات الوسائط للتكيف مع مختلف الشاشات */
+        @media (max-width: 1200px) {
             .card {
                 flex: 0 0 50%; /* عرض البطاقة نصف الحاوية في الشاشات الكبيرة */
             }
@@ -286,7 +284,6 @@
                 flex: 0 0 100%; /* عرض البطاقة بالكامل في الشاشات الصغيرة */
             }
         }
-
     </style>
 </head>
 <body>
