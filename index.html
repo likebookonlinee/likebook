@@ -186,7 +186,91 @@
 .horizontal-link:hover {
     color: #f39c12; /* تغيير اللون عند التمرير */
 }
+     /* الحاوية الرئيسية */
+     #card-container {
+            position: relative;
+            width: 80%; /* عرض الحاوية */
+            height: 400px; /* ارتفاع الحاوية */
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
+        /* الشريط الداخلي */
+        #card-slider {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            height: 100%; /* ارتفاع البطاقات بالكامل */
+        }
+
+        /* البطاقات */
+        .card {
+            flex: 0 0 33.333%; /* عرض كل بطاقة ثلث الحاوية */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #fff;
+            border-right: 1px solid #eee;
+            padding: 16px;
+            box-sizing: border-box;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card img {
+            max-height: 60%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card-content {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            margin: 0;
+            color: #333;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* السهام */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
 
 
 
@@ -222,37 +306,7 @@
     }
 }
 /* الحاوية الرئيسية */
-/* الحاوية الرئيسية للبطاقات */
-#popular-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* دعم الشبكة المتجاوبة */
-    gap: 20px; /* مسافة بين البطاقات */
-    align-items: stretch; /* تمديد البطاقات لتكون بنفس الارتفاع */
-}
 
-/* إعداد البطاقات */
-.card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* توزيع المحتوى داخل البطاقة */
-    height: 300px; /* لضمان تناسق البطاقات */
-}
-
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover; /* ضبط الصورة لتناسب الحجم */
-}
 @media (max-width: 768px) {
     #popular-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -318,124 +372,75 @@
 
 
 
-<div class="cards-container" id="cards-container">
-    <!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
-</div>
-
-<!-- Footer Section -->
-<footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-        <!-- روابط الصفحات في القسم الأيسر -->
-        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
-        </div>
-  
-        <!-- حقوق الطبع والنشر في المركز -->
-        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-            © 2024 likebook.online
-        </div>
-  
-        <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
-        <div style="display: flex; gap: 15px; justify-content: center;">
-  <!-- WhatsApp -->
-<a href="https://wa.me/yourwhatsapplink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
-</a>
-<!-- Telegram -->
-<a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
-</a>
-<!-- Facebook -->
-<a href="https://www.facebook.com/yourfacebooklink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 32px; height: 32px;">
-</a>
-<!-- Instagram -->
-<a href="https://www.instagram.com/yourinstagramlink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 32px; height: 32px;">
-</a>
-
-        </div>
-    </div>
-</footer>
-
-<!-- استعلامات الوسائط لتجاوب أفضل مع الأجهزة الصغيرة -->
-<style>
-    @media (max-width: 768px) {
-        footer div {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .search-bar input {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .top-bar {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-</style>
-
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const popularCards = document.getElementById("popular-cards");
+   document.addEventListener("DOMContentLoaded", () => {
+            const cardSlider = document.getElementById("card-slider");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
 
-    fetch("https://likebook.online/json/ra.json")
-        .then(response => {
-            if (!response.ok) throw new Error("خطأ في تحميل البيانات");
-            return response.json();
-        })
-        .then(data => {
-            if (!data || !Array.isArray(data)) return;
+            let currentIndex = 0;
 
-            // عرض ثلاث بطاقات فقط
-            data.slice(0, 3).forEach(item => {
-                const card = document.createElement("div");
-                card.classList.add("card");
+            // جلب البيانات
+            fetch("https://likebook.online/json/ra.json")
+                .then(response => {
+                    if (!response.ok) throw new Error("خطأ في تحميل البيانات");
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data || !Array.isArray(data)) return;
 
-                // توجيه عند النقر على البطاقة
-                if (item.url) {
-                    card.onclick = () => {
-                        window.open(item.url, "_blank");
-                    };
+                    // إنشاء البطاقات
+                    data.forEach(item => {
+                        const card = document.createElement("div");
+                        card.classList.add("card");
+
+                        if (item.image) {
+                            const img = document.createElement("img");
+                            img.src = item.image;
+                            img.alt = item.title || "صورة";
+                            card.appendChild(img);
+                        }
+
+                        const content = document.createElement("div");
+                        content.classList.add("card-content");
+
+                        const title = document.createElement("h3");
+                        title.textContent = item.title || "بدون عنوان";
+                        content.appendChild(title);
+
+                        const description = document.createElement("p");
+                        description.textContent = item.description || "بدون وصف";
+                        content.appendChild(description);
+
+                        card.appendChild(content);
+                        cardSlider.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error("خطأ:", error);
+                });
+
+            // وظائف السهام
+            prevBtn.addEventListener("click", () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
                 }
-
-                // إضافة الصورة إذا توفرت
-                if (item.image) {
-                    const img = document.createElement("img");
-                    img.src = item.image;
-                    img.alt = item.title || "صورة";
-                    card.appendChild(img);
-                }
-
-                const content = document.createElement("div");
-                content.classList.add("card-content");
-
-                // إضافة العنوان
-                const title = document.createElement("h3");
-                title.textContent = item.title || "بدون عنوان";
-                content.appendChild(title);
-
-                // إضافة الوصف
-                const description = document.createElement("p");
-                description.textContent = item.description || "بدون وصف";
-                content.appendChild(description);
-
-                // تجميع المحتوى داخل البطاقة
-                card.appendChild(content);
-                popularCards.appendChild(card);
             });
-        })
-        .catch(error => {
-            console.error("خطأ:", error);
-        });
-});
 
+            nextBtn.addEventListener("click", () => {
+                if (currentIndex < cardSlider.children.length - 3) {
+                    currentIndex++;
+                    updateSlider();
+                }
+            });
+
+            function updateSlider() {
+                const slideWidth = cardSlider.children[0].offsetWidth;
+                cardSlider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            }
+        });
 
 
 
