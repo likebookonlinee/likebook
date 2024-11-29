@@ -335,7 +335,7 @@
 
 
 <script>
-         document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
             const cardSlider = document.getElementById("card-slider");
             const prevBtn = document.getElementById("prev-btn");
             const nextBtn = document.getElementById("next-btn");
@@ -343,20 +343,27 @@
             let currentIndex = 0;
             let data = [];
             let dataIndex = 0;
+            let isLoading = false; // للتحقق من تحميل البيانات
 
             // دالة لتحميل البيانات
             function loadData() {
+                if (isLoading) return; // إذا كان هناك تحميل جارٍ، لا نكرر الطلب
+                isLoading = true; // قيد التحميل
+
                 fetch("https://likebook.online/json/ra.json")
                     .then(response => {
                         if (!response.ok) throw new Error("خطأ في تحميل البيانات");
                         return response.json();
                     })
                     .then(fetchedData => {
+                        console.log('تم تحميل بيانات جديدة:', fetchedData);
                         data = data.concat(fetchedData); // إضافة البيانات الجديدة إلى المصفوفة القديمة
-                        renderCards();
+                        renderCards(); // تحديث الواجهة
+                        isLoading = false; // إلغاء التحميل
                     })
                     .catch(error => {
                         console.error("خطأ:", error);
+                        isLoading = false; // إلغاء التحميل حتى في حالة الخطأ
                     });
             }
 
@@ -419,7 +426,6 @@
                 cardSlider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             }
         });
-
 
 
 
