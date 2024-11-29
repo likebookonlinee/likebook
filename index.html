@@ -231,9 +231,11 @@
 
 /* شريط التمرير */
 .scroll-container {
-    display: flex;
-    gap: 20px;
-    animation: scroll 20s linear infinite; /* حركة ديناميكية مستمرة */
+    display: flex; /* يجعل البطاقات تظهر بشكل أفقي */
+    gap: 20px; /* إضافة مسافة بين البطاقات */
+    overflow-x: auto; /* السماح بالتمرير الأفقي */
+    scroll-behavior: smooth; /* تمرير سلس */
+    white-space: nowrap; /* منع التفاف النصوص أو البطاقات */
 }
 
 /* إعداد البطاقات */
@@ -242,11 +244,11 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 200px;
-    flex-shrink: 0; /* منع تقليص العرض */
+    flex-shrink: 0; /* منع تقليص حجم البطاقة */
     overflow: hidden;
     text-align: center;
-    transition: transform 0.3s ease;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .card img {
@@ -275,17 +277,6 @@
 .card:hover {
     transform: scale(1.05);
 }
-
-/* الحركة الديناميكية */
-@keyframes scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
-
 
     </style>
 </head>
@@ -330,62 +321,7 @@
     </div>
 </div>
 
-        <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const popularCards = document.getElementById("popular-cards");
 
-    fetch("https://likebook.online/json/ra.json")
-        .then(response => {
-            if (!response.ok) throw new Error("خطأ في تحميل البيانات");
-            return response.json();
-        })
-        .then(data => {
-            if (!data || !Array.isArray(data)) return;
-
-            // إنشاء البطاقات من البيانات
-            data.forEach(item => {
-                const card = document.createElement("div");
-                card.classList.add("card");
-
-                // توجيه عند النقر على البطاقة
-                if (item.url) {
-                    card.onclick = () => {
-                        window.open(item.url, "_blank");
-                    };
-                }
-
-                if (item.image) {
-                    const img = document.createElement("img");
-                    img.src = item.image;
-                    img.alt = item.title || "صورة";
-                    card.appendChild(img);
-                }
-
-                const content = document.createElement("div");
-                content.classList.add("card-content");
-
-                const title = document.createElement("h3");
-                title.textContent = item.title || "بدون عنوان";
-                content.appendChild(title);
-
-                const description = document.createElement("p");
-                description.textContent = item.description || "بدون وصف";
-                content.appendChild(description);
-
-                card.appendChild(content);
-                popularCards.appendChild(card);
-            });
-
-            // تكرار البطاقات لملء الشاشة بالكامل
-            const clone = popularCards.cloneNode(true);
-            popularCards.parentElement.appendChild(clone);
-        })
-        .catch(error => {
-            console.error("خطأ:", error);
-        });
-});
-
-        </script>
                 
 
 
@@ -456,28 +392,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <script>
-    // تحميل البيانات من ملف JSON
-    fetch('https://likebook.online/searchData.json')
-        .then(response => response.json())
-        .then(data => {
-            const cardsContainer = document.getElementById('cards-container');
-            data.forEach(item => {
-                if (item.title && item.description && item.url && item.image) {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
-                    card.onclick = () => window.location.href = item.url;
-                    card.innerHTML = `
-                        <img src="${item.image}" alt="${item.title}">
-                        <div class="card-content">
-                            <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                        </div>
-                    `;
-                    cardsContainer.appendChild(card);
-                }
-            });
+document.addEventListener("DOMContentLoaded", () => {
+    const popularCards = document.getElementById("popular-cards");
+
+    fetch("https://likebook.online/json/ra.json")
+        .then(response => {
+            if (!response.ok) throw new Error("خطأ في تحميل البيانات");
+            return response.json();
         })
-        .catch(error => console.error('Error loading data:', error));
+        .then(data => {
+            if (!data || !Array.isArray(data)) return;
+
+            // إنشاء البطاقات من البيانات
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                // توجيه عند النقر على البطاقة
+                if (item.url) {
+                    card.onclick = () => {
+                        window.open(item.url, "_blank");
+                    };
+                }
+
+                if (item.image) {
+                    const img = document.createElement("img");
+                    img.src = item.image;
+                    img.alt = item.title || "صورة";
+                    card.appendChild(img);
+                }
+
+                const content = document.createElement("div");
+                content.classList.add("card-content");
+
+                const title = document.createElement("h3");
+                title.textContent = item.title || "بدون عنوان";
+                content.appendChild(title);
+
+                const description = document.createElement("p");
+                description.textContent = item.description || "بدون وصف";
+                content.appendChild(description);
+
+                card.appendChild(content);
+                popularCards.appendChild(card);
+            });
+
+            // تكرار البطاقات لملء الشاشة بالكامل
+            const clone = popularCards.cloneNode(true);
+            popularCards.parentElement.appendChild(clone);
+        })
+        .catch(error => {
+            console.error("خطأ:", error);
+        });
+});
+
 
     // دالة البحث
     function searchSite() {
