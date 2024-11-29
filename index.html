@@ -221,6 +221,74 @@
         font-size: 12px; /* تصغير إضافي للنصوص */
     }
 }
+/* الحاوية الرئيسية */
+#popular-container {
+    overflow: hidden; /* إخفاء أي محتوى يخرج عن الحدود */
+    position: relative;
+    width: 100%;
+}
+
+/* شريط التمرير */
+.scroll-container {
+    display: flex;
+    gap: 20px;
+    animation: scroll 20s linear infinite; /* حركة ديناميكية مستمرة */
+}
+
+/* إعداد البطاقات */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    flex-shrink: 0; /* منع تقليص العرض */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 10px;
+}
+
+.card h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.card a {
+    text-decoration: none;
+    color: #f39c12;
+    font-size: 14px;
+}
+
+/* تأثير عند تمرير الفأرة */
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* الحركة الديناميكية */
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
 
 
     </style>
@@ -267,64 +335,61 @@
 </div>
 
         <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const popularContainer = document.getElementById("popular-cards");
-        
-                fetch("https://likebook.online/json/ra.json")
-                    .then(response => {
-                        if (!response.ok) throw new Error("خطأ في تحميل البيانات");
-                        return response.json();
-                    })
-                    .then(data => {
-                        // التحقق من وجود البيانات
-                        if (!data || !Array.isArray(data)) return;
-        
-                        data.forEach(item => {
-                            // إنشاء بطاقة لكل عنصر
-                            const card = document.createElement("div");
-                            card.classList.add("card");
-        
-                            // إضافة الصورة إذا توفرت
-                            if (item.image) {
-                                const img = document.createElement("img");
-                                img.src = item.image;
-                                img.alt = item.title || "صورة";
-                                card.appendChild(img);
-                            }
-        
-                            // إضافة المحتوى النصي
-                            const content = document.createElement("div");
-                            content.classList.add("card-content");
-        
-                            const title = document.createElement("h3");
-                            title.textContent = item.title || "بدون عنوان";
-                            content.appendChild(title);
-        
-                            const description = document.createElement("p");
-                            description.textContent = item.description || "بدون وصف";
-                            content.appendChild(description);
-        
-                            // إضافة رابط
-                            if (item.url) {
-                                const link = document.createElement("a");
-                                link.href = item.url;
-                                link.textContent = "قراءة المزيد";
-                                link.style.color = "#f39c12";
-                                link.style.textDecoration = "none";
-                                link.style.display = "block";
-                                link.style.marginTop = "10px";
-                                content.appendChild(link);
-                            }
-        
-                            card.appendChild(content);
-                            popularContainer.appendChild(card);
-                        });
-                    })
-                    .catch(error => {
-                        console.error("خطأ:", error);
-                        popularContainer.textContent = "تعذر تحميل البيانات.";
-                    });
+           document.addEventListener("DOMContentLoaded", () => {
+    const popularCards = document.getElementById("popular-cards");
+
+    fetch("https://likebook.online/json/ra.json")
+        .then(response => {
+            if (!response.ok) throw new Error("خطأ في تحميل البيانات");
+            return response.json();
+        })
+        .then(data => {
+            if (!data || !Array.isArray(data)) return;
+
+            // إنشاء البطاقات من البيانات
+            data.forEach(item => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                if (item.image) {
+                    const img = document.createElement("img");
+                    img.src = item.image;
+                    img.alt = item.title || "صورة";
+                    card.appendChild(img);
+                }
+
+                const content = document.createElement("div");
+                content.classList.add("card-content");
+
+                const title = document.createElement("h3");
+                title.textContent = item.title || "بدون عنوان";
+                content.appendChild(title);
+
+                const description = document.createElement("p");
+                description.textContent = item.description || "بدون وصف";
+                content.appendChild(description);
+
+                if (item.url) {
+                    const link = document.createElement("a");
+                    link.href = item.url;
+                    link.target = "_blank";
+                    link.textContent = "قراءة المزيد";
+                    content.appendChild(link);
+                }
+
+                card.appendChild(content);
+                popularCards.appendChild(card);
             });
+
+            // تكرار البطاقات لملء الشاشة بالكامل
+            const clone = popularCards.cloneNode(true);
+            popularCards.parentElement.appendChild(clone);
+        })
+        .catch(error => {
+            console.error("خطأ:", error);
+        });
+});
+
         </script>
                 
 
