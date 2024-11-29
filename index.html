@@ -274,55 +274,18 @@
 
 
 
-/* وسائل الاستجابة */
-@media (max-width: 1024px) {
-    .container {
-        flex-direction: column; /* الحاويات تصطف عموديًا في الشاشات المتوسطة */
-        align-items: center;
-    }
+  /* استعلامات الوسائط للتكيف مع مختلف الشاشات */
+  @media (max-width: 1200px) {
+            .card {
+                flex: 0 0 50%; /* عرض البطاقة نصف الحاوية في الشاشات الكبيرة */
+            }
+        }
 
-    .box {
-        width: 90%; /* الحاويات تأخذ معظم عرض الشاشة */
-        margin: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .box {
-        padding: 15px; /* تقليل الحواف لتناسب الشاشات الأصغر */
-    }
-    .horizontal-link {
-        font-size: 14px; /* تصغير النص لتناسب المساحة */
-    }
-}
-
-@media (max-width: 480px) {
-    .box {
-        padding: 10px;
-    }
-
-    .horizontal-link {
-        font-size: 12px; /* تصغير إضافي للنصوص */
-    }
-}
-/* الحاوية الرئيسية */
-
-@media (max-width: 768px) {
-    #popular-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    #popular-container {
-        grid-template-columns: 1fr;
-    }
-
-    .card {
-        height: auto; /* السماح للبطاقات بأن تكون مرنة */
-    }
-}
-
+        @media (max-width: 768px) {
+            .card {
+                flex: 0 0 100%; /* عرض البطاقة بالكامل في الشاشات الصغيرة */
+            }
+        }
 
     </style>
 </head>
@@ -359,9 +322,10 @@
             </div>
         </div>
 
-        <div class="box" id="popular-container">
-            <h2>الأكثر رواجًا</h2>
-            <div class="scroll-container" id="popular-cards"></div>
+        <div id="card-container">
+            <button class="arrow left" id="prev-btn">&#9664;</button>
+            <div id="card-slider"></div>
+            <button class="arrow right" id="next-btn">&#9654;</button>
         </div>
         
 
