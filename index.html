@@ -137,35 +137,7 @@
 .btn-home:hover {
     text-decoration: underline; /* إضافة خط تحت النص عند التمرير */
 }
-/* الحاويات */
-.content-section {
-    padding: 20px;
-    background-color: #f4f4f4;
-}
 
-.container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap; /* يسمح بتكييف التصميم مع الشاشات الصغيرة */
-}
-
-.column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex: 1;
-}
-
-.box {
-    background-color: #fff;
-    padding: 20px;
-    text-align: right; /* محاذاة النصوص إلى اليمين */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    flex: 1;
-}
 
 /* تنسيق النصوص الأفقية */
 
@@ -186,104 +158,110 @@
 .horizontal-link:hover {
     color: #f39c12; /* تغيير اللون عند التمرير */
 }
-     /* الحاوية الرئيسية */
-     #card-container {
-            position: relative;
-            width: 100%;
-            height: 400px; /* ارتفاع الحاوية */
-            margin: 0 auto;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+   /* الحاوية الرئيسية */
+#card-container {
+    position: relative;
+    width: 100%;
+    height: 500px; /* زيادة ارتفاع الحاوية */
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        /* الشريط الداخلي */
-        #card-slider {
-            display: flex;
-            transition: transform 0.3s ease-in-out;
-            height: 100%;
-        }
+/* الشريط الداخلي */
+#card-slider {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+}
 
-        /* البطاقات */
-        .card {
-            flex: 0 0 33.333%; /* عرض كل بطاقة ثلث الحاوية في الشاشات العادية */
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: #fff;
-            border-right: 1px solid #eee;
-            padding: 16px;
-            box-sizing: border-box;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+/* البطاقات */
+.card {
+    flex: 0 0 30%; /* عرض البطاقة 30% من الحاوية */
+    height: 90%; /* ارتفاع البطاقة */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 10px;
+    margin: 10px; /* مسافة بين البطاقات */
+    box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+}
 
-        .card img {
-            max-height: 60%;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
+.card img {
+    max-height: 50%; /* تصغير الصورة */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
-        .card-content {
-            margin-top: 10px;
-            text-align: center;
-        }
+.card-content {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+}
 
-        .card-content h3 {
-            font-size: 18px;
-            margin: 0;
-            color: #333;
-        }
+.card-content h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
 
-        .card-content p {
-            font-size: 14px;
-            color: #666;
-        }
+.card-content p {
+    font-size: 12px; /* تصغير الوصف */
+    color: #666;
+    text-align: justify; /* محاذاة النص إلى كلا الطرفين */
+    line-height: 1.5; /* تحسين التباعد بين الأسطر */
+}
 
-        /* السهام */
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-        }
+/* السهام */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
 
-        .arrow.left {
-            left: 10px;
-        }
+.arrow.left {
+    left: 10px;
+}
 
-        .arrow.right {
-            right: 10px;
-        }
+.arrow.right {
+    right: 10px;
+}
 
-        .arrow:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
+.arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
 
-        /* استعلامات الوسائط للتكيف مع مختلف الشاشات */
-        @media (max-width: 1200px) {
-            .card {
-                flex: 0 0 50%; /* عرض البطاقة نصف الحاوية في الشاشات الكبيرة */
-            }
-        }
+/* استعلامات الوسائط */
+@media (max-width: 1200px) {
+    .card {
+        flex: 0 0 45%; /* تقليل عدد البطاقات في الشاشات المتوسطة */
+    }
+}
 
-        @media (max-width: 768px) {
-            .card {
-                flex: 0 0 100%; /* عرض البطاقة بالكامل في الشاشات الصغيرة */
-            }
-        }
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 100%; /* بطاقة واحدة لكل صف في الشاشات الصغيرة */
+    }
+}
+
     </style>
 </head>
 <body>
@@ -298,32 +276,17 @@
         <button onclick="searchSite()">بحث</button>
     </div>
 </div>
-<div class="content-section">
-    <div class="container">
-        <!-- الحاوية الأولى (تم دمج النصوص من الحاوية الثانية) -->
-        <div class="column">
-            <div class="box">
-                <div class="grid-container">
-                    <a href="#" class="horizontal-link">تحميل كتب</a>
-                    <a href="#" class="horizontal-link">التغذية</a>
-                    <a href="#" class="horizontal-link">العناية بالأطفال</a>
-                    <a href="#" class="horizontal-link">صحة وطب</a>
-                    <a href="#" class="horizontal-link">الحياة والمجتمع</a>
-                    <a href="#" class="horizontal-link">أقوال وأمثال</a>
-                    <a href="#" class="horizontal-link">كلمات وجمل معبرة</a>
-                    <a href="#" class="horizontal-link">أخبار</a>
-                    <a href="#" class="horizontal-link">تكنولوجيا وعلوم</a>
-                    <a href="#" class="horizontal-link">فنون</a>
-                    <a href="#" class="horizontal-link">قصص وحكايات</a>
-                </div>
-            </div>
-        </div>
 
         <div id="card-container">
+            <h2 class="section-title">
+                <span class="attention-icon">🚨</span>  رائج الان
+            </h2>
             <button class="arrow left" id="prev-btn">&#9664;</button>
             <div id="card-slider"></div>
             <button class="arrow right" id="next-btn">&#9654;</button>
         </div>
+    </div>
+</div>
         
 
 
@@ -335,12 +298,20 @@
 
 
 <script>
-   // دالة لعرض البطاقات
-function renderCards() {
-    const cardsToRender = data.slice(dataIndex, dataIndex + 6); // عرض 6 بطاقات بدلاً من 3 في كل مرة
+  function renderCards() {
+    cardSlider.innerHTML = ""; // مسح البطاقات القديمة
+    const cardsToRender = data.slice(dataIndex, dataIndex + 4); // عرض 4 بطاقات فقط في كل مرة
     cardsToRender.forEach(item => {
         const card = document.createElement("div");
         card.classList.add("card");
+
+        // التأكد من وجود URL وتحديد وظيفة النقر على البطاقة
+        if (item.url) {
+            card.style.cursor = "pointer"; // تغيير المؤشر إلى يد للإشارة إلى قابلية النقر
+            card.addEventListener("click", () => {
+                window.open(item.url, "_blank"); // فتح الرابط في نافذة جديدة
+            });
+        }
 
         if (item.image) {
             const img = document.createElement("img");
@@ -365,20 +336,22 @@ function renderCards() {
     });
 }
 
-// وظائف السهام
-prevBtn.addEventListener("click", () => {
-    if (dataIndex > 0) {
-        dataIndex -= 6; // تقليل عدد العناصر المعروضة
-        updateSlider();
-    }
-});
 
-nextBtn.addEventListener("click", () => {
-    if (dataIndex + 6 < data.length) {
-        dataIndex += 6; // زيادة عدد العناصر المعروضة
-        updateSlider();
+// دالة البحث
+function searchSite() {
+    const query = document.getElementById('search-box').value.trim();
+    if (query) {
+        // إعادة التوجيه إلى رابط البحث مع الاستعلام
+        window.location.href = `https://likebook.online/search?q=${query}`;
     } else {
-        loadData(); // تحميل بيانات جديدة إذا تم الوصول إلى آخر مجموعة
+        alert("يرجى إدخال كلمة البحث.");
+    }
+}
+
+// إضافة حدث للبحث عند الضغط على زر Enter
+document.getElementById('search-box').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        searchSite();
     }
 });
 
