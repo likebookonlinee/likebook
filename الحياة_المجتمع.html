@@ -111,6 +111,48 @@
         .button:hover {
             background-color: #d35400;
         }
+        .buttons-container {
+            margin-top: 50px;
+        }
+        .button {
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px;
+            display: inline-block;
+            border: 1px solid #e67e22;
+        }
+        .button:hover {
+            background-color: #d35400;
+        }
+        .main-buttons-container {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 18px;
+}
+
+.btn-home {
+    color: rgb(255, 252, 252); /* لون النص الأسود */
+    font-weight: bold;
+    text-decoration: none; /* إزالة الخط السفلي */
+    margin: 0 10px; /* مسافة بين النصوص */
+    transition: color 0.3s ease;
+}
+
+.btn-home:hover {
+    text-decoration: underline; /* إضافة خط تحت النص عند التمرير */
+    color: #f39c12; /* تغيير اللون عند التمرير */
+}
+
+.separator {
+    color: #FF8C00; /* اللون البرتقالي الداكن للفاصل */
+    font-size: 18px;
+    margin: 0 5px;
+}
+
     </style>
 </head>
 <body>
@@ -123,6 +165,21 @@
     <div class="search-bar">
         <input type="text" id="search-box" placeholder="ابحث في الموقع...">
         <button onclick="searchSite()">بحث</button>
+    </div>
+    <div class="main-buttons-container">
+        <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
+        <span class="separator">|</span>
+        <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
+        <span class="separator">|</span>
+        <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
+        <span class="separator">|</span>
+        <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
+        <span class="separator">|</span>
+        <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
+        <span class="separator">|</span>
+        <a href="https://likebook.online/tech" class="btn-home">تقني</a>
+        <span class="separator">|</span>
+        <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
     </div>
 </div>
 <div class="buttons-container">
