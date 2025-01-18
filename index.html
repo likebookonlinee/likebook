@@ -135,6 +135,25 @@
     font-size: 18px;
     margin: 0 5px;
 }
+#pagination .button {
+        padding: 10px 15px;
+        margin: 5px;
+        background-color: #e67e22;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    #pagination .button.active {
+        background-color: #d35400;
+        font-weight: bold;
+    }
+
+    #pagination .button:hover {
+        background-color: #c0392b;
+    }
 
     </style>
 </head>
@@ -171,6 +190,8 @@
 <div class="cards-container" id="cards-container">
     <!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
 </div>
+<!-- إضافة عنصر لعرض أزرار التنقل -->
+<div id="pagination" style="text-align: center; margin: 20px 0;"></div>
 
 <!-- Footer Section -->
 <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
@@ -232,46 +253,63 @@
 
 
 <script>
+    const CARDS_PER_PAGE = 40; // عدد البطاقات لكل صفحة
+    let currentPage = 1; // الصفحة الحالية
+    let totalPages = 1; // إجمالي عدد الصفحات
+
     // تحميل البيانات من ملف JSON
     fetch('https://likebook.online/searchData.json')
         .then(response => response.json())
         .then(data => {
             const cardsContainer = document.getElementById('cards-container');
-            data.forEach(item => {
-                if (item.title && item.description && item.url && item.image) {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
-                    card.onclick = () => window.location.href = item.url;
-                    card.innerHTML = `
-                        <img src="${item.image}" alt="${item.title}">
-                        <div class="card-content">
-                            <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                        </div>
-                    `;
-                    cardsContainer.appendChild(card);
+            totalPages = Math.ceil(data.length / CARDS_PER_PAGE); // حساب عدد الصفحات
+
+            // دالة لعرض البطاقات للصفحة الحالية
+            function displayCards(page) {
+                cardsContainer.innerHTML = ''; // تنظيف المحتوى
+                const start = (page - 1) * CARDS_PER_PAGE;
+                const end = start + CARDS_PER_PAGE;
+                const pageData = data.slice(start, end); // تحديد بيانات الصفحة
+
+                pageData.forEach(item => {
+                    if (item.title && item.description && item.url && item.image) {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.onclick = () => window.location.href = item.url;
+                        card.innerHTML = `
+                            <img src="${item.image}" alt="${item.title}">
+                            <div class="card-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        `;
+                        cardsContainer.appendChild(card);
+                    }
+                });
+
+                renderPagination(); // تحديث أزرار الصفحات
+            }
+
+            // دالة لعرض أزرار التنقل بين الصفحات
+            function renderPagination() {
+                const paginationContainer = document.getElementById('pagination');
+                paginationContainer.innerHTML = ''; // تنظيف الأزرار القديمة
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    button.className = i === currentPage ? 'button active' : 'button';
+                    button.onclick = () => {
+                        currentPage = i;
+                        displayCards(currentPage);
+                    };
+                    paginationContainer.appendChild(button);
                 }
-            });
+            }
+
+            displayCards(currentPage); // عرض الصفحة الأولى عند التحميل
         })
         .catch(error => console.error('Error loading data:', error));
-
-    // دالة البحث
-    function searchSite() {
-        const query = document.getElementById('search-box').value.trim();
-        if (query) {
-            // إعادة التوجيه إلى رابط البحث مع الاستعلام
-            window.location.href = `https://likebook.online/search?q=${query}`;
-        } else {
-            alert("يرجى إدخال كلمة البحث.");
-        }
-    }
-
-    // إضافة حدث للبحث عند الضغط على زر Enter
-    document.getElementById('search-box').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            searchSite();
-        }
-    });
 </script>
 
 </body>
