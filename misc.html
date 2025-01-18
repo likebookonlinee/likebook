@@ -152,6 +152,25 @@
     font-size: 18px;
     margin: 0 5px;
 }
+#pagination .button {
+        padding: 10px 15px;
+        margin: 5px;
+        background-color: #e67e22;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    #pagination .button.active {
+        background-color: #d35400;
+        font-weight: bold;
+    }
+
+    #pagination .button:hover {
+        background-color: #c0392b;
+    }
 
     </style>
 </head>
@@ -190,6 +209,10 @@
 <div class="cards-container" id="cards-container">
     <!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
 </div>
+
+<!-- إضافة عنصر لعرض أزرار التنقل -->
+<div id="pagination" style="text-align: center; margin: 20px 0;"></div>
+
 
 <!-- Footer Section -->
 <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
