@@ -116,11 +116,12 @@ p {
 .random-cards {
     display: flex;
     flex-direction: row;
-    gap: 5px; /* تصغير المسافة بين البطاقات */
-    flex-wrap: wrap;
+    gap: 5px; /* المسافة بين البطاقات */
+    flex-wrap: wrap; /* للسماح بالتفاف البطاقات إذا لم تكن المساحة كافية */
     margin-top: 20px;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center; /* لتوسيط البطاقات أفقيًا */
+    align-items: center; /* لتوسيط البطاقات عموديًا */
     box-sizing: border-box;
 }
 
@@ -135,6 +136,7 @@ p {
     margin-bottom: 20px;
     flex-basis: calc(25% - 15px); /* عرض البطاقة 25% */
     box-sizing: border-box;
+    
 }
 
 .card img {
