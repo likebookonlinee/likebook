@@ -21,509 +21,526 @@
     </script>
 
     
-    <style>
-/* تنسيق الصفحة بشكل عام */
-   body {
-            font-family: Arial, sans-serif;
-            direction: rtl;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .top-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar .site-name {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .top-bar .search-bar input {
-            padding: 5px;
-            font-size: 14px;
-            width: 200px;
-        }
-
-        .top-bar .search-bar button {
-            padding: 6px;
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-/* حاوية الصفحة */
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-}
-
-/* المحتوى داخل الحاوية */
-.content {
-    flex: 1;
-    margin-right: 20px;
-}
-
-/* عنوان الصفحة */
-h1 {
-    text-align: center;
-    color: #e6480f;
-}
-
-/* عنوان القسم */
-h2 {
-    color: #4caf50;
-    margin-top: 20px;
-}
-
-/* الفقرات */
-p {
-    margin-bottom: 15px;
-}
-
-/* الأزرار */
-.btn-back, .btn-home {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-back:hover, .btn-home:hover {
-    background-color: #388e3c;
-}
-
-
-/* تنسيق البطاقات العشوائية */
-.random-cards {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    width: 100%;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-
-.card {
-  background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    margin-bottom: 20px;
-    flex-basis: calc(25% - 15px); /* عرض البطاقة 25% مع مسافة بين البطاقات */
-    box-sizing: border-box;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px 8px 0 0;
-}
-
-.card h3 {
-    margin: 10px 0;
-    color: #333;
-}
-
-.card p {
-    color: #666;
-    font-size: 0.9em;
-    margin: 10px;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
-@media (max-width: 740px) {
-    /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
-    .container {
-        padding: 10px;
-        width: 100%;
-        flex-direction: column; /* تغيير الاتجاه إلى عمودي */
-        align-items: stretch;
-        box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
-    }
-
-    /* تحسين عرض البطاقات على الشاشات الصغيرة */
-    .card {
-        flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
-        margin-bottom: 20px;
-    }
-
-    /* تحسين عرض شريط البحث */
-    .search-bar {
-        width: 100%;
-    }
-
-    .search-bar input[type="text"] {
-        width: 80%;
-    }
-
-    .search-bar button {
-        width: 18%;
-    }
-}
-
-/* إخفاء شريط التمرير الأفقي */
-body {
-    overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
-}
-
-    </style>
-</head>
-<body>
-    <div class="top-bar">
-        <div class="site-name">
-            <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search-box" placeholder="ابحث في الموقع...">
-            <button onclick="searchSite()">بحث</button>
-        </div>
-        <div class="main-buttons-container">
-            <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/tech" class="btn-home">تقني</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
-        </div>
-    </div>
-    <div class="buttons-container">
-        <a href="https://likebook.online" class="btn-home">  الصفحة الرئيسية</a>
-        <a href="https://likebook.online/kids" class="btn-home">مواضيع عن الاطفال</a>
-
-    </div>
-
-  <div class="container">
-    <div class="content">
-        <h1>وصفات طعام للأطفال من عمر السنة</h1>
-        <p><strong>ملاحظة:</strong> هذه المعلومات منقولة من الذكاء الاصطناعي.</p>
-
-        <h2>1. وجبة إفطار صحية: عصيدة الشوفان والفواكه</h2>
-        <p>عصيدة الشوفان مع الفواكه الطازجة تعتبر وجبة مثالية للأطفال في عمر السنة. فهي تحتوي على العناصر الغذائية اللازمة لنمو الطفل وتوفر له الطاقة طوال اليوم.</p>
-        <p><strong>المكونات:</strong></p>
-        <ul>
-            <li>1/4 كوب شوفان</li>
-            <li>1/2 كوب حليب (أو حليب نباتي مثل حليب اللوز)</li>
-            <li>تفاحة مقطعة إلى قطع صغيرة</li>
-            <li>1 ملعقة صغيرة عسل (اختياري)</li>
-        </ul>
-        <p><strong>طريقة التحضير:</strong></p>
-        <ol>
-            <li>غلي الحليب في قدر صغير.</li>
-            <li>إضافة الشوفان إلى الحليب المغلي وتركه يطهى لمدة 5-7 دقائق حتى يصبح طريًا.</li>
-            <li>إضافة قطع التفاح والعسل وخلط المكونات جيدًا.</li>
-            <li>تقديم العصيدة دافئة للطفل.</li>
-        </ol>
-
-        <h2>2. وجبة غداء: كرات اللحم بالخضروات</h2>
-        <p>هذه الوجبة تحتوي على البروتينات والخضروات التي تساهم في نمو الطفل بشكل صحي.</p>
-        <p><strong>المكونات:</strong></p>
-        <ul>
-            <li>250 جرام لحم مفروم (دجاج أو لحم بقر)</li>
-            <li>1/4 كوب جزر مبشور</li>
-            <li>1/4 كوب كوسا مبشورة</li>
-            <li>1/4 كوب بقسماط</li>
-            <li>1 بيضة</li>
-            <li>ملح وفلفل حسب الرغبة</li>
-        </ul>
-        <p><strong>طريقة التحضير:</strong></p>
-        <ol>
-            <li>خلط جميع المكونات في وعاء كبير.</li>
-            <li>تشكيل المزيج إلى كرات صغيرة.</li>
-            <li>تحمير الكرات في مقلاة مع قليل من الزيت حتى تصبح ذهبية اللون.</li>
-            <li>تقديم الكرات مع صلصة الطماطم أو أي صلصة مفضلة للطفل.</li>
-        </ol>
-
-        <h2>3. وجبة عشاء: شوربة العدس مع الخضار</h2>
-        <p>شوربة العدس هي خيار غذائي غني بالبروتينات والألياف التي تساعد على الهضم وتوفر للطفل الطاقة طوال الليل.</p>
-        <p><strong>المكونات:</strong></p>
-        <ul>
-            <li>1/2 كوب عدس أصفر مغسول</li>
-            <li>1 جزرة مقطعة إلى مكعبات</li>
-            <li>1/2 كوب بطاطس مقطعة</li>
-            <li>1 بصلة صغيرة مفرومة</li>
-            <li>2 فص ثوم مهروس</li>
-            <li>ملح وفلفل حسب الرغبة</li>
-        </ul>
-        <p><strong>طريقة التحضير:</strong></p>
-        <ol>
-            <li>غلي العدس مع الخضار في ماء حتى تنضج تمامًا.</li>
-            <li>تصفية الشوربة من الخضروات وهرسها باستخدام الخلاط حتى تصبح ناعمة.</li>
-            <li>إضافة الملح والفلفل حسب الذوق، ثم تقديمها دافئة.</li>
-        </ol>
-
-        <h2>4. وجبة خفيفة: موزة مهروسة مع زبادي</h2>
-        <p>هذه الوجبة الخفيفة هي خيار مثالي للأطفال الذين في عمر السنة، فهي غنية بالفيتامينات والمعادن.</p>
-        <p><strong>المكونات:</strong></p>
-        <ul>
-            <li>موزة ناضجة</li>
-            <li>1/4 كوب زبادي طبيعي</li>
-        </ul>
-        <p><strong>طريقة التحضير:</strong></p>
-        <ol>
-            <li>هرس الموزة جيدًا في وعاء.</li>
-            <li>إضافة الزبادي وخلط المكونات حتى تصبح ناعمة.</li>
-            <li>تقديم الوجبة للطفل كوجبة خفيفة أو في منتصف اليوم.</li>
-        </ol>
-
-        <h2>5. وجبة مكملات: أصابع الخضار المشوية</h2>
-        <p>أصابع الخضار المشوية هي وجبة خفيفة وصحية للأطفال في عمر السنة، وتساعدهم في الحصول على الفيتامينات والمعادن من الخضروات المختلفة.</p>
-        <p><strong>المكونات:</strong></p>
-        <ul>
-            <li>1 جزرة مقطعة إلى أصابع</li>
-            <li>1 بطاطا مقطعة إلى أصابع</li>
-            <li>1/2 كوسا مقطعة إلى أصابع</li>
-            <li>ملعقة زيت زيتون</li>
-            <li>ملح وفلفل حسب الرغبة</li>
-        </ul>
-        <p><strong>طريقة التحضير:</strong></p>
-        <ol>
-            <li>تسخين الفرن إلى 180 درجة مئوية.</li>
-            <li>توزيع الخضروات على صينية الفرن ورشها بزيت الزيتون والملح والفلفل.</li>
-            <li>خبز الخضروات في الفرن لمدة 20-25 دقيقة حتى تصبح طرية ومقرمشة.</li>
-            <li>تقديمها كوجبة مكملات صحية للطفل.</li>
-        </ol>
-
-    </div>
-</div>
-
-
-
-
-
 <style>
-    .decoration-section img {
-        display: block;
+    /* تنسيق الصفحة بشكل عام */
+       body {
+                font-family: Arial, sans-serif;
+                direction: rtl;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+    
+            .top-bar {
+                background-color: #333;
+                color: white;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+            .top-bar .site-name {
+                font-size: 20px;
+                font-weight: bold;
+            }
+    
+            .top-bar .search-bar input {
+                padding: 5px;
+                font-size: 14px;
+                width: 200px;
+            }
+    
+            .top-bar .search-bar button {
+                padding: 6px;
+                background-color: #f39c12;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+    
+    /* حاوية الصفحة */
+    .container {
         width: 100%;
-        max-width: 400px;
-        margin: 10px auto;
+        max-width: 1000px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+    }
+    
+    /* المحتوى داخل الحاوية */
+    .content {
+        flex: 1;
+        margin-right: 20px;
+    }
+    
+    /* عنوان الصفحة */
+    h1 {
+        text-align: center;
+        color: #e6480f;
+    }
+    
+    /* عنوان القسم */
+    h2 {
+        color: #4caf50;
+        margin-top: 20px;
+    }
+    
+    /* الفقرات */
+    p {
+        margin-bottom: 15px;
+    }
+    
+    /* الأزرار */
+    .btn-back, .btn-home {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-back:hover, .btn-home:hover {
+        background-color: #388e3c;
+    }
+    
+    
+    /* تنسيق البطاقات العشوائية */
+    .random-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        width: 100%;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+    
+    .card {
+        background: #fff;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 20px;
+        flex-basis: calc(33.33% - 20px);  /* عرض البطاقة 33.33% مع مسافة بين البطاقات */
+        box-sizing: border-box;
     }
-
-    @media (max-width: 768px) {
-        .decoration-section img {
-            max-width: 100%;
+    
+    .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .card h3 {
+        margin: 10px 0;
+        color: #333;
+    }
+    
+    .card p {
+        color: #666;
+        font-size: 0.9em;
+        margin: 10px;
+    }
+    
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* تحسين العرض على الشاشات الصغيرة (أقل من 740px) */
+    @media (max-width: 740px) {
+        /* الحاوية تأخذ العرض الكامل مع بعض الهوامش */
+        .container {
+            padding: 10px;
+            width: 100%;
+            flex-direction: column; /* تغيير الاتجاه إلى عمودي */
+            align-items: stretch;
+            box-sizing: border-box; /* ضمان أن المسافة بين العناصر محسوبة بشكل صحيح */
+        }
+    
+        /* تحسين عرض البطاقات على الشاشات الصغيرة */
+        .card {
+            flex-basis: 100%;  /* جعل البطاقة تأخذ العرض بالكامل */
+            margin-bottom: 20px;
+        }
+    
+        /* تحسين عرض شريط البحث */
+        .search-bar {
+            width: 100%;
+        }
+    
+        .search-bar input[type="text"] {
+            width: 80%;
+        }
+    
+        .search-bar button {
+            width: 18%;
         }
     }
-</style>
-
-<a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
-<a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
-</div>
-<div class="random-cards" id="cards-container"></div>
-</div>
-
-
-<!-- Footer Section -->
-<footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-        <!-- روابط الصفحات في القسم الأيسر -->
-        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
+    
+    /* إخفاء شريط التمرير الأفقي */
+    body {
+        overflow-x: hidden; /* إخفاء أي شريط تمرير أفقي */
+    }
+    
+        </style>
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="site-name">
+                <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-box" placeholder="ابحث في الموقع...">
+                <button onclick="searchSite()">بحث</button>
+            </div>
+            <div class="main-buttons-container">
+                <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
+                <span class="separator">|</span>
+                <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
+                <span class="separator">|</span>
+                <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
+                <span class="separator">|</span>
+                <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
+                <span class="separator">|</span>
+                <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
+                <span class="separator">|</span>
+                <a href="https://likebook.online/tech" class="btn-home">تقني</a>
+                <span class="separator">|</span>
+                <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
+            </div>
         </div>
-  
-        <!-- حقوق الطبع والنشر في المركز -->
-        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-            © 2024 likebook.online
+        <div class="buttons-container">
+            <a href="https://likebook.online" class="btn-home">  الصفحة الرئيسية</a>
+            <a href="https://likebook.online/kids" class="btn-home">مواضيع عن الاطفال</a>
+        
         </div>
-  
-        <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
-        <div style="display: flex; gap: 15px; justify-content: center;">
-<!-- WhatsApp -->
-<a href="https://wa.me/yourwhatsapplink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
-</a>
-<!-- Telegram -->
-<a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
-</a>
-<!-- Facebook -->
-<a href="https://www.facebook.com/yourfacebooklink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 32px; height: 32px;">
-</a>
-<!-- Instagram -->
-<a href="https://www.instagram.com/yourinstagramlink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 32px; height: 32px;">
-</a>
+    <style>
+    
+        .buttons-container {
+            margin-top: 50px;
+        }
+        .button {
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px;
+            display: inline-block;
+            border: 1px solid #e67e22;
+        }
+        .button:hover {
+            background-color: #d35400;
+        }
+    </style>
+       <div class="container">
+        <div class="content">
+          <h1>وصفات طعام للأطفال من عمر السنة</h1>
+            <p><strong>ملاحظة:</strong> هذه المعلومات منقولة من الذكاء الاصطناعي.</p>
+    
+            <h2>1. وجبة إفطار صحية: عصيدة الشوفان والفواكه</h2>
+            <p>عصيدة الشوفان مع الفواكه الطازجة تعتبر وجبة مثالية للأطفال في عمر السنة. فهي تحتوي على العناصر الغذائية اللازمة لنمو الطفل وتوفر له الطاقة طوال اليوم.</p>
+            <p><strong>المكونات:</strong></p>
+            <ul>
+                <li>1/4 كوب شوفان</li>
+                <li>1/2 كوب حليب (أو حليب نباتي مثل حليب اللوز)</li>
+                <li>تفاحة مقطعة إلى قطع صغيرة</li>
+                <li>1 ملعقة صغيرة عسل (اختياري)</li>
+            </ul>
+            <p><strong>طريقة التحضير:</strong></p>
+            <ol>
+                <li>غلي الحليب في قدر صغير.</li>
+                <li>إضافة الشوفان إلى الحليب المغلي وتركه يطهى لمدة 5-7 دقائق حتى يصبح طريًا.</li>
+                <li>إضافة قطع التفاح والعسل وخلط المكونات جيدًا.</li>
+                <li>تقديم العصيدة دافئة للطفل.</li>
+            </ol>
+    
+            <h2>2. وجبة غداء: كرات اللحم بالخضروات</h2>
+            <p>هذه الوجبة تحتوي على البروتينات والخضروات التي تساهم في نمو الطفل بشكل صحي.</p>
+            <p><strong>المكونات:</strong></p>
+            <ul>
+                <li>250 جرام لحم مفروم (دجاج أو لحم بقر)</li>
+                <li>1/4 كوب جزر مبشور</li>
+                <li>1/4 كوب كوسا مبشورة</li>
+                <li>1/4 كوب بقسماط</li>
+                <li>1 بيضة</li>
+                <li>ملح وفلفل حسب الرغبة</li>
+            </ul>
+            <p><strong>طريقة التحضير:</strong></p>
+            <ol>
+                <li>خلط جميع المكونات في وعاء كبير.</li>
+                <li>تشكيل المزيج إلى كرات صغيرة.</li>
+                <li>تحمير الكرات في مقلاة مع قليل من الزيت حتى تصبح ذهبية اللون.</li>
+                <li>تقديم الكرات مع صلصة الطماطم أو أي صلصة مفضلة للطفل.</li>
+            </ol>
+    
+            <h2>3. وجبة عشاء: شوربة العدس مع الخضار</h2>
+            <p>شوربة العدس هي خيار غذائي غني بالبروتينات والألياف التي تساعد على الهضم وتوفر للطفل الطاقة طوال الليل.</p>
+            <p><strong>المكونات:</strong></p>
+            <ul>
+                <li>1/2 كوب عدس أصفر مغسول</li>
+                <li>1 جزرة مقطعة إلى مكعبات</li>
+                <li>1/2 كوب بطاطس مقطعة</li>
+                <li>1 بصلة صغيرة مفرومة</li>
+                <li>2 فص ثوم مهروس</li>
+                <li>ملح وفلفل حسب الرغبة</li>
+            </ul>
+            <p><strong>طريقة التحضير:</strong></p>
+            <ol>
+                <li>غلي العدس مع الخضار في ماء حتى تنضج تمامًا.</li>
+                <li>تصفية الشوربة من الخضروات وهرسها باستخدام الخلاط حتى تصبح ناعمة.</li>
+                <li>إضافة الملح والفلفل حسب الذوق، ثم تقديمها دافئة.</li>
+            </ol>
+    
+            <h2>4. وجبة خفيفة: موزة مهروسة مع زبادي</h2>
+            <p>هذه الوجبة الخفيفة هي خيار مثالي للأطفال الذين في عمر السنة، فهي غنية بالفيتامينات والمعادن.</p>
+            <p><strong>المكونات:</strong></p>
+            <ul>
+                <li>موزة ناضجة</li>
+                <li>1/4 كوب زبادي طبيعي</li>
+            </ul>
+            <p><strong>طريقة التحضير:</strong></p>
+            <ol>
+                <li>هرس الموزة جيدًا في وعاء.</li>
+                <li>إضافة الزبادي وخلط المكونات حتى تصبح ناعمة.</li>
+                <li>تقديم الوجبة للطفل كوجبة خفيفة أو في منتصف اليوم.</li>
+            </ol>
+    
+            <h2>5. وجبة مكملات: أصابع الخضار المشوية</h2>
+            <p>أصابع الخضار المشوية هي وجبة خفيفة وصحية للأطفال في عمر السنة، وتساعدهم في الحصول على الفيتامينات والمعادن من الخضروات المختلفة.</p>
+            <p><strong>المكونات:</strong></p>
+            <ul>
+                <li>1 جزرة مقطعة إلى أصابع</li>
+                <li>1 بطاطا مقطعة إلى أصابع</li>
+                <li>1/2 كوسا مقطعة إلى أصابع</li>
+                <li>ملعقة زيت زيتون</li>
+                <li>ملح وفلفل حسب الرغبة</li>
+            </ul>
+            <p><strong>طريقة التحضير:</strong></p>
+            <ol>
+                <li>تسخين الفرن إلى 180 درجة مئوية.</li>
+                <li>توزيع الخضروات على صينية الفرن ورشها بزيت الزيتون والملح والفلفل.</li>
+                <li>خبز الخضروات في الفرن لمدة 20-25 دقيقة حتى تصبح طرية ومقرمشة.</li>
+                <li>تقديمها كوجبة مكملات صحية للطفل.</li>
+            </ol>
+    
         </div>
     </div>
-</footer>
-
-<!-- استعلامات الوسائط لتجاوب أفضل مع الأجهزة الصغيرة -->
-<style>
-    @media (max-width: 768px) {
-        footer div {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .search-bar input {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .top-bar {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-</style>
-
-    <script>
-      // جلب بيانات JSON
-fetch('https://likebook.online/searchData.json')
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('cards-container');
-
-        // اختيار بعض البطاقات عشوائيًا
-        const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 8);
-
-        randomCards.forEach(item => {
-            // إنشاء كرت لكل عنصر
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <img src="${item.image}" alt="${item.title}">
-                <h3>${item.title}</h3>
-                <p>${item.description.substring(0, 80)}...</p>
-            `;
-
-            // إضافة الرابط عند النقر على الكرت
-            card.addEventListener('click', () => {
-                window.location.href = item.url;
-            });
-
-            // إدراج الكرت في الحاوية
-            container.appendChild(card);
-        });
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
-
     
-            
-            // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
-    function levenshtein(a, b) {
-    const tmp = [];
-    let i, j, alen = a.length, blen = b.length, cost;
-    if (alen === 0) return blen;
-    if (blen === 0) return alen;
-    for (i = 0; i <= alen; i++) tmp[i] = [i];
-    for (j = 0; j <= blen; j++) tmp[0][j] = j;
-    for (i = 1; i <= alen; i++) {
-        for (j = 1; j <= blen; j++) {
-            cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
-            tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
-        }
-    }
-    return tmp[alen][blen];
-    }
     
-    // دالة البحث مع اقتراحات مشابهة
-    function searchSite() {
-    const query = document.getElementById('search-box').value.toLowerCase();
     
-    if (query) {
-        fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
-            .then(response => response.json())
-            .then(data => {
-                const results = data.filter(item => item.name.toLowerCase().includes(query));
-                const suggestions = [];
     
-                // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
-                data.forEach(item => {
-                    const distance = levenshtein(query, item.name.toLowerCase());
-                    if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
-                        suggestions.push(item);
+    
+    
+    
+    
+                <style>
+                    .decoration-section img {
+                        display: block;
+                        width: 100%;
+                        max-width: 400px;
+                        margin: 10px auto;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                     }
+                
+                    @media (max-width: 768px) {
+                        .decoration-section img {
+                            max-width: 100%;
+                        }
+                    }
+                </style>
+    <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
+    <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
+    </div>
+    <div class="random-cards" id="cards-container"></div>
+    </div>
+    
+    
+    <!-- Footer Section -->
+    <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
+            <!-- روابط الصفحات في القسم الأيسر -->
+            <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
+                <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
+                <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
+            </div>
+      
+            <!-- حقوق الطبع والنشر في المركز -->
+            <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
+                © 2024 likebook.online
+            </div>
+      
+            <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/yourwhatsapplink" target="_blank" style="color: white; text-decoration: none;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
+                </a>
+                <!-- Telegram -->
+                <a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
+                </a>
+                <!-- Twitter -->
+                <a href="https://x.com/Cryptolike18689" target="_blank" style="color: white; text-decoration: none;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" style="width: 32px; height: 32px;">
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- استعلامات الوسائط لتجاوب أفضل مع الأجهزة الصغيرة -->
+    <style>
+        @media (max-width: 768px) {
+            footer div {
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .search-bar input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+    
+            .top-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    
+        <script>
+          // جلب بيانات JSON
+    fetch('https://likebook.online/searchData.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('cards-container');
+    
+            // اختيار بعض البطاقات عشوائيًا
+            const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+    
+            randomCards.forEach(item => {
+                // إنشاء كرت لكل عنصر
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <h3>${item.title}</h3>
+                    <p>${item.description.substring(0, 80)}...</p>
+                `;
+    
+                // إضافة الرابط عند النقر على الكرت
+                card.addEventListener('click', () => {
+                    window.location.href = item.url;
                 });
     
-                if (results.length > 0) {
-                    displayResults(results);
-                } else if (suggestions.length > 0) {
-                    displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
-                } else {
-                    alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
-                }
-            })
-            .catch(error => console.error('Error fetching search data:', error));
-    } else {
-        alert("يرجى إدخال كلمة البحث.");
-    }
-    }
+                // إدراج الكرت في الحاوية
+                container.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
     
-    // دالة لعرض النتائج
-    function displayResults(items, message = "نتائج البحث") {
-    const container = document.getElementById('results-container');
-    container.innerHTML = `<h3>${message}</h3>`;
-    items.forEach(item => {
-        const resultItem = document.createElement('div');
-        resultItem.className = 'result-item';
-        resultItem.innerHTML = `
-            <h4>${item.name}</h4>
-            <p>${item.description.substring(0, 80)}...</p>
-            <a href="${item.link}">اقرأ المزيد</a>
-        `;
-        container.appendChild(resultItem);
-    });
-    }
-    // دالة البحث
-    function searchSite() {
-        const query = document.getElementById('search-box').value.trim();
+        
+                
+                // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
+        function levenshtein(a, b) {
+        const tmp = [];
+        let i, j, alen = a.length, blen = b.length, cost;
+        if (alen === 0) return blen;
+        if (blen === 0) return alen;
+        for (i = 0; i <= alen; i++) tmp[i] = [i];
+        for (j = 0; j <= blen; j++) tmp[0][j] = j;
+        for (i = 1; i <= alen; i++) {
+            for (j = 1; j <= blen; j++) {
+                cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
+                tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
+            }
+        }
+        return tmp[alen][blen];
+        }
+        
+        // دالة البحث مع اقتراحات مشابهة
+        function searchSite() {
+        const query = document.getElementById('search-box').value.toLowerCase();
+        
         if (query) {
-            // إعادة التوجيه إلى رابط البحث مع الاستعلام
-            window.location.href = `https://likebook.online/search?q=${query}`;
+            fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
+                .then(response => response.json())
+                .then(data => {
+                    const results = data.filter(item => item.name.toLowerCase().includes(query));
+                    const suggestions = [];
+        
+                    // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
+                    data.forEach(item => {
+                        const distance = levenshtein(query, item.name.toLowerCase());
+                        if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
+                            suggestions.push(item);
+                        }
+                    });
+        
+                    if (results.length > 0) {
+                        displayResults(results);
+                    } else if (suggestions.length > 0) {
+                        displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
+                    } else {
+                        alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
+                    }
+                })
+                .catch(error => console.error('Error fetching search data:', error));
         } else {
             alert("يرجى إدخال كلمة البحث.");
         }
-    }
-    
-    // إضافة حدث للبحث عند الضغط على زر Enter
-    document.getElementById('search-box').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            searchSite();
         }
-    });
-    
-    </script>
-    </body>
-    </html>
+        
+        // دالة لعرض النتائج
+        function displayResults(items, message = "نتائج البحث") {
+        const container = document.getElementById('results-container');
+        container.innerHTML = `<h3>${message}</h3>`;
+        items.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.innerHTML = `
+                <h4>${item.name}</h4>
+                <p>${item.description.substring(0, 80)}...</p>
+                <a href="${item.link}">اقرأ المزيد</a>
+            `;
+            container.appendChild(resultItem);
+        });
+        }
+        // دالة البحث
+        function searchSite() {
+            const query = document.getElementById('search-box').value.trim();
+            if (query) {
+                // إعادة التوجيه إلى رابط البحث مع الاستعلام
+                window.location.href = `https://likebook.online/search?q=${query}`;
+            } else {
+                alert("يرجى إدخال كلمة البحث.");
+            }
+        }
+        
+        // إضافة حدث للبحث عند الضغط على زر Enter
+        document.getElementById('search-box').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                searchSite();
+            }
+        });
+        
+        </script>
+        </body>
+        </html>
