@@ -17,7 +17,12 @@
         <priority>0.8</priority>
     </url>
         <url>
-        <loc></loc>
+        <loc>https://likebook.online/misc</loc>
+    <lastmod>2024-01-18</lastmod>
+        <priority>0.8</priority>
+    </url>
+            <url>
+        <loc>https://likebook.online/Nuts_and_Snacks_Shop_Decor</loc>
     <lastmod>2024-01-18</lastmod>
         <priority>0.8</priority>
     </url>
