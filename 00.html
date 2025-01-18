@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/apple-icon.jpg" type="image/jpg">
 
-    <title>     |   </title>
+    <title>     |    </title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
@@ -116,11 +116,12 @@ p {
 .random-cards {
     display: flex;
     flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 5px; /* المسافة بين البطاقات */
+    flex-wrap: wrap; /* للسماح بالتفاف البطاقات إذا لم تكن المساحة كافية */
     margin-top: 20px;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center; /* لتوسيط البطاقات أفقيًا */
+    align-items: center; /* لتوسيط البطاقات عموديًا */
     box-sizing: border-box;
 }
 
@@ -133,8 +134,9 @@ p {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     margin-bottom: 20px;
-    flex-basis: calc(33.33% - 20px);  /* عرض البطاقة 33.33% مع مسافة بين البطاقات */
+    flex-basis: calc(25% - 15px); /* عرض البطاقة 25% */
     box-sizing: border-box;
+    
 }
 
 .card img {
@@ -247,8 +249,9 @@ body {
         background-color: #d35400;
     }
 </style>
-    <div class="container">
-        <div class="content">
+<div class="container">
+    <div class="content">
+  
 
 
          
@@ -259,22 +262,6 @@ body {
 
 
 
-            <style>
-                .decoration-section img {
-                    display: block;
-                    width: 100%;
-                    max-width: 400px;
-                    margin: 10px auto;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                }
-            
-                @media (max-width: 768px) {
-                    .decoration-section img {
-                        max-width: 100%;
-                    }
-                }
-            </style>
 <a href="https://likebook.online" class="btn-home">العودة إلى الصفحة الرئيسية</a>
 <a href="javascript:history.back()" class="btn-back">الرجوع إلى الخلف</a>
 </div>
