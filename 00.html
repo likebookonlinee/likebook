@@ -211,91 +211,70 @@
     </div>
 </footer>
 
-<script>
-    // دالة لتحميل المقالات من ملف JSON
-    let allPosts = [];
-    const postsPerPage = 16;
-    let currentPage = 1;
+    <script>
+        // دالة لتحميل المقالات من ملف JSON
+        let allPosts = [];
+        const postsPerPage = 16;
+        let currentPage = 1;
 
-    function loadPosts(url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                allPosts = data;
-                displayPosts(currentPage);
-                setupPagination();
-            })
-            .catch(error => console.error('Error loading the JSON:', error));
-    }
-
-    // دالة لتحويل الصورة إلى WebP باستخدام Canvas
-    function convertToWebP(imageSrc, callback) {
-        const img = new Image();
-        img.onload = function() {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-
-            // تحويل الصورة إلى WebP
-            const webpDataUrl = canvas.toDataURL('image/webp');
-            callback(webpDataUrl);
-        };
-        img.src = imageSrc;
-    }
-
-    // دالة لعرض المقالات بناءً على الصفحة الحالية
-    function displayPosts(page) {
-        const container = document.getElementById('post-container');
-        container.innerHTML = ''; // مسح المحتوى القديم
-
-        const startIndex = (page - 1) * postsPerPage;
-        const endIndex = startIndex + postsPerPage;
-        const postsToShow = allPosts.slice(startIndex, endIndex);
-
-        postsToShow.forEach(post => {
-            const postBox = document.createElement('div');
-            postBox.classList.add('post-box');
-
-            const postImage = document.createElement('img');
-            postImage.alt = post.title;
-
-            // تحويل الصورة إلى WebP بشكل غير متزامن
-            convertToWebP(post.image, function(webpImageSrc) {
-                postImage.src = webpImageSrc; // تحديث الصورة بعد التحويل
-            });
-
-            const postLink = document.createElement('a');
-            postLink.href = post.url;
-            postLink.textContent = post.title;
-
-            postBox.appendChild(postImage);
-            postBox.appendChild(postLink);
-            container.appendChild(postBox);
-        });
-    }
-
-    // دالة لإعداد الترقيم
-    function setupPagination() {
-        const totalPages = Math.ceil(allPosts.length / postsPerPage);
-        const paginationContainer = document.getElementById('pagination');
-        paginationContainer.innerHTML = '';
-
-        for (let i = 1; i <= totalPages; i++) {
-            const pageLink = document.createElement('a');
-            pageLink.href = "#";
-            pageLink.textContent = i;
-            pageLink.onclick = function() {
-                currentPage = i;
-                displayPosts(currentPage);
-            };
-            paginationContainer.appendChild(pageLink);
+        function loadPosts(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    allPosts = data;
+                    displayPosts(currentPage);
+                    setupPagination();
+                })
+                .catch(error => console.error('Error loading the JSON:', error));
         }
-    }
 
-    // تحميل البيانات من ملف JSON (استبدل الرابط بالرابط الخاص بك)
-    loadPosts('https://likebook.online/searchData.json');
-</script>
+        // دالة لعرض المقالات بناءً على الصفحة الحالية
+        function displayPosts(page) {
+            const container = document.getElementById('post-container');
+            container.innerHTML = ''; // مسح المحتوى القديم
+
+            const startIndex = (page - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = allPosts.slice(startIndex, endIndex);
+
+            postsToShow.forEach(post => {
+                const postBox = document.createElement('div');
+                postBox.classList.add('post-box');
+
+                const postImage = document.createElement('img');
+                postImage.src = post.image;
+                postImage.alt = post.title;
+
+                const postLink = document.createElement('a');
+                postLink.href = post.url;
+                postLink.textContent = post.title;
+
+                postBox.appendChild(postImage);
+                postBox.appendChild(postLink);
+                container.appendChild(postBox);
+            });
+        }
+
+        // دالة لإعداد الترقيم
+        function setupPagination() {
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = "#";
+                pageLink.textContent = i;
+                pageLink.onclick = function() {
+                    currentPage = i;
+                    displayPosts(currentPage);
+                };
+                paginationContainer.appendChild(pageLink);
+            }
+        }
+
+        // تحميل البيانات من ملف JSON (استبدل الرابط بالرابط الخاص بك)
+        loadPosts('https://likebook.online/searchData.json');
+    </script>
 </body>
 </html>
