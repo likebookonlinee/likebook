@@ -52,11 +52,9 @@
             background-color: #fff;
             border: 1px solid #ddd;
             margin: 10px;
-            width: 100%;
-            max-width: 300px;
+            width: 300px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
 
         .post-box img {
@@ -85,7 +83,6 @@
             background-color: #333;
             color: #fff;
         }
-
         .top-bar {
             background-color: #333;
             color: white;
@@ -127,72 +124,24 @@
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي الذي سيتم ملؤه بالبيانات من JSON -->
-    <div class="container" id="content-container">
-        <!-- سيتم ملء المحتوى هنا باستخدام JavaScript -->
-    </div>
-
-    <!-- Footer Section -->
-    <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-            <!-- روابط الصفحات في القسم الأيسر -->
-            <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-                <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-                <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-                <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
-            </div>
-            <!-- حقوق الطبع والنشر في المركز -->
-            <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-                © 2024 likebook.online
-            </div>
+  
+<!-- Footer Section -->
+<footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
+        <!-- روابط الصفحات في القسم الأيسر -->
+        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
+            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
+            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
         </div>
-    </footer>
+  
+        <!-- حقوق الطبع والنشر في المركز -->
+        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
+            © 2024 likebook.online
+        </div>
+    </div>
+</footer>
+    
 
-    <script>
-        // جلب البيانات من ملف JSON
-        fetch('https://likebook.online/json/ra.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('content-container');
-                data.forEach(post => {
-                    // إنشاء عنصر بطاقة لكل مشاركة
-                    const postBox = document.createElement('div');
-                    postBox.classList.add('post-box');
-    
-                    // إضافة صورة إذا كانت موجودة
-                    const img = document.createElement('img');
-                    
-                    // إعداد الصورة مع src و srcset
-                    if (post.image) {
-                        img.src = post.image.replace('.webp', '-small.webp'); // النسخة الصغيرة كافتراضية
-                        img.srcset = `
-                            ${post.image.replace('.webp', '-small.webp')} 480w, 
-                            ${post.image.replace('.webp', '-medium.webp')} 800w, 
-                            ${post.image} 1200w
-                        `;
-                        img.sizes = "(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"; // أحجام ديناميكية
-                    } else {
-                        img.src = 'https://via.placeholder.com/300x200'; // صورة افتراضية إذا لم تكن موجودة
-                    }
-                    img.alt = post.title;
-    
-                    // إضافة الرابط
-                    const link = document.createElement('a');
-                    link.href = post.url;
-                    link.textContent = post.title;
-    
-                    // إضافة الصورة والرابط إلى البطاقة
-                    postBox.appendChild(img);
-                    postBox.appendChild(link);
-    
-                    // إضافة البطاقة إلى الحاوية
-                    container.appendChild(postBox);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    </script>
-    
 </body>
 </html>
