@@ -52,11 +52,9 @@
             background-color: #fff;
             border: 1px solid #ddd;
             margin: 10px;
-            width: 100%;
-            max-width: 300px;
+            width: 300px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
 
         .post-box img {
@@ -85,7 +83,6 @@
             background-color: #333;
             color: #fff;
         }
-
         .top-bar {
             background-color: #333;
             color: white;
@@ -113,7 +110,6 @@
             border: none;
             cursor: pointer;
         }
-        
     </style>
 </head>
 <body>
@@ -128,145 +124,59 @@
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي الذي سيتم ملؤه بالبيانات من JSON -->
-    <div class="container" id="content-container">
-        <!-- سيتم ملء المحتوى هنا باستخدام JavaScript -->
-    </div>
-</div>
-  
-
-    <!-- Footer Section -->
-    <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-            <!-- روابط الصفحات في القسم الأيسر -->
-            <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-                <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-                <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-                <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
-            </div>
-            <!-- حقوق الطبع والنشر في المركز -->
-            <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-                © 2024 likebook.online
-            </div>
+    <div class="container">
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt="تغذية ">
+            <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87"> قسم التعذية الصحية  </a>
         </div>
-    </footer>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt=" الحياة والمجتمع">
+            <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9">    قسم الحياة والمجتمع</a>
+        </div>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt=" الطفل">
+            <a href="https://likebook.online/kids">  قسم مقالات الاطفال</a>
+        </div>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt=" مدونات">
+            <a href="https://likebook.online/misc">  مقالات عامة</a>
+        </div>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt=" الصحة والجمال">
+            <a href="https://likebook.online/beauty">  الصحة والجمال</a>
+        </div>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt=" مدونة تقنية">
+            <a href="https://likebook.online/tech"> تقني</a>
+        </div>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt=" تحميل كتب pdf">
+            <a href="https://likebook.online/books"> تحميل كتب </a>
+        </div>
+        <div class="post-box">
+            <img src="https://likebook.online/images/like.webp" alt="صورة التدوينة">
+            <a href="">عنوان التدوينة 4</a>
+        </div>
+    </div>
 
-    <script>
-        // جلب البيانات من ملف JSON
-        fetch('https://likebook.online/json/ra.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('content-container');
-                data.forEach(post => {
-                    // إنشاء عنصر بطاقة لكل مشاركة
-                    const postBox = document.createElement('div');
-                    postBox.classList.add('post-box');
+  
+<!-- Footer Section -->
+<footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
+        <!-- روابط الصفحات في القسم الأيسر -->
+        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
+            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
+            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
+        </div>
+  
+        <!-- حقوق الطبع والنشر في المركز -->
+        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
+            © 2024 likebook.online
+        </div>
+    </div>
+</footer>
+    
 
-                    // إضافة صورة إذا كانت موجودة
-                    const img = document.createElement('img');
-                    img.src = post.image || 'https://via.placeholder.com/300x200'; // صورة افتراضية إذا لم تكن موجودة
-                    img.alt = post.title;
-
-                    // إضافة الرابط
-                    const link = document.createElement('a');
-                    link.href = post.url;
-                    link.textContent = post.title;
-
-                    // إضافة الصورة والرابط إلى البطاقة
-                    postBox.appendChild(img);
-                    postBox.appendChild(link);
-
-                    // إضافة البطاقة إلى الحاوية
-                    container.appendChild(postBox);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-             // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
-    function levenshtein(a, b) {
-    const tmp = [];
-    let i, j, alen = a.length, blen = b.length, cost;
-    if (alen === 0) return blen;
-    if (blen === 0) return alen;
-    for (i = 0; i <= alen; i++) tmp[i] = [i];
-    for (j = 0; j <= blen; j++) tmp[0][j] = j;
-    for (i = 1; i <= alen; i++) {
-        for (j = 1; j <= blen; j++) {
-            cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
-            tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
-        }
-    }
-    return tmp[alen][blen];
-    }
-    
-    // دالة البحث مع اقتراحات مشابهة
-    function searchSite() {
-    const query = document.getElementById('search-box').value.toLowerCase();
-    
-    if (query) {
-        fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
-            .then(response => response.json())
-            .then(data => {
-                const results = data.filter(item => item.name.toLowerCase().includes(query));
-                const suggestions = [];
-    
-                // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
-                data.forEach(item => {
-                    const distance = levenshtein(query, item.name.toLowerCase());
-                    if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
-                        suggestions.push(item);
-                    }
-                });
-    
-                if (results.length > 0) {
-                    displayResults(results);
-                } else if (suggestions.length > 0) {
-                    displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
-                } else {
-                    alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
-                }
-            })
-            .catch(error => console.error('Error fetching search data:', error));
-    } else {
-        alert("يرجى إدخال كلمة البحث.");
-    }
-    }
-    
-    // دالة لعرض النتائج
-    function displayResults(items, message = "نتائج البحث") {
-    const container = document.getElementById('results-container');
-    container.innerHTML = `<h3>${message}</h3>`;
-    items.forEach(item => {
-        const resultItem = document.createElement('div');
-        resultItem.className = 'result-item';
-        resultItem.innerHTML = `
-            <h4>${item.name}</h4>
-            <p>${item.description.substring(0, 80)}...</p>
-            <a href="${item.link}">اقرأ المزيد</a>
-        `;
-        container.appendChild(resultItem);
-    });
-    }
-    // دالة البحث
-    function searchSite() {
-        const query = document.getElementById('search-box').value.trim();
-        if (query) {
-            // إعادة التوجيه إلى رابط البحث مع الاستعلام
-            window.location.href = `https://likebook.online/search?q=${query}`;
-        } else {
-            alert("يرجى إدخال كلمة البحث.");
-        }
-    }
-    
-    // إضافة حدث للبحث عند الضغط على زر Enter
-    document.getElementById('search-box').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            searchSite();
-        }
-    });
-
-            
-    </script>
 </body>
 </html>
