@@ -316,7 +316,7 @@
     }
 
     // تحميل البيانات من ملف JSON
-    loadPosts('https://likebook.online/searchData.json');
+    loadPosts('https://likebook.online/json/kids.json');
         // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
 function levenshtein(a, b) {
 const tmp = [];
@@ -339,7 +339,7 @@ function searchSite() {
 const query = document.getElementById('search-box').value.toLowerCase();
 
 if (query) {
-    fetch('https://likebook.online/json/kids.json')  // رابط بيانات البحث لديك
+    fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
         .then(response => response.json())
         .then(data => {
             const results = data.filter(item => item.name.toLowerCase().includes(query));
