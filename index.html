@@ -17,12 +17,73 @@
     </script>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            direction: rtl;
-            background-color: #f4f4f4;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .post-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .post-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-box a {
+            display: block;
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-box a:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
         }
 
         .top-bar {
@@ -47,115 +108,15 @@
 
         .top-bar .search-bar button {
             padding: 6px;
-            background-color: #f39c12;
+            background-color: #000000;
             color: white;
             border: none;
             cursor: pointer;
         }
-
-        .cards-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* عدد الأعمدة (يمكن تقليص العدد إلى 3 أو 2 حسب الحجم الذي تريده) */
-    gap: 10px; /* تقليص المسافة بين البطاقات */
-    padding: 15px; /* تقليص المسافة داخل الحاوية */
-}
-
-.card {
-    background-color: white;
-    border-radius: 6px; /* تقليص حواف البطاقة */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* تقليص الظل */
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    padding: 10px; /* تقليص الحشو داخل البطاقة */
-}
-
-.card img {
-    width: 100%;
-    height: 150px; /* تقليص ارتفاع الصورة */
-    object-fit: cover;
-}
-
-.card-content {
-    padding: 10px; /* تقليص الحشو داخل المحتوى */
-}
-
-@media (max-width: 768px) {
-    .cards-container {
-        grid-template-columns: repeat(2, 1fr); /* تقليل الأعمدة في الشاشات الصغيرة */
-    }
-}
-
-@media (max-width: 480px) {
-    .cards-container {
-        grid-template-columns: 1fr; /* عرض عمود واحد في الشاشات الصغيرة جداً */
-    }
-}
-        .buttons-container {
-            margin-top: 50px;
-        }
-        .button {
-            background-color: #e67e22;
-            color: white;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            margin: 10px;
-            display: inline-block;
-            border: 1px solid #e67e22;
-        }
-        .button:hover {
-            background-color: #d35400;
-        }
-        .main-buttons-container {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 18px;
-}
-
-.btn-home {
-    color: rgb(255, 252, 252); /* لون النص الأسود */
-    font-weight: bold;
-    text-decoration: none; /* إزالة الخط السفلي */
-    margin: 0 10px; /* مسافة بين النصوص */
-    transition: color 0.3s ease;
-}
-
-.btn-home:hover {
-    text-decoration: underline; /* إضافة خط تحت النص عند التمرير */
-    color: #f39c12; /* تغيير اللون عند التمرير */
-}
-
-.separator {
-    color: #FF8C00; /* اللون البرتقالي الداكن للفاصل */
-    font-size: 18px;
-    margin: 0 5px;
-}
-#pagination .button {
-        padding: 10px 15px;
-        margin: 5px;
-        background-color: #e67e22;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 14px;
-    }
-
-    #pagination .button.active {
-        background-color: #d35400;
-        font-weight: bold;
-    }
-
-    #pagination .button:hover {
-        background-color: #c0392b;
-    }
-
+        
     </style>
 </head>
 <body>
-
 
     <div class="top-bar">
         <div class="site-name">
@@ -165,151 +126,64 @@
             <input type="text" id="search-box" placeholder="ابحث في الموقع...">
             <button onclick="searchSite()">بحث</button>
         </div>
-        <div class="main-buttons-container">
-            <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/tech" class="btn-home">تقني</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
-        </div>
     </div>
 
-
-
-<div class="cards-container" id="cards-container">
-    <!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
+    <!-- المحتوى الرئيسي الذي سيتم ملؤه بالبيانات من JSON -->
+    <div class="container" id="content-container">
+        <!-- سيتم ملء المحتوى هنا باستخدام JavaScript -->
+    </div>
 </div>
-<!-- إضافة عنصر لعرض أزرار التنقل -->
-<div id="pagination" style="text-align: center; margin: 20px 0;"></div>
-
-<!-- Footer Section -->
-<footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-        <!-- روابط الصفحات في القسم الأيسر -->
-        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
-        </div>
   
-        <!-- حقوق الطبع والنشر في المركز -->
-        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-            © 2024 likebook.online
+
+    <!-- Footer Section -->
+    <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
+            <!-- روابط الصفحات في القسم الأيسر -->
+            <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+                <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
+                <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
+                <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
+            </div>
+            <!-- حقوق الطبع والنشر في المركز -->
+            <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
+                © 2024 likebook.online
+            </div>
         </div>
-  
-        <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
-        <div style="display: flex; gap: 15px; justify-content: center;">
-<!-- WhatsApp -->
-<a href="https://wa.me/yourwhatsapplink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
-</a>
-<!-- Telegram -->
-<a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
-</a>
-<!-- Facebook -->
-<a href="https://www.facebook.com/yourfacebooklink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 32px; height: 32px;">
-</a>
-<!-- Instagram -->
-<a href="https://www.instagram.com/yourinstagramlink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 32px; height: 32px;">
-</a>
+    </footer>
 
-        </div>
-    </div>
-</footer>
+    <script>
+        // جلب البيانات من ملف JSON
+        fetch('https://likebook.online/json/ra.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('content-container');
+                data.forEach(post => {
+                    // إنشاء عنصر بطاقة لكل مشاركة
+                    const postBox = document.createElement('div');
+                    postBox.classList.add('post-box');
 
-<!-- استعلامات الوسائط لتجاوب أفضل مع الأجهزة الصغيرة -->
-<style>
-    @media (max-width: 768px) {
-        footer div {
-            flex-direction: column;
-            align-items: center;
-        }
+                    // إضافة صورة إذا كانت موجودة
+                    const img = document.createElement('img');
+                    img.src = post.image || 'https://via.placeholder.com/300x200'; // صورة افتراضية إذا لم تكن موجودة
+                    img.alt = post.title;
 
-        .search-bar input {
-            width: 100%;
-            margin-bottom: 10px;
-        }
+                    // إضافة الرابط
+                    const link = document.createElement('a');
+                    link.href = post.url;
+                    link.textContent = post.title;
 
-        .top-bar {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-</style>
+                    // إضافة الصورة والرابط إلى البطاقة
+                    postBox.appendChild(img);
+                    postBox.appendChild(link);
 
-
-<script>
-    const CARDS_PER_PAGE = 16; // عدد البطاقات لكل صفحة
-    let currentPage = 1; // الصفحة الحالية
-    let totalPages = 1; // إجمالي عدد الصفحات
-
-    // تحميل البيانات من ملف JSON
-    fetch('https://likebook.online/searchData.json')
-        .then(response => response.json())
-        .then(data => {
-            const cardsContainer = document.getElementById('cards-container');
-            totalPages = Math.ceil(data.length / CARDS_PER_PAGE); // حساب عدد الصفحات
-
-            // دالة لعرض البطاقات للصفحة الحالية
-            function displayCards(page) {
-                cardsContainer.innerHTML = ''; // تنظيف المحتوى
-                const start = (page - 1) * CARDS_PER_PAGE;
-                const end = start + CARDS_PER_PAGE;
-                const pageData = data.slice(start, end); // تحديد بيانات الصفحة
-
-                pageData.forEach(item => {
-                    if (item.title && item.description && item.url && item.image) {
-                        const card = document.createElement('div');
-                        card.classList.add('card');
-                        card.onclick = () => window.location.href = item.url;
-                        card.innerHTML = `
-                            <img src="${item.image}" alt="${item.title}">
-                            <div class="card-content">
-                                <h3>${item.title}</h3>
-                                <p>${item.description}</p>
-                            </div>
-                        `;
-                        cardsContainer.appendChild(card);
-                    }
+                    // إضافة البطاقة إلى الحاوية
+                    container.appendChild(postBox);
                 });
-
-                renderPagination(); // تحديث أزرار الصفحات
-            }
-
-            // دالة لعرض أزرار التنقل بين الصفحات
-            function renderPagination() {
-                const paginationContainer = document.getElementById('pagination');
-                paginationContainer.innerHTML = ''; // تنظيف الأزرار القديمة
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const button = document.createElement('button');
-                    button.textContent = i;
-                    button.className = i === currentPage ? 'button active' : 'button';
-                    button.onclick = () => {
-                        currentPage = i;
-                        displayCards(currentPage);
-                    };
-                    paginationContainer.appendChild(button);
-                }
-            }
-
-            displayCards(currentPage); // عرض الصفحة الأولى عند التحميل
-        })
-        .catch(error => console.error('Error loading data:', error));
-
-        
-                  // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+             // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
     function levenshtein(a, b) {
     const tmp = [];
     let i, j, alen = a.length, blen = b.length, cost;
@@ -391,7 +265,8 @@
             searchSite();
         }
     });
-</script>
 
+            
+    </script>
 </body>
 </html>
