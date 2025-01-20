@@ -43,10 +43,6 @@
             width: 300px;
             padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 350px; /* تحديد ارتفاع ثابت */
         }
 
         .post-box h2 {
@@ -82,13 +78,23 @@
             color: #fff;
         }
 
-        /* تحديد أبعاد ثابتة للصور لتجنب تغيرات التخطيط */
-        .post-box img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 9; /* تحديد نسبة العرض إلى الارتفاع */
-            object-fit: cover; /* الحفاظ على تنسيق الصورة */
-            margin-bottom: 15px;
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pagination a {
+            padding: 10px;
+            margin: 5px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -99,6 +105,8 @@
     
     <div id="post-container" class="container"></div>
 
+    <div id="pagination" class="pagination"></div>
+
     <footer>
         <p>© 2025 مدونة بسيطة</p>
     </footer>
@@ -106,6 +114,8 @@
     <script>
         // دالة لتحميل المقالات من ملف JSON
         let allPosts = [];
+        const postsPerPage = 16;
+        let currentPage = 1;
 
         function loadPosts(url) {
             fetch(url)
@@ -113,16 +123,21 @@
                 .then(data => {
                     allPosts = data;
                     displayPosts();
+                    displayPagination();
                 })
                 .catch(error => console.error('Error loading the JSON:', error));
         }
 
-        // دالة لعرض المقالات
+        // دالة لعرض المقالات حسب الصفحة الحالية
         function displayPosts() {
             const container = document.getElementById('post-container');
             container.innerHTML = ''; // مسح المحتوى القديم
 
-            allPosts.forEach(post => {
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToDisplay = allPosts.slice(startIndex, endIndex);
+
+            postsToDisplay.forEach(post => {
                 const postBox = document.createElement('div');
                 postBox.classList.add('post-box');
 
@@ -136,19 +151,33 @@
                 postLink.href = post.url;
                 postLink.textContent = 'اقرأ المزيد';
 
-                // إضافة الصورة فقط إذا كانت موجودة
-                if (post.image) {
-                    const postImage = document.createElement('img');
-                    postImage.src = post.image;
-                    postImage.alt = post.title;
-                    postBox.appendChild(postImage);
-                }
-
                 postBox.appendChild(postTitle);
                 postBox.appendChild(postDescription);
                 postBox.appendChild(postLink);
                 container.appendChild(postBox);
             });
+        }
+
+        // دالة لعرض الترقيم والتنقل بين الصفحات
+        function displayPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = ''; // مسح الترقيم القديم
+
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.textContent = i;
+                pageLink.href = '#';
+                pageLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    currentPage = i;
+                    displayPosts();
+                    displayPagination();
+                });
+
+                pagination.appendChild(pageLink);
+            }
         }
 
         // تحميل البيانات من ملف JSON
