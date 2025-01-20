@@ -15,300 +15,307 @@
         gtag('js', new Date());
         gtag('config', 'G-VV13SCSQRD');
     </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        direction: rtl;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .post-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            width: 300px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-box h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .post-box p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .post-box a {
+            display: block;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-box a:hover {
+            background-color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pagination a {
+            padding: 10px;
+            margin: 5px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #555;
+        }
+        .top-bar {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar .site-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .top-bar .search-bar input {
+            padding: 5px;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .top-bar .search-bar button {
+            padding: 6px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-home {
+        background-color: #28a745; /* اللون الأخضر */
+        color: white; /* لون النص */
+        padding: 10px 15px; /* مسافة داخل الزر */
+        border-radius: 5px; /* زوايا مستديرة */
+        text-decoration: none; /* إزالة الخط السفلي */
+        font-weight: bold; /* جعل النص عريض */
+        margin: 0 5px; /* مسافة بين الأزرار */
+        transition: background-color 0.3s ease; /* تأثير الانتقال عند التمرير */
     }
 
-    .top-bar {
-        background-color: #333;
-        color: white;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .btn-home:hover {
+        background-color: #218838; /* لون أغمق عند التمرير */
     }
 
-    .top-bar .site-name {
-        font-size: 20px;
-        font-weight: bold;
+    .separator {
+        color: #6c757d; /* لون رمادي للفاصل */
+        font-size: 18px;
+        margin: 0 5px;
     }
+    /* استعلامات الوسائط لتنسيق الأزرار على الشاشات الصغيرة */
+    @media (max-width: 768px) {
+        .top-bar {
+            flex-direction: column; /* جعل الأجزاء في التوب بار عمودية */
+            align-items: flex-start; /* محاذاة المحتوى لليسار */
+        }
 
-    .top-bar .search-bar input {
-        padding: 5px;
-        font-size: 14px;
-        width: 200px;
+        .top-bar .search-bar {
+            margin-bottom: 10px; /* مسافة بين زر البحث والأزرار */
+        }
+
+        .btn-home {
+            padding: 8px 10px; /* تقليل المسافات الداخلية */
+            font-size: 12px; /* تقليل حجم النص */
+            margin: 5px 2px; /* تقليل المسافات بين الأزرار */
+        }
+
+        .main-buttons-container {
+            display: flex;
+            flex-wrap: wrap; /* السماح بتقسيم الأزرار عند الازدحام */
+            justify-content: center; /* محاذاة الأزرار في المنتصف */
+            gap: 5px; /* إضافة مسافة موحدة بين الأزرار */
+        }
+
+        .separator {
+            display: none; /* إخفاء الفواصل بين الأزرار */
+        }
     }
-
-    .top-bar .search-bar button {
-        padding: 6px;
-        background-color: #f39c12;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-
-    .cards-container {
-display: grid;
-grid-template-columns: repeat(4, 1fr); /* عدد الأعمدة (يمكن تقليص العدد إلى 3 أو 2 حسب الحجم الذي تريده) */
-gap: 10px; /* تقليص المسافة بين البطاقات */
-padding: 15px; /* تقليص المسافة داخل الحاوية */
-}
-
-.card {
-background-color: white;
-border-radius: 6px; /* تقليص حواف البطاقة */
-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* تقليص الظل */
-overflow: hidden;
-cursor: pointer;
-transition: transform 0.3s ease;
-padding: 10px; /* تقليص الحشو داخل البطاقة */
-}
-
-.card img {
-width: 100%;
-height: 150px; /* تقليص ارتفاع الصورة */
-object-fit: cover;
-}
-
-.card-content {
-padding: 10px; /* تقليص الحشو داخل المحتوى */
-}
-
-@media (max-width: 768px) {
-.cards-container {
-    grid-template-columns: repeat(2, 1fr); /* تقليل الأعمدة في الشاشات الصغيرة */
-}
-}
-
-@media (max-width: 480px) {
-.cards-container {
-    grid-template-columns: 1fr; /* عرض عمود واحد في الشاشات الصغيرة جداً */
-}
-}
-    .buttons-container {
-        margin-top: 50px;
-    }
-    .button {
-        background-color: #e67e22;
-        color: white;
-        padding: 10px 20px;
-        font-size: 16px;
-        text-decoration: none;
-        border-radius: 4px;
-        margin: 10px;
-        display: inline-block;
-        border: 1px solid #e67e22;
-    }
-    .button:hover {
-        background-color: #d35400;
-    }
-    .main-buttons-container {
-text-align: center;
-margin-top: 50px;
-font-size: 18px;
-}
-
-.btn-home {
-color: rgb(255, 252, 252); /* لون النص الأسود */
-font-weight: bold;
-text-decoration: none; /* إزالة الخط السفلي */
-margin: 0 10px; /* مسافة بين النصوص */
-transition: color 0.3s ease;
-}
-
-.btn-home:hover {
-text-decoration: underline; /* إضافة خط تحت النص عند التمرير */
-color: #f39c12; /* تغيير اللون عند التمرير */
-}
-
-.separator {
-color: #FF8C00; /* اللون البرتقالي الداكن للفاصل */
-font-size: 18px;
-margin: 0 5px;
-}
-#pagination .button {
-    padding: 10px 15px;
-    margin: 5px;
-    background-color: #e67e22;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-#pagination .button.active {
-    background-color: #d35400;
-    font-weight: bold;
-}
-
-#pagination .button:hover {
-    background-color: #c0392b;
-}
-
-</style>
+    </style>
 </head>
 <body>
-
-
-<div class="top-bar">
-    <div class="site-name">
-        <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+    <div class="top-bar">
+        <div class="site-name">
+            <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-box" placeholder="ابحث في الموقع...">
+            <button onclick="searchSite()">بحث</button>
+        </div>
+        <div class="main-buttons-container">
+            <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
+            <span class="separator">|</span>
+            <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
+            <span class="separator">|</span>
+            <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
+            <span class="separator">|</span>
+            <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
+            <span class="separator">|</span>
+            <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
+            <span class="separator">|</span>
+            <a href="https://likebook.online/tech" class="btn-home">تقني</a>
+            <span class="separator">|</span>
+            <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
+        </div>
     </div>
-    <div class="search-bar">
-        <input type="text" id="search-box" placeholder="ابحث في الموقع...">
-        <button onclick="searchSite()">بحث</button>
-    </div>
-    <div class="main-buttons-container">
-        <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
-        <span class="separator">|</span>
-        <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
-        <span class="separator">|</span>
-        <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
-        <span class="separator">|</span>
-        <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
-        <span class="separator">|</span>
-        <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
-        <span class="separator">|</span>
-        <a href="https://likebook.online/tech" class="btn-home">تقني</a>
-        <span class="separator">|</span>
-        <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
-    </div>
-</div>
+  
+    
+    <div id="post-container" class="container"></div>
 
+    <div id="pagination" class="pagination"></div>
 
-
-<div class="cards-container" id="cards-container">
-<!-- البطاقات ستظهر هنا بعد تحميل البيانات -->
-</div>
-<!-- إضافة عنصر لعرض أزرار التنقل -->
-<div id="pagination" style="text-align: center; margin: 20px 0;"></div>
-
-<!-- Footer Section -->
+  <!-- Footer Section -->
 <footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-    <!-- روابط الصفحات في القسم الأيسر -->
-    <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-        <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-        <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-        <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
-    </div>
-
-    <!-- حقوق الطبع والنشر في المركز -->
-    <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-        © 2024 likebook.online
-    </div>
-
-    <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
-    <div style="display: flex; gap: 15px; justify-content: center;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
+        <!-- روابط الصفحات في القسم الأيسر -->
+        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
+            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
+            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
+            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
+        </div>
+  
+        <!-- حقوق الطبع والنشر في المركز -->
+        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
+            © 2024 likebook.online
+        </div>
+  
+        <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
+        <div style="display: flex; gap: 15px; justify-content: center;">
 <!-- WhatsApp -->
 <a href="https://wa.me/yourwhatsapplink" target="_blank" style="color: white; text-decoration: none;">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
 </a>
 <!-- Telegram -->
 <a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
-</a>
-<!-- Facebook -->
-<a href="https://www.facebook.com/yourfacebooklink" target="_blank" style="color: white; text-decoration: none;">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="width: 32px; height: 32px;">
-</a>
-<!-- Instagram -->
-<a href="https://www.instagram.com/yourinstagramlink" target="_blank" style="color: white; text-decoration: none;">
-<img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width: 32px; height: 32px;">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
 </a>
 
+        </div>
     </div>
-</div>
 </footer>
+    <script>
+        // دالة لتحميل المقالات من ملف JSON
+        let allPosts = [];
+        const postsPerPage = 16;
+        let currentPage = 1;
 
-<!-- استعلامات الوسائط لتجاوب أفضل مع الأجهزة الصغيرة -->
-<style>
-@media (max-width: 768px) {
-    footer div {
-        flex-direction: column;
-        align-items: center;
-    }
+        function loadPosts(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    allPosts = data;
+                    displayPosts();
+                    displayPagination();
+                })
+                .catch(error => console.error('Error loading the JSON:', error));
+        }
 
-    .search-bar input {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+        // دالة لعرض المقالات حسب الصفحة الحالية
+        function displayPosts() {
+            const container = document.getElementById('post-container');
+            container.innerHTML = ''; // مسح المحتوى القديم
 
-    .top-bar {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-</style>
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToDisplay = allPosts.slice(startIndex, endIndex);
 
-<script>
-    const CARDS_PER_PAGE = 12; // عدد البطاقات لكل صفحة
-    let currentPage = 1; // الصفحة الحالية
-    let totalPages = 1; // إجمالي عدد الصفحات
+            postsToDisplay.forEach(post => {
+                const postBox = document.createElement('div');
+                postBox.classList.add('post-box');
 
-    // تحميل البيانات من ملف JSON
-    fetch('https://likebook.online/json/hayat.json')
-        .then(response => response.json())
-        .then(data => {
-            const cardsContainer = document.getElementById('cards-container');
-            totalPages = Math.ceil(data.length / CARDS_PER_PAGE); // حساب عدد الصفحات
+                const postTitle = document.createElement('h2');
+                postTitle.textContent = post.title;
 
-            // دالة لعرض البطاقات للصفحة الحالية
-            function displayCards(page) {
-                cardsContainer.innerHTML = ''; // تنظيف المحتوى
-                const start = (page - 1) * CARDS_PER_PAGE;
-                const end = start + CARDS_PER_PAGE;
-                const pageData = data.slice(start, end); // تحديد بيانات الصفحة
+                const postDescription = document.createElement('p');
+                postDescription.textContent = post.description;
 
-                pageData.forEach(item => {
-                    if (item.title && item.description && item.url && item.image) {
-                        const card = document.createElement('div');
-                        card.classList.add('card');
-                        card.onclick = () => window.location.href = item.url;
-                        card.innerHTML = `
-                            <img src="${item.image}" alt="${item.title}">
-                            <div class="card-content">
-                                <h3>${item.title}</h3>
-                                <p>${item.description}</p>
-                            </div>
-                        `;
-                        cardsContainer.appendChild(card);
-                    }
+                const postLink = document.createElement('a');
+                postLink.href = post.url;
+                postLink.textContent = 'اقرأ المزيد';
+
+                postBox.appendChild(postTitle);
+                postBox.appendChild(postDescription);
+                postBox.appendChild(postLink);
+                container.appendChild(postBox);
+            });
+        }
+
+        // دالة لعرض الترقيم والتنقل بين الصفحات
+        function displayPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = ''; // مسح الترقيم القديم
+
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.textContent = i;
+                pageLink.href = '#';
+                pageLink.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    currentPage = i;
+                    displayPosts();
+                    displayPagination();
                 });
 
-                renderPagination(); // تحديث أزرار الصفحات
+                pagination.appendChild(pageLink);
             }
+        }
 
-            // دالة لعرض أزرار التنقل بين الصفحات
-            function renderPagination() {
-                const paginationContainer = document.getElementById('pagination');
-                paginationContainer.innerHTML = ''; // تنظيف الأزرار القديمة
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const button = document.createElement('button');
-                    button.textContent = i;
-                    button.className = i === currentPage ? 'button active' : 'button';
-                    button.onclick = () => {
-                        currentPage = i;
-                        displayCards(currentPage);
-                    };
-                    paginationContainer.appendChild(button);
-                }
-            }
-
-            displayCards(currentPage); // عرض الصفحة الأولى عند التحميل
-        })
-        .catch(error => console.error('Error loading data:', error));
-
-        
-                  // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
+        // تحميل البيانات من ملف JSON
+        loadPosts('https://likebook.online/searchData.json');
+            // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
     function levenshtein(a, b) {
     const tmp = [];
     let i, j, alen = a.length, blen = b.length, cost;
@@ -390,8 +397,6 @@ margin: 0 5px;
             searchSite();
         }
     });
-</script>
-
-
+    </script>
 </body>
 </html>
