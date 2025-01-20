@@ -52,48 +52,58 @@
             border: none;
             cursor: pointer;
         }
+     /* تعديل حجم البطاقات */
+     .cards-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* تحديد 4 أعمدة */
+        gap: 10px; /* تقليل الفجوة بين البطاقات */
+        padding: 15px; /* تقليل المسافة حول البطاقات */
+    }
 
+    .card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        max-width: 220px; /* تحديد أقصى عرض للبطاقة */
+        margin: 0 auto; /* جعل البطاقة في الوسط */
+    }
+
+    .card img {
+        width: 100%;
+        height: 150px; /* تقليل ارتفاع الصور */
+        object-fit: cover; /* ضبط الصورة لتغطية المساحة */
+    }
+
+    .card-content {
+        padding: 10px; /* تقليل padding داخل البطاقة */
+    }
+
+    .card h3 {
+        font-size: 16px; /* تقليل حجم العنوان */
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 14px; /* تقليل حجم النص */
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    /* التوافق مع الأجهزة الصغيرة */
+    @media (max-width: 768px) {
         .cards-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(2, 1fr); /* تغيير التوزيع عند الشاشات الصغيرة */
         }
+    }
 
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+    @media (max-width: 480px) {
+        .cards-container {
+            grid-template-columns: 1fr; /* جعل البطاقة تأخذ عرض الشاشة بالكامل في الشاشات الصغيرة جداً */
         }
-
-        .card img {
-            width: 100%;
-            height: auto;
-        }
-
-        .card-content {
-            padding: 15px;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* التوافق مع الأجهزة الصغيرة */
-        @media (max-width: 768px) {
-            .cards-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-        }
+    }
         .buttons-container {
             margin-top: 50px;
         }
@@ -253,7 +263,7 @@
 
 
 <script>
-    const CARDS_PER_PAGE = 40; // عدد البطاقات لكل صفحة
+    const CARDS_PER_PAGE = 30; // عدد البطاقات لكل صفحة
     let currentPage = 1; // الصفحة الحالية
     let totalPages = 1; // إجمالي عدد الصفحات
 
