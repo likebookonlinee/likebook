@@ -248,90 +248,68 @@ margin: 0 5px;
 }
 </style>
 
-
 <script>
-const CARDS_PER_PAGE = 20; // عدد البطاقات لكل صفحة
-let currentPage = 1; // الصفحة الحالية
-let totalPages = 1; // إجمالي عدد الصفحات
+    const CARDS_PER_PAGE = 12; // عدد البطاقات لكل صفحة
+    let currentPage = 1; // الصفحة الحالية
+    let totalPages = 1; // إجمالي عدد الصفحات
 
-// تحميل البيانات من ملف JSON
-fetch('https://likebook.online/json/hayat.json')
-    .then(response => response.json())
-    .then(data => {
-        const cardsContainer = document.getElementById('cards-container');
-        totalPages = Math.ceil(data.length / CARDS_PER_PAGE); // حساب عدد الصفحات
+    // تحميل البيانات من ملف JSON
+    fetch('https://likebook.online/json/hayat.json')
+        .then(response => response.json())
+        .then(data => {
+            const cardsContainer = document.getElementById('cards-container');
+            totalPages = Math.ceil(data.length / CARDS_PER_PAGE); // حساب عدد الصفحات
 
-        // دالة لعرض البطاقات للصفحة الحالية
-        function displayCards(page) {
-            cardsContainer.innerHTML = ''; // تنظيف المحتوى
-            const start = (page - 1) * CARDS_PER_PAGE;
-            const end = start + CARDS_PER_PAGE;
-            const pageData = data.slice(start, end); // تحديد بيانات الصفحة
+            // دالة لعرض البطاقات للصفحة الحالية
+            function displayCards(page) {
+                cardsContainer.innerHTML = ''; // تنظيف المحتوى
+                const start = (page - 1) * CARDS_PER_PAGE;
+                const end = start + CARDS_PER_PAGE;
+                const pageData = data.slice(start, end); // تحديد بيانات الصفحة
 
-            pageData.forEach(item => {
-                if (item.title && item.description && item.url && item.image) {
-                    const card = document.createElement('div');
-                    card.classList.add('card');
-                    card.onclick = () => window.location.href = item.url;
-                    card.innerHTML = `
-                        <img class="lazy-load" data-src="${item.image}" alt="${item.title}" loading="lazy">
-                        <div class="card-content">
-                            <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                        </div>
-                    `;
-                    cardsContainer.appendChild(card);
+                pageData.forEach(item => {
+                    if (item.title && item.description && item.url && item.image) {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+                        card.onclick = () => window.location.href = item.url;
+                        card.innerHTML = `
+                            <img src="${item.image}" alt="${item.title}">
+                            <div class="card-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        `;
+                        cardsContainer.appendChild(card);
+                    }
+                });
+
+                renderPagination(); // تحديث أزرار الصفحات
+            }
+
+            // دالة لعرض أزرار التنقل بين الصفحات
+            function renderPagination() {
+                const paginationContainer = document.getElementById('pagination');
+                paginationContainer.innerHTML = ''; // تنظيف الأزرار القديمة
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const button = document.createElement('button');
+                    button.textContent = i;
+                    button.className = i === currentPage ? 'button active' : 'button';
+                    button.onclick = () => {
+                        currentPage = i;
+                        displayCards(currentPage);
+                    };
+                    paginationContainer.appendChild(button);
                 }
-            });
-
-            renderPagination(); // تحديث أزرار الصفحات
-        }
-
-        // دالة لعرض أزرار التنقل بين الصفحات
-        function renderPagination() {
-            const paginationContainer = document.getElementById('pagination');
-            paginationContainer.innerHTML = ''; // تنظيف الأزرار القديمة
-
-            for (let i = 1; i <= totalPages; i++) {
-                const button = document.createElement('button');
-                button.textContent = i;
-                button.className = i === currentPage ? 'button active' : 'button';
-                button.onclick = () => {
-                    currentPage = i;
-                    displayCards(currentPage);
-                };
-                paginationContainer.appendChild(button);
             }
-        }
 
-        displayCards(currentPage); // عرض الصفحة الأولى عند التحميل
-    })
-    .catch(error => console.error('Error loading data:', error));
+            displayCards(currentPage); // عرض الصفحة الأولى عند التحميل
+        })
+        .catch(error => console.error('Error loading data:', error));
 
-// دالة لتحميل الصور باستخدام IntersectionObserver (اختياري لتحسين الأداء)
-function loadImages() {
-    const images = document.querySelectorAll('.lazy-load');
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute('data-src'); // تحميل الصورة
-                img.removeAttribute('data-src'); // إزالة البيانات المؤقتة
-                observer.unobserve(img); // إيقاف المراقبة بعد تحميل الصورة
-            }
-        });
-    });
-
-    images.forEach(img => {
-        observer.observe(img); // بدء مراقبة كل صورة
-    });
-}
-
-// استدعاء دالة Lazy Load بعد تحميل البيانات
-window.addEventListener('load', loadImages);
-
-// دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
-function levenshtein(a, b) {
+        
+                  // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
+    function levenshtein(a, b) {
     const tmp = [];
     let i, j, alen = a.length, blen = b.length, cost;
     if (alen === 0) return blen;
@@ -345,10 +323,10 @@ function levenshtein(a, b) {
         }
     }
     return tmp[alen][blen];
-}
-
-// دالة البحث مع اقتراحات مشابهة
-function searchSite() {
+    }
+    
+    // دالة البحث مع اقتراحات مشابهة
+    function searchSite() {
     const query = document.getElementById('search-box').value.toLowerCase();
     
     if (query) {
@@ -378,10 +356,10 @@ function searchSite() {
     } else {
         alert("يرجى إدخال كلمة البحث.");
     }
-}
-
-// دالة لعرض النتائج
-function displayResults(items, message = "نتائج البحث") {
+    }
+    
+    // دالة لعرض النتائج
+    function displayResults(items, message = "نتائج البحث") {
     const container = document.getElementById('results-container');
     container.innerHTML = `<h3>${message}</h3>`;
     items.forEach(item => {
@@ -394,14 +372,24 @@ function displayResults(items, message = "نتائج البحث") {
         `;
         container.appendChild(resultItem);
     });
-}
-
-// إضافة حدث للبحث عند الضغط على زر Enter
-document.getElementById('search-box').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        searchSite();
     }
-});
+    // دالة البحث
+    function searchSite() {
+        const query = document.getElementById('search-box').value.trim();
+        if (query) {
+            // إعادة التوجيه إلى رابط البحث مع الاستعلام
+            window.location.href = `https://likebook.online/search?q=${query}`;
+        } else {
+            alert("يرجى إدخال كلمة البحث.");
+        }
+    }
+    
+    // إضافة حدث للبحث عند الضغط على زر Enter
+    document.getElementById('search-box').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            searchSite();
+        }
+    });
 </script>
 
 
