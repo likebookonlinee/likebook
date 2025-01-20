@@ -1,21 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="مدونه شاملة تهتم بكل ما يهمك من مجالات متنوعة مثل الكتب، التغذية، الصحة، الجمال، الحياة والمجتمع، التكنولوجيا، والمنوعات. نقدم لك نصائح ومعلومات قيمة لتحسين جودة حياتك في جميع هذه المجالات.">
-    <meta name="keywords" content="كتب, تغذية, صحة, جمال, الحياة والمجتمع, تكنولوجيا, منوعات, نصائح الحياة, تحسين الصحة, صحة الجمال, نظام غذائي, معلومات شاملة, حمية غذائية">
-    <link rel="icon" href="/apple-icon.jpg" type="image/jpg">
-    <title>لايك بوك</title>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VV13SCSQRD"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-VV13SCSQRD');
-    </script>
-
+    <title>مدونة بسيطة</title>
     <style>
         * {
             margin: 0;
@@ -34,7 +22,7 @@
             background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
         }
 
         h1 {
@@ -53,23 +41,29 @@
             border: 1px solid #ddd;
             margin: 10px;
             width: 300px;
-            text-align: center;
+            padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .post-box img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .post-box h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .post-box p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
         }
 
         .post-box a {
             display: block;
-            padding: 15px;
+            padding: 10px;
             background-color: #333;
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            text-align: center;
             transition: background-color 0.3s ease;
         }
 
@@ -83,197 +77,60 @@
             background-color: #333;
             color: #fff;
         }
-
-        .pagination {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .pagination a {
-            margin: 0 5px;
-            padding: 10px 15px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-        .pagination a:hover {
-            background-color: #555;
-        }
-        /* الأزرار */
-.btn-back, .btn-home {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-back:hover, .btn-home:hover {
-    background-color: #388e3c;
-}
-.top-bar {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar .site-name {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .top-bar .search-bar input {
-            padding: 5px;
-            font-size: 14px;
-            width: 100px;
-        }
-
-        .top-bar .search-bar button {
-            padding: 6px;
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <div class="site-name">
-            <span onclick="window.location.href='https://likebook.online';" style="color: #f39c12; font-weight: bold; cursor: pointer;">موقع لايك </span><span style="color: white; font-weight: bold;">بوك</span>
-        </div>
-        <div class="search-bar">
-            <input type="text" id="search-box" placeholder="ابحث في الموقع...">
-            <button onclick="searchSite()">بحث</button>
-        </div>
-        <div class="main-buttons-container">
-            <a href="https://likebook.online/books" class="btn-home">تحميل كتب</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87" class="btn-home">تغذية</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/beauty" class="btn-home">صحة وجمال</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9" class="btn-home">الحياة والمجتمع</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/kids" class="btn-home">الطفل</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/tech" class="btn-home">تقني</a>
-            <span class="separator">|</span>
-            <a href="https://likebook.online/misc" class="btn-home">منوعات</a>
-        </div>
-    </div>
-
+    <header>
+        <h1>مدونة بسيطة</h1>
+    </header>
     
-    <div class="container" id="post-container">
-        <!-- المقالات سيتم إضافتها هنا عبر JavaScript -->
-    </div>
+    <div id="post-container" class="container"></div>
 
-    <div class="pagination" id="pagination">
-        <!-- الترقيم سيتم إضافته هنا عبر JavaScript -->
-    </div>
-
-   <!-- Footer Section -->
-<footer style="background-color: #333; color: white; padding: 10px 0; text-align: center; margin-top: 50px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap;">
-        <!-- روابط الصفحات في القسم الأيسر -->
-        <div style="font-size: 16px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-bottom: 10px;">
-            <a href="https://likebook.online/contact-us" style="color: white; text-decoration: none;">اتصل بنا</a>
-            <a href="https://likebook.online/about-us" style="color: white; text-decoration: none;">من نحن</a>
-            <a href="https://likebook.online/privacy-policy" style="color: white; text-decoration: none;">سياسة الخصوصية</a>
-        </div>
-  
-        <!-- حقوق الطبع والنشر في المركز -->
-        <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px;">
-            © 2024 likebook.online
-        </div>
-  
-        <!-- روابط التواصل الاجتماعي في القسم الأيمن -->
-        <div style="display: flex; gap: 15px; justify-content: center;">
-<!-- WhatsApp -->
-<a href="https://wa.me/yourwhatsapplink" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 32px; height: 32px;">
-</a>
-<!-- Telegram -->
-<a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
-</a>
-
-        </div>
-    </div>
-</footer>
+    <footer>
+        <p>© 2025 مدونة بسيطة</p>
+    </footer>
 
     <script>
         // دالة لتحميل المقالات من ملف JSON
         let allPosts = [];
-        const postsPerPage = 16;
-        let currentPage = 1;
 
         function loadPosts(url) {
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     allPosts = data;
-                    displayPosts(currentPage);
-                    setupPagination();
+                    displayPosts();
                 })
                 .catch(error => console.error('Error loading the JSON:', error));
         }
 
-        // دالة لعرض المقالات بناءً على الصفحة الحالية
-        function displayPosts(page) {
+        // دالة لعرض المقالات
+        function displayPosts() {
             const container = document.getElementById('post-container');
             container.innerHTML = ''; // مسح المحتوى القديم
 
-            const startIndex = (page - 1) * postsPerPage;
-            const endIndex = startIndex + postsPerPage;
-            const postsToShow = allPosts.slice(startIndex, endIndex);
-
-            postsToShow.forEach(post => {
+            allPosts.forEach(post => {
                 const postBox = document.createElement('div');
                 postBox.classList.add('post-box');
 
-                const postImage = document.createElement('img');
-                postImage.src = post.image;
-                postImage.alt = post.title;
+                const postTitle = document.createElement('h2');
+                postTitle.textContent = post.title;
+
+                const postDescription = document.createElement('p');
+                postDescription.textContent = post.description;
 
                 const postLink = document.createElement('a');
                 postLink.href = post.url;
-                postLink.textContent = post.title;
+                postLink.textContent = 'اقرأ المزيد';
 
-                postBox.appendChild(postImage);
+                postBox.appendChild(postTitle);
+                postBox.appendChild(postDescription);
                 postBox.appendChild(postLink);
                 container.appendChild(postBox);
             });
         }
 
-        // دالة لإعداد الترقيم
-        function setupPagination() {
-            const totalPages = Math.ceil(allPosts.length / postsPerPage);
-            const paginationContainer = document.getElementById('pagination');
-            paginationContainer.innerHTML = '';
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageLink = document.createElement('a');
-                pageLink.href = "#";
-                pageLink.textContent = i;
-                pageLink.onclick = function() {
-                    currentPage = i;
-                    displayPosts(currentPage);
-                };
-                paginationContainer.appendChild(pageLink);
-            }
-        }
-
-        // تحميل البيانات من ملف JSON (استبدل الرابط بالرابط الخاص بك)
+        // تحميل البيانات من ملف JSON
         loadPosts('https://likebook.online/searchData.json');
     </script>
 </body>
