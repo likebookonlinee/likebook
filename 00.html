@@ -158,21 +158,33 @@
                     // إنشاء عنصر بطاقة لكل مشاركة
                     const postBox = document.createElement('div');
                     postBox.classList.add('post-box');
-
+    
                     // إضافة صورة إذا كانت موجودة
                     const img = document.createElement('img');
-                    img.src = post.image || 'https://via.placeholder.com/300x200'; // صورة افتراضية إذا لم تكن موجودة
+                    
+                    // إعداد الصورة مع src و srcset
+                    if (post.image) {
+                        img.src = post.image.replace('.webp', '-small.webp'); // النسخة الصغيرة كافتراضية
+                        img.srcset = `
+                            ${post.image.replace('.webp', '-small.webp')} 480w, 
+                            ${post.image.replace('.webp', '-medium.webp')} 800w, 
+                            ${post.image} 1200w
+                        `;
+                        img.sizes = "(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"; // أحجام ديناميكية
+                    } else {
+                        img.src = 'https://via.placeholder.com/300x200'; // صورة افتراضية إذا لم تكن موجودة
+                    }
                     img.alt = post.title;
-
+    
                     // إضافة الرابط
                     const link = document.createElement('a');
                     link.href = post.url;
                     link.textContent = post.title;
-
+    
                     // إضافة الصورة والرابط إلى البطاقة
                     postBox.appendChild(img);
                     postBox.appendChild(link);
-
+    
                     // إضافة البطاقة إلى الحاوية
                     container.appendChild(postBox);
                 });
@@ -181,5 +193,6 @@
                 console.error('Error fetching data:', error);
             });
     </script>
+    
 </body>
 </html>
