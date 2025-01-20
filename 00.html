@@ -43,6 +43,10 @@
             width: 300px;
             padding: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 350px; /* تحديد ارتفاع ثابت */
         }
 
         .post-box h2 {
@@ -76,6 +80,15 @@
             padding: 20px;
             background-color: #333;
             color: #fff;
+        }
+
+        /* تحديد أبعاد ثابتة للصور لتجنب تغيرات التخطيط */
+        .post-box img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9; /* تحديد نسبة العرض إلى الارتفاع */
+            object-fit: cover; /* الحفاظ على تنسيق الصورة */
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -122,6 +135,14 @@
                 const postLink = document.createElement('a');
                 postLink.href = post.url;
                 postLink.textContent = 'اقرأ المزيد';
+
+                // إضافة الصورة فقط إذا كانت موجودة
+                if (post.image) {
+                    const postImage = document.createElement('img');
+                    postImage.src = post.image;
+                    postImage.alt = post.title;
+                    postBox.appendChild(postImage);
+                }
 
                 postBox.appendChild(postTitle);
                 postBox.appendChild(postDescription);
