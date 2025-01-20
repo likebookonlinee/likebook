@@ -25,20 +25,17 @@
         "image": "https://likebook.online/images/tech.webp "
     },
     {
-        "title": "مقالات عن الاطفال ",
-        "url": "https://likebook.online/kids ",
-        "image": "https://likebook.online/images/kids.webp "
-    },
-    {
-        "title": "مقالات عن الاطفال ",
-        "url": "https://likebook.online/kids ",
-        "image": "https://likebook.online/images/kids.webp "
-    },
-
-    {
         "title": " قسم الصحة والجمال",
         "url": "https://likebook.online/beauty",
         "image": "https://likebook.online/images/jamal.webp"
+    },
+
+
+    
+    {
+        "title": "  قسم الكتب ",
+        "url": "https://likebook.online/books ",
+        "image": "https://likebook.online/images/kids.webp "
     }
 
 ]
