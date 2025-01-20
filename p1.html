@@ -341,10 +341,7 @@ body {
             <a href="https://t.me/cryptolike_store" target="_blank" style="color: white; text-decoration: none;">
                 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" style="width: 32px; height: 32px;">
             </a>
-            <!-- Twitter -->
-            <a href="https://x.com/Cryptolike18689" target="_blank" style="color: white; text-decoration: none;">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" style="width: 32px; height: 32px;">
-            </a>
+     
         </div>
     </div>
 </footer>
@@ -369,125 +366,126 @@ body {
     }
 </style>
 
-    <script>
-      // جلب بيانات JSON
-fetch('https://likebook.online/searchData.json')
-    .then(response => response.json())
-    .then(data => {
-        const container = document.getElementById('cards-container');
-
-        // اختيار بعض البطاقات عشوائيًا
-        const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
-
-        randomCards.forEach(item => {
-            // إنشاء كرت لكل عنصر
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <img src="${item.image}" alt="${item.title}">
-                <h3>${item.title}</h3>
-                <p>${item.description.substring(0, 80)}...</p>
-            `;
-
-            // إضافة الرابط عند النقر على الكرت
-            card.addEventListener('click', () => {
-                window.location.href = item.url;
-            });
-
-            // إدراج الكرت في الحاوية
-            container.appendChild(card);
-        });
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
-
+<script>
+    // جلب بيانات JSON
+     fetch('https://likebook.online/searchData.json')
+         .then(response => response.json())
+         .then(data => {
+             const container = document.getElementById('cards-container');
+ 
+             // اختيار بعض البطاقات عشوائيًا
+             const randomCards = data.sort(() => 0.5 - Math.random()).slice(0, 3);
+ 
+             randomCards.forEach(item => {
+                 // إنشاء كرت لكل عنصر
+                 const card = document.createElement('div');
+                 card.className = 'card';
+                 card.innerHTML = `
+                     <h3>${item.title}</h3>
+                     <p>${item.description.substring(0, 80)}...</p>
+                     <button class="read-more-btn">اقرأ المزيد</button>
+                 `;
+ 
+                 // إضافة الرابط عند النقر على زر "اقرأ المزيد"
+                 const readMoreBtn = card.querySelector('.read-more-btn');
+                 readMoreBtn.addEventListener('click', () => {
+                     window.location.href = item.url;
+                 });
+ 
+                 // إدراج الكرت في الحاوية
+                 container.appendChild(card);
+             });
+         })
+         .catch(error => console.error('Error fetching JSON:', error));
+ 
+     
+             
+             // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
+     function levenshtein(a, b) {
+     const tmp = [];
+     let i, j, alen = a.length, blen = b.length, cost;
+     if (alen === 0) return blen;
+     if (blen === 0) return alen;
+     for (i = 0; i <= alen; i++) tmp[i] = [i];
+     for (j = 0; j <= blen; j++) tmp[0][j] = j;
+     for (i = 1; i <= alen; i++) {
+         for (j = 1; j <= blen; j++) {
+             cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
+             tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
+         }
+     }
+     return tmp[alen][blen];
+     }
+     
+     // دالة البحث مع اقتراحات مشابهة
+     function searchSite() {
+     const query = document.getElementById('search-box').value.toLowerCase();
+     
+     if (query) {
+         fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
+             .then(response => response.json())
+             .then(data => {
+                 const results = data.filter(item => item.name.toLowerCase().includes(query));
+                 const suggestions = [];
+     
+                 // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
+                 data.forEach(item => {
+                     const distance = levenshtein(query, item.name.toLowerCase());
+                     if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
+                         suggestions.push(item);
+                     }
+                 });
+     
+                 if (results.length > 0) {
+                     displayResults(results);
+                 } else if (suggestions.length > 0) {
+                     displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
+                 } else {
+                     alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
+                 }
+             })
+             .catch(error => console.error('Error fetching search data:', error));
+     } else {
+         alert("يرجى إدخال كلمة البحث.");
+     }
+     }
+     
+     // دالة لعرض النتائج
+     function displayResults(items, message = "نتائج البحث") {
+     const container = document.getElementById('results-container');
+     container.innerHTML = `<h3>${message}</h3>`;
+     items.forEach(item => {
+         const resultItem = document.createElement('div');
+         resultItem.className = 'result-item';
+         resultItem.innerHTML = `
+             <h4>${item.name}</h4>
+             <p>${item.description.substring(0, 80)}...</p>
+             <a href="${item.link}">اقرأ المزيد</a>
+         `;
+         container.appendChild(resultItem);
+     });
+     }
+     // دالة البحث
+     function searchSite() {
+         const query = document.getElementById('search-box').value.trim();
+         if (query) {
+             // إعادة التوجيه إلى رابط البحث مع الاستعلام
+             window.location.href = `https://likebook.online/search?q=${query}`;
+         } else {
+             alert("يرجى إدخال كلمة البحث.");
+         }
+     }
+     
+     // إضافة حدث للبحث عند الضغط على زر Enter
+     document.getElementById('search-box').addEventListener('keydown', function(event) {
+         if (event.key === 'Enter') {
+             searchSite();
+         }
+     });
+ 
+ 
     
-            
-            // دالة لحساب مسافة ليفنشتاين (Levenshtein Distance)
-    function levenshtein(a, b) {
-    const tmp = [];
-    let i, j, alen = a.length, blen = b.length, cost;
-    if (alen === 0) return blen;
-    if (blen === 0) return alen;
-    for (i = 0; i <= alen; i++) tmp[i] = [i];
-    for (j = 0; j <= blen; j++) tmp[0][j] = j;
-    for (i = 1; i <= alen; i++) {
-        for (j = 1; j <= blen; j++) {
-            cost = (a[i - 1] === b[j - 1]) ? 0 : 1;
-            tmp[i][j] = Math.min(tmp[i - 1][j] + 1, tmp[i][j - 1] + 1, tmp[i - 1][j - 1] + cost);
-        }
-    }
-    return tmp[alen][blen];
-    }
-    
-    // دالة البحث مع اقتراحات مشابهة
-    function searchSite() {
-    const query = document.getElementById('search-box').value.toLowerCase();
-    
-    if (query) {
-        fetch('https://likebook.online/searchData.json')  // رابط بيانات البحث لديك
-            .then(response => response.json())
-            .then(data => {
-                const results = data.filter(item => item.name.toLowerCase().includes(query));
-                const suggestions = [];
-    
-                // العثور على نتائج مشابهة باستخدام مسافة ليفنشتاين
-                data.forEach(item => {
-                    const distance = levenshtein(query, item.name.toLowerCase());
-                    if (distance <= 2) {  // تحديد المسافة التي تعتبر مشابهة
-                        suggestions.push(item);
-                    }
-                });
-    
-                if (results.length > 0) {
-                    displayResults(results);
-                } else if (suggestions.length > 0) {
-                    displayResults(suggestions, 'اقتراحات قد تكون مفيدة');
-                } else {
-                    alert("لم يتم العثور على نتائج. حاول التحقق من الكتابة.");
-                }
-            })
-            .catch(error => console.error('Error fetching search data:', error));
-    } else {
-        alert("يرجى إدخال كلمة البحث.");
-    }
-    }
-    
-    // دالة لعرض النتائج
-    function displayResults(items, message = "نتائج البحث") {
-    const container = document.getElementById('results-container');
-    container.innerHTML = `<h3>${message}</h3>`;
-    items.forEach(item => {
-        const resultItem = document.createElement('div');
-        resultItem.className = 'result-item';
-        resultItem.innerHTML = `
-            <h4>${item.name}</h4>
-            <p>${item.description.substring(0, 80)}...</p>
-            <a href="${item.link}">اقرأ المزيد</a>
-        `;
-        container.appendChild(resultItem);
-    });
-    }
-    // دالة البحث
-    function searchSite() {
-        const query = document.getElementById('search-box').value.trim();
-        if (query) {
-            // إعادة التوجيه إلى رابط البحث مع الاستعلام
-            window.location.href = `https://likebook.online/search?q=${query}`;
-        } else {
-            alert("يرجى إدخال كلمة البحث.");
-        }
-    }
-    
-    // إضافة حدث للبحث عند الضغط على زر Enter
-    document.getElementById('search-box').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            searchSite();
-        }
-    });
-
-
-   
-
-    </script>
+ 
+     </script>
     </body>
     </html>
