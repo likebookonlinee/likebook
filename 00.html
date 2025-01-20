@@ -71,6 +71,25 @@
             background-color: #333;
             color: #fff;
         }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -78,27 +97,82 @@
         <h1>مدونة بسيطة وسريعة</h1>
     </header>
     
-    <div class="container">
-        <div class="post-box">
-            <img src="https://via.placeholder.com/300x200" alt="صورة التدوينة">
-            <a href="#">عنوان التدوينة 1</a>
-        </div>
-        <div class="post-box">
-            <img src="https://via.placeholder.com/300x200" alt="صورة التدوينة">
-            <a href="#">عنوان التدوينة 2</a>
-        </div>
-        <div class="post-box">
-            <img src="https://via.placeholder.com/300x200" alt="صورة التدوينة">
-            <a href="#">عنوان التدوينة 3</a>
-        </div>
-        <div class="post-box">
-            <img src="https://via.placeholder.com/300x200" alt="صورة التدوينة">
-            <a href="#">عنوان التدوينة 4</a>
-        </div>
+    <div class="container" id="post-container">
+        <!-- المقالات سيتم إضافتها هنا عبر JavaScript -->
+    </div>
+
+    <div class="pagination" id="pagination">
+        <!-- الترقيم سيتم إضافته هنا عبر JavaScript -->
     </div>
 
     <footer>
         <p>© 2025 مدونة بسيطة</p>
     </footer>
+
+    <script>
+        // دالة لتحميل المقالات من ملف JSON
+        let allPosts = [];
+        const postsPerPage = 16;
+        let currentPage = 1;
+
+        function loadPosts(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    allPosts = data;
+                    displayPosts(currentPage);
+                    setupPagination();
+                })
+                .catch(error => console.error('Error loading the JSON:', error));
+        }
+
+        // دالة لعرض المقالات بناءً على الصفحة الحالية
+        function displayPosts(page) {
+            const container = document.getElementById('post-container');
+            container.innerHTML = ''; // مسح المحتوى القديم
+
+            const startIndex = (page - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            const postsToShow = allPosts.slice(startIndex, endIndex);
+
+            postsToShow.forEach(post => {
+                const postBox = document.createElement('div');
+                postBox.classList.add('post-box');
+
+                const postImage = document.createElement('img');
+                postImage.src = post.image;
+                postImage.alt = post.title;
+
+                const postLink = document.createElement('a');
+                postLink.href = post.url;
+                postLink.textContent = post.title;
+
+                postBox.appendChild(postImage);
+                postBox.appendChild(postLink);
+                container.appendChild(postBox);
+            });
+        }
+
+        // دالة لإعداد الترقيم
+        function setupPagination() {
+            const totalPages = Math.ceil(allPosts.length / postsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = "#";
+                pageLink.textContent = i;
+                pageLink.onclick = function() {
+                    currentPage = i;
+                    displayPosts(currentPage);
+                };
+                paginationContainer.appendChild(pageLink);
+            }
+        }
+
+        // تحميل البيانات من ملف JSON (استبدل الرابط بالرابط الخاص بك)
+        loadPosts('https://likebook.online/searchData.json');
+    </script>
 </body>
 </html>
