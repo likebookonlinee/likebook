@@ -297,7 +297,76 @@ body {
                 <li>استعن بخبير تغذية إذا كنت تعاني من مشكلات صحية تحتاج إلى متابعة.</li>
                 <li>كافئ نفسك (بطرق غير غذائية) عند تحقيق إنجاز، مثل شراء ملابس جديدة أو الاسترخاء.</li>
             </ul>
-            
+            <div class="links-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+                <!-- حاوية روابط ذات صلة -->
+                <div class="related-links" style="padding: 25px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; height: 300px; overflow-y: auto; width: 60%; max-width: 600px;">
+                    <h3 style="color: rgb(162, 0, 0);  margin-bottom: 10px;">روابط ذات صلة:</h3>
+                    <ul id="relatedLinksList" style="list-style: none; padding: 0;"></ul>
+                </div>
+        
+                <!-- حاوية رائج الآن -->
+                <div class="related-links" style="padding: 25px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; height: 300px; overflow-y: auto; width: 60%; max-width: 600px;">
+                    <h3 style="color: rgb(162, 0, 0);  margin-bottom: 10px;">رائج الآن:</h3>
+                    <ul id="popularLinksList" style="list-style: none; padding: 0;"></ul>
+                </div>
+            </div>
+        
+            <script>
+        // تحميل بيانات روابط ذات صلة من JSON
+        fetch('https://likebook.online/json/jamal.json')
+            .then(response => response.json())
+            .then(data => {
+                const listContainer = document.getElementById('relatedLinksList');
+                
+                // ترتيب الروابط بشكل عشوائي
+                const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 6); // اختيار 5 روابط عشوائية
+        
+                randomLinks.forEach(link => {
+                    const listItem = document.createElement('li');
+                    listItem.style.marginBottom = '10px';
+        
+                    const anchor = document.createElement('a');
+                    anchor.href = link.url;
+                    anchor.style.textDecoration = 'none';
+                    anchor.style.color = '#006400';
+        
+                    // إضافة النص مع علامة لجذب الانتباه
+                    anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+        
+                    listItem.appendChild(anchor);
+                    listContainer.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error loading the JSON data:', error));
+        
+        // تحميل بيانات رائج الآن من JSON
+        fetch('https://likebook.online/json/ra.json')
+            .then(response => response.json())
+            .then(data => {
+                const listContainer = document.getElementById('popularLinksList');
+                
+                // ترتيب الروابط بشكل عشوائي
+                const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 6); // اختيار 5 روابط عشوائية
+        
+                randomLinks.forEach(link => {
+                    const listItem = document.createElement('li');
+                    listItem.style.marginBottom = '10px';
+        
+                    const anchor = document.createElement('a');
+                    anchor.href = link.url;
+                    anchor.style.textDecoration = 'none';
+                    anchor.style.color = '#006400';
+        
+                    // إضافة النص مع علامة لجذب الانتباه
+                    anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+        
+                    listItem.appendChild(anchor);
+                    listContainer.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error loading the JSON data:', error));
+            </script>
+
 
 
 
