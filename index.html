@@ -123,40 +123,185 @@
             <button onclick="searchSite()">بحث</button>
         </div>
     </div>
+    <div class="links-container">
+        <!-- حاوية روابط ذات صلة -->
+        <div class="related-links">
+            <h3 style="color:rgb(162, 0, 0); margin-bottom: 10px;">مقالات عامة عن الاطفال:</h3>
+            <ul id="relatedLinksList" style="list-style: none; padding: 0;"></ul>
+        </div>
+    
+        <!-- حاوية رائج الآن -->
+        <div class="related-links">
+            <h3 style="color:rgb(162, 0, 0); margin-bottom: 10px;">رائج الآن:</h3>
+            <ul id="popularLinksList" style="list-style: none; padding: 0;"></ul>
+        </div>
+    
+        <!-- تغذية الأطفال الآن -->
+        <div class="related-links">
+            <h3 style="color:rgb(162, 0, 0); margin-bottom: 10px;">تغذية الأطفال:</h3>
+            <ul id="feedingLinksList" style="list-style: none; padding: 0;"></ul>
+        </div>
+           <!--    قسم تربية الاطفال  -->
+           <div class="related-links">
+            <h3 style="color:rgb(162, 0, 0); margin-bottom: 10px;">تربية الاطفال:</h3>
+            <ul id="feedingLinksList" style="list-style: none; padding: 0;"></ul>
+        </div>
 
-    <div class="container">
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt="تغذية ">
-            <a href="https://likebook.online/%D8%AA%D8%BA%D8%B0%D9%8A%D9%87"> قسم التعذية الصحية  </a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt=" الحياة والمجتمع">
-            <a href="https://likebook.online/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9">    قسم الحياة والمجتمع</a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt=" الطفل">
-            <a href="https://likebook.online/kids">  قسم مقالات الاطفال</a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt=" مدونات">
-            <a href="https://likebook.online/misc">  مقالات عامة</a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt=" الصحة والجمال">
-            <a href="https://likebook.online/beauty">  الصحة والجمال</a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt=" مدونة تقنية">
-            <a href="https://likebook.online/tech"> تقني</a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt=" تحميل كتب pdf">
-            <a href="https://likebook.online/books"> تحميل كتب </a>
-        </div>
-        <div class="post-box">
-            <img src="https://likebook.online/images/like.webp" alt="صورة التدوينة">
-            <a href="">عنوان التدوينة 4</a>
-        </div>
+    
+    <style>
+        /* تنسيق الحاويات على الشاشات الكبيرة */
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    
+        .related-links {
+            padding: 25px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: auto;
+            width: 30%; /* عرض الحاويات بشكل أفقي */
+            max-width: 600px;
+        }
+    
+        /* عند الشاشات الصغيرة (أقل من 768px) */
+        @media (max-width: 768px) {
+            .links-container {
+                flex-direction: column; /* ترتيب العناصر عموديًا */
+                align-items: center; /* محاذاة العناصر في الوسط */
+            }
+    
+            .related-links {
+                width: 100%; /* الحاويات تملأ عرض الشاشة بالكامل */
+                margin-bottom: 20px; /* مسافة بين الحاويات */
+                max-width: 100%; /* التأكد أن العرض لا يتجاوز عرض الشاشة */
+            }
+        }
+    
+        /* عند الشاشات الصغيرة جدًا (أقل من 480px) */
+        @media (max-width: 480px) {
+            .related-links {
+                width: 100%; /* عرض الحاويات بالكامل على الشاشات الصغيرة جدًا */
+                padding: 15px; /* تقليل padding قليلاً على الشاشات الصغيرة */
+            }
+        }
+    </style>
+    
+    <script>
+   // تحميل بيانات روابط ذات صلة من JSON
+fetch('https://likebook.online/json/kids.json')
+    .then(response => response.json())
+    .then(data => {
+        const listContainer = document.getElementById('relatedLinksList');
+        
+        // ترتيب الروابط بشكل عشوائي
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5); // اختيار 5 روابط عشوائية
+
+        randomLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            listItem.style.marginBottom = '10px';
+
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.style.textDecoration = 'none';
+            anchor.style.color = '#006400';
+
+            // إضافة النص مع علامة لجذب الانتباه
+            anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+
+            listItem.appendChild(anchor);
+            listContainer.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading the JSON data:', error));
+
+// تحميل بيانات رائج الآن من JSON
+fetch('https://likebook.online/json/kra.json')
+    .then(response => response.json())
+    .then(data => {
+        const listContainer = document.getElementById('popularLinksList');
+        
+        // ترتيب الروابط بشكل عشوائي
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5); // اختيار 5 روابط عشوائية
+
+        randomLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            listItem.style.marginBottom = '10px';
+
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.style.textDecoration = 'none';
+            anchor.style.color = '#006400';
+
+            // إضافة النص مع علامة لجذب الانتباه
+            anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+
+            listItem.appendChild(anchor);
+            listContainer.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading the JSON data:', error));
+    
+// تحميل بيانات تغذية الاطفال الآن من JSON
+fetch('https://likebook.online/json/tkra.json')
+    .then(response => response.json())
+    .then(data => {
+        const listContainer = document.getElementById('popularLinksList');
+        
+        // ترتيب الروابط بشكل عشوائي
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5); // اختيار 5 روابط عشوائية
+
+        randomLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            listItem.style.marginBottom = '10px';
+
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.style.textDecoration = 'none';
+            anchor.style.color = '#006400';
+
+            // إضافة النص مع علامة لجذب الانتباه
+            anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+
+            listItem.appendChild(anchor);
+            listContainer.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading the JSON data:', error));
+    // تحميل بيانات تربية الاطفال الآن من JSON
+fetch('https://likebook.online/json/trkra.json')
+    .then(response => response.json())
+    .then(data => {
+        const listContainer = document.getElementById('popularLinksList');
+        
+        // ترتيب الروابط بشكل عشوائي
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5); // اختيار 5 روابط عشوائية
+
+        randomLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            listItem.style.marginBottom = '10px';
+
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.style.textDecoration = 'none';
+            anchor.style.color = '#006400';
+
+            // إضافة النص مع علامة لجذب الانتباه
+            anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+
+            listItem.appendChild(anchor);
+            listContainer.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading the JSON data:', error));
+    </script>
+             </div>
+
     </div>
 
   
