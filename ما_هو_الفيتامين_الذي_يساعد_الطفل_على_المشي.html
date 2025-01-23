@@ -295,7 +295,7 @@ fetch('https://likebook.online/json/kids.json')
         const listContainer = document.getElementById('relatedLinksList');
         
         // ترتيب الروابط بشكل عشوائي
-        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 12); // اختيار 5 روابط عشوائية
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 8); // اختيار 5 روابط عشوائية
 
         randomLinks.forEach(link => {
             const listItem = document.createElement('li');
