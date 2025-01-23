@@ -196,51 +196,59 @@
             })
             .catch(error => console.error('Error loading the JSON data:', error));
     
-        // تحميل بيانات تغذية الأطفال الآن من JSON
-        fetch('https://likebook.online/json/tkra.json')
-            .then(response => response.json())
-            .then(data => {
-                const listContainer = document.getElementById('feedingLinksList');
-                const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5);
-    
-                randomLinks.forEach(link => {
-                    const listItem = document.createElement('li');
-                    listItem.style.marginBottom = '10px';
-    
-                    const anchor = document.createElement('a');
-                    anchor.href = link.url;
-                    anchor.style.textDecoration = 'none';
-                    anchor.style.color = '#006400';
-    
-                    anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
-                    listItem.appendChild(anchor);
-                    listContainer.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error loading the JSON data:', error));
-    
-        // تحميل بيانات تربية الأطفال الآن من JSON
-        fetch('https://likebook.online/json/trkra.json')
-            .then(response => response.json())
-            .then(data => {
-                const listContainer = document.getElementById('raisingLinksList');
-                const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5);
-    
-                randomLinks.forEach(link => {
-                    const listItem = document.createElement('li');
-                    listItem.style.marginBottom = '10px';
-    
-                    const anchor = document.createElement('a');
-                    anchor.href = link.url;
-                    anchor.style.textDecoration = 'none';
-                    anchor.style.color = '#006400';
-    
-                    anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
-                    listItem.appendChild(anchor);
-                    listContainer.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error loading the JSON data:', error));
+  // تحميل بيانات تغذية الأطفال الآن من JSON
+fetch('https://likebook.online/json/tkids.json')
+    .then(response => response.json())
+    .then(data => {
+        const listContainer = document.getElementById('feedingLinksList');
+        
+        // ترتيب الروابط بشكل عشوائي
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5); // اختيار 5 روابط عشوائية
+
+        randomLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            listItem.style.marginBottom = '10px';
+
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.style.textDecoration = 'none';
+            anchor.style.color = '#006400';
+
+            // إضافة النص مع علامة لجذب الانتباه
+            anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+
+            listItem.appendChild(anchor);
+            listContainer.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading the JSON data:', error));
+
+// تحميل بيانات تربية الأطفال الآن من JSON
+fetch('https://likebook.online/json/trkids.json')
+    .then(response => response.json())
+    .then(data => {
+        const listContainer = document.getElementById('raisingLinksList');
+        
+        // ترتيب الروابط بشكل عشوائي
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 5); // اختيار 5 روابط عشوائية
+
+        randomLinks.forEach(link => {
+            const listItem = document.createElement('li');
+            listItem.style.marginBottom = '10px';
+
+            const anchor = document.createElement('a');
+            anchor.href = link.url;
+            anchor.style.textDecoration = 'none';
+            anchor.style.color = '#006400';
+
+            // إضافة النص مع علامة لجذب الانتباه
+            anchor.innerHTML = `${link.title} <span style="color: red; font-weight: bold;">&#9733;</span>`;
+
+            listItem.appendChild(anchor);
+            listContainer.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading the JSON data:', error));
     </script>
     
 <style>
