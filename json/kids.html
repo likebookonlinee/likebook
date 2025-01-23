@@ -254,7 +254,7 @@ body {
 
     <div class="links-container" style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
         <!-- حاوية روابط ذات صلة -->
-        <div class="related-links" style="padding: 25px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; height: 500px; overflow-y: auto; width: 60%; max-width: 600px;">
+        <div class="related-links" style="padding: 25px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px; height: 400px; overflow-y: auto; width: 60%; max-width: 600px;">
             <h3 style="color:rgb(162, 0, 0); margin-bottom: 10px;">روابط ذات صلة:</h3>
             <ul id="relatedLinksList" style="list-style: none; padding: 0;"></ul>
         </div>
@@ -274,7 +274,7 @@ fetch('https://likebook.online/json/kids.json')
         const listContainer = document.getElementById('relatedLinksList');
         
         // ترتيب الروابط بشكل عشوائي
-        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 10); // اختيار 5 روابط عشوائية
+        const randomLinks = data.sort(() => 0.5 - Math.random()).slice(0, 12); // اختيار 5 روابط عشوائية
 
         randomLinks.forEach(link => {
             const listItem = document.createElement('li');
