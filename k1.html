@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تحديد الموقع عبر IP</title>
+  <title>تحديد الموقع</title>
 </head>
 <body>
-  <h1>موقعك بناءً على IP</h1>
+  <h1>موقعك الحالي</h1>
   <p id="location">جاري تحميل الموقع...</p>
 
   <script>
-    fetch('https://ipinfo.io/json?token=YOUR_TOKEN_HERE')
-      .then(response => response.json())
-      .then(data => {
-        const location = data.loc.split(',');
-        const latitude = location[0];
-        const longitude = location[1];
-        document.getElementById("location").innerHTML = `إحداثياتك (من IP): 
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        document.getElementById("location").innerHTML = `إحداثياتك: 
           العرض: ${latitude} 
           الطول: ${longitude}`;
-      })
-      .catch(error => {
-        document.getElementById("location").innerHTML = "فشل في تحديد الموقع عبر IP.";
+      }, function(error) {
+        document.getElementById("location").innerHTML = "فشل في تحديد الموقع.";
       });
+    } else {
+      document.getElementById("location").innerHTML = "الخاصية غير مدعومة في المتصفح.";
+    }
   </script>
 </body>
 </html>
