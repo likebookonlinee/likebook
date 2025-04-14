@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نتائج البحث</title>
+  <style>
+    /* تصميم الصفحة */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+      margin-top: 20px;
+    }
+
+    /* تنسيق نموذج البحث */
+    form {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 60%;
+      max-width: 500px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* تنسيق قسم عرض النتائج */
+    #search-results {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h3 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #fafafa;
+    }
+
+    li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      display: block;
+    }
+
+    li a:hover {
+      color: #4CAF50;
+    }
+
+    li img {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+
+    /* رسالة إذا لم يتم العثور على نتائج */
+    #no-results {
+      text-align: center;
+      color: #888;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>نتائج البحث</h1>
+  
+  <!-- نموذج البحث -->
+  <form action="/search" method="get">
+    <input type="text" name="q" placeholder="ابحث هنا..." required>
+    <button type="submit">بحث</button>
+  </form>
+
+  <!-- عرض النتائج -->
+  <div id="search-results">
+    <!-- سيتم عرض النتائج هنا باستخدام JavaScript -->
+  </div>
+
+  <script>
+    // استخراج الاستعلام من الرابط
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q');  // استرجاع قيمة 'q' من الرابط
+
+    // تحميل البيانات من ملف searchData.json
+    fetch('searchData.json')
+      .then(response => response.json())
+      .then(data => {
+        const resultsDiv = document.getElementById('search-results');
+        
+        // تصفية البيانات بناءً على الاستعلام
+        const filteredResults = data.filter(item => 
+          item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
+        );
+
+        // عرض النتائج
+        if (filteredResults.length > 0) {
+          resultsDiv.innerHTML = '<h3>نتائج البحث:</h3><ul>';
+          filteredResults.forEach(result => {
+            resultsDiv.innerHTML += `<li>
+              <a href="${result.url}" target="_self">
+                <strong>${result.title}</strong>: ${result.description}
+              </a>
+              <img src="${result.image}" alt="${result.title}">
+            </li>`;
+          });
+          resultsDiv.innerHTML += '</ul>';
+        } else {
+          resultsDiv.innerHTML = '<p id="no-results">لم يتم العثور على نتائج.</p>';
+        }
+      })
+      .catch(error => {
+        console.error('Error loading search data:', error);
+        document.getElementById('search-results').innerHTML = '<p id="no-results">حدث خطأ في تحميل البيانات.</p>';
+      });
+</script>
+
+</body>
+</html>
